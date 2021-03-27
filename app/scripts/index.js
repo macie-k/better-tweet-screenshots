@@ -68,8 +68,7 @@ async function getTweetInformation(id) {
     }
 
     const endpointURL = 'https://api.twitter.com/2/tweets/'
-    // const prefix = 'http://127.0.0.1:8080/'
-    const prefix = ''
+    const prefix = 'https://cors.bridged.cc/'
     const params = {
         "tweet.fields": "created_at,author_id",
         "expansions": "author_id,attachments.media_keys",
