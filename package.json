@@ -1,0 +1,24 @@
+{
+  "name": "better-tweet-screenshots",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "cors": "node node_modules/cors-anywhere/server",
+    "start": "parcel app/index.html --host 192.168.0.5",
+    "build": "parcel build app/index.html"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.32.8"
+  },
+  "dependencies": {
+    "cors-anywhere": "^0.4.4",
+    "dom-to-image": "^2.6.0",
+    "needle": "^2.6.0"
+  },
+  "browserslist": [
+    "last 1 Chrome version"
+  ]
+}
