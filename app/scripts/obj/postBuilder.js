@@ -31,8 +31,12 @@ export class PostBuilder {
         $('.username').innerHTML = `@${this.user.username}`
         $('.text').innerHTML = this.tweet.text
         $('.datetime').innerHTML = `${date.hours}:${date.minutes} · ${date.day} ${date.month} ${date.year}`
-        
+
         this.applyTheme(this.theme)
+
+        $('.media').forEach(el => {
+            el.classList.add('hidden')
+        })
 
         if(this.media !== undefined) {
             $('.text').classList.remove('nomedia')
