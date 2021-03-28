@@ -1,4 +1,5 @@
 import {$} from '../common.js'
+import {createScreenshot} from '../index.js'
 
 export class PostBuilder {
     constructor(tweet, user, media, theme) {
@@ -8,11 +9,24 @@ export class PostBuilder {
         this.theme = theme
     }
 
+    async createPhoto() {
+        const post = $('.post-container')
+        const tmp = post.cloneNode(true)
+        
+        post.querySelectorAll('.media').forEach(el => {
+            if(el.classList.contains('hidden')) {
+                el.remove()
+            }
+        })
+
+        await createScreenshot(post, $('.content'), true)
+        $('.content').replaceChild(tmp, post)
+    }
+
     display() {
         const date = this.tweet.date
-        // $('.input-container').style.display = 'none'
         $('.post-container').style.opacity = 1
-        $('.avatar').src = this.user.profile_image_url
+        $('.avatar').src = this.user.profile_image_url.replace('_normal', '')
         $('.name').innerHTML = this.user.name
         $('.username').innerHTML = `@${this.user.username}`
         $('.text').innerHTML = this.tweet.text

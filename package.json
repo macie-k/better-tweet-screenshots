@@ -17,6 +17,7 @@
   "dependencies": {
     "cors-anywhere": "^0.4.4",
     "dom-to-image": "^2.6.0",
+    "file-saver": "^2.0.5",
     "needle": "^2.6.0"
   },
   "browserslist": [
