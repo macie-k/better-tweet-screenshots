@@ -35,6 +35,7 @@ $('.load').addEventListener('click', async () => {
 
 $('.top-arrow').addEventListener('click', () => {
     $('.input-overlay').style.top = 0
+    showingPost = false
 })
 
 function showTweet(data) {
