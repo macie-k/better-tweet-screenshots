@@ -6,7 +6,7 @@
   "scripts": {
     "cors": "node node_modules/cors-anywhere/server",
     "start": "parcel app/index.html --host 192.168.0.5",
-    "build": "parcel build app/index.html"
+    "build": "del /q dist && parcel build app/index.html --public-url ./"
   },
   "author": "",
   "license": "ISC",

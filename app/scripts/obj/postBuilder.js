@@ -1,5 +1,5 @@
 import {$} from '../common.js'
-import {createScreenshot} from '../index.js'
+import {createScreenshot, positionSettings} from '../index.js'
 
 export class PostBuilder {
     constructor(tweet, user, media, theme) {
@@ -57,11 +57,14 @@ export class PostBuilder {
         } else {
             $('.text').classList.add('nomedia')
         }
+
+        $('.settings').style.opacity = 1
+        positionSettings()
     }
 
     applyTheme(theme) {
         $('.post-container').style.backgroundColor = theme.background
-        $('.text-primary').forEach(el => el.style.color = theme.text.primary )
+        $('.text-primary').forEach(el => el.style.color = theme.text.primary)
         $('.text-secondary').forEach(el => el.style.color = theme.text.secondary)
     }
 }

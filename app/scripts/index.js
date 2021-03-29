@@ -1,17 +1,34 @@
-import {$} from './common.js'
+import {$, isDesktop} from './common.js'
 import dom2Img from 'dom-to-image'
 import { PostBuilder } from './obj/PostBuilder.js'
 import { Themes } from './obj/theme.js'
 import { saveAs } from 'file-saver';
+import { post } from 'needle';
 
-var postObj;
+var activePost;
 var showingPost = false;
+var showingSettings = false;
+var activeTheme = 'WHITE';
+var savedSettingsTop;
 
 const TWITTER_TOKEN = 'AAAAAAAAAAAAAAAAAAAAALCNNwEAAAAAO0fvQSwiER9X%2FAFxKChvRxgDGYI%3DoWtrE96FRLO8i9nwNxeypKwG9YgCrYWniLg2cVQLTfIqShqTkB'
 
 window.addEventListener('load', () => {
     $('.container').style.opacity = 1
+    
+    // todo: reading cookie for activeTheme
+    loadThemes()
+    updateActiveTheme(activeTheme)
 })
+
+function updateActiveTheme(name) {
+    $('.theme').forEach(theme => {
+        theme.classList.remove('active')
+        if(theme.classList.contains(name)) {
+            theme.classList.add('active')
+        }
+    })
+}
 
 $('.load').addEventListener('click', async () => {
     const input = $('.tweet-input').value
@@ -38,13 +55,48 @@ $('.top-arrow').addEventListener('click', () => {
     showingPost = false
 })
 
+$('.settings').addEventListener('click', () => {
+    if(showingSettings) {
+        $('.option-container').classList.remove('visible')
+        setTimeout(() => {
+            $('.post-container').fadeIn(200, 'block')
+        }, 300) 
+    } else {
+        $('.option-container').classList.add('visible')
+        $('.post-container').fadeOut(200, true)
+    }
+    showingSettings = !showingSettings
+})
+
+export function positionSettings() {
+    const settings = $('.settings')
+    const post = $('.post-container')
+    const postWidth = 620
+    const rightOffset = 60
+
+    if(isDesktop()) {
+        if(showingSettings) {
+            settings.style.top = window.innerHeight * savedSettingsTop
+            settings.style.right = (window.innerWidth - postWidth) / 2 - rightOffset
+            settings.style.left = 'unset'
+        } else {
+            settings.style.top = post.offsetTop
+            settings.style.right = post.offsetLeft - rightOffset
+            settings.style.left = 'unset'
+            savedSettingsTop = post.offsetTop / window.innerHeight
+        }
+        
+    } else {
+        settings.style.top = ''
+        settings.style.right = ''
+        settings.style.left = ''
+    }
+}
+
 function showTweet(data) {
-    postObj = new PostBuilder(data.tweet, data.user, data.media, Themes.WHITE)
-    postObj.display()
+    activePost = new PostBuilder(data.tweet, data.user, data.media, Themes.WHITE)
+    activePost.display()
     showingPost = true
-    setTimeout(() => {
-        postObj.createPhoto()
-    }, 2000)
 }
 
 function parseTweetInformation(data) {
@@ -76,7 +128,7 @@ function parseTweetInformation(data) {
     return {tweet: tweet, user: user, media:media}
 }
 
-async function getTweetInformation(id) {
+async function getTweetInformation(id = '1343331784621256709') {
     if(id === undefined) {
         return undefined
     }
@@ -108,6 +160,22 @@ async function getTweetInformation(id) {
     return res
 }
 
+function loadThemes() {
+    const themeContainer = $('.theme-container')
+    for(let [name, theme] of Object.entries(Themes)) {
+        const div = document.createElement('div')
+            div.classList.add('theme')
+            div.classList.add(name)
+            div.dataset.color = theme.background
+            div.style.backgroundColor = theme.background
+            div.addEventListener('click', function() {
+                updateActiveTheme(name)
+                activePost.applyTheme(theme)
+            })
+        themeContainer.appendChild(div)
+    }
+}
+
 export async function createScreenshot(sourceNode, targetNode, download=false) {
     if(download) {
         // await dom2Img.toBlob(sourceNode).then(function (blob) {
@@ -132,6 +200,7 @@ export async function createScreenshot(sourceNode, targetNode, download=false) {
 window.addEventListener('resize', () => {
     if(showingPost) {
         $('.input-overlay').style.top = -window.innerHeight-200
+        positionSettings()
     }
 })
 
