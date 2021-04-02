@@ -31,7 +31,7 @@ export class PostBuilder {
         $('.username').innerHTML = `@${this.user.username}`
         $('.text').innerHTML = this.tweet.text
         $('.datetime').innerHTML = `${date.hours}:${date.minutes} · ${date.day} ${date.month} ${date.year}`
-
+        
         this.applyTheme(this.theme)
 
         $('.media').forEach(el => {
@@ -58,7 +58,7 @@ export class PostBuilder {
             $('.text').classList.add('nomedia')
         }
 
-        $('.settings').style.opacity = 1
+        $('.settings-container').style.opacity = 1
         positionSettings()
     }
 

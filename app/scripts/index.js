@@ -2,14 +2,14 @@ import {$, isDesktop} from './common.js'
 import dom2Img from 'dom-to-image'
 import { PostBuilder } from './obj/PostBuilder.js'
 import { Themes } from './obj/theme.js'
-import { saveAs } from 'file-saver';
-import { post } from 'needle';
+import { saveAs } from 'file-saver'
 
-var activePost;
-var showingPost = false;
-var showingSettings = false;
-var activeTheme = 'WHITE';
-var savedSettingsTop;
+var activePost
+var showingPost = false
+var showingSettings = false
+var showingDate = true
+var activeTheme = 'WHITE'
+var savedSettingsTop
 
 const TWITTER_TOKEN = 'AAAAAAAAAAAAAAAAAAAAALCNNwEAAAAAO0fvQSwiER9X%2FAFxKChvRxgDGYI%3DoWtrE96FRLO8i9nwNxeypKwG9YgCrYWniLg2cVQLTfIqShqTkB'
 
@@ -55,42 +55,98 @@ $('.top-arrow').addEventListener('click', () => {
     showingPost = false
 })
 
-$('.settings').addEventListener('click', () => {
+$('body').addEventListener('click', () => {
     if(showingSettings) {
-        $('.option-container').classList.remove('visible')
-        setTimeout(() => {
-            $('.post-container').fadeIn(200, 'block')
-        }, 300) 
-    } else {
-        $('.option-container').classList.add('visible')
-        $('.post-container').fadeOut(200, true)
+        hideSettings();
     }
-    showingSettings = !showingSettings
 })
 
+$('.option').forEach(option => {
+    const type = option.classList.value.replace('option', '').trim()
+    option.addEventListener('click', function(e) {
+        switch(type) {
+            case 'themes':
+                break
+            case 'time':
+                const datetime = $('.datetime')
+                if(showingDate) {
+                    datetime.fadeOut(300, true)
+                    this.style.opacity = 0.4
+                } else {
+                    datetime.fadeIn(300, 'block')
+                    this.style.opacity = 1
+                }
+                showingDate = !showingDate
+                break
+        }
+        e.stopPropagation()
+        
+    })
+})
+
+new ResizeObserver(positionSettings).observe($('.post-container'))
+
+// $('.datetime').addEventListener('click', function() {
+//     if(this.classList.contains('disabled')) {
+//         this.classList.remove('disabled')
+//     } else {
+//         this.classList.add('disabled')
+//     }
+// })
+
+$('.settings').addEventListener('click', (e) => {
+    if(showingSettings) {
+        hideSettings()
+    } else {
+        showSettings()
+    }
+    e.stopPropagation();
+})
+
+function hideSettings() {
+    setTimeout(() => {
+        $('.settings-container').classList.remove('visible')
+    }, 200)
+    $('.option').forEach(option => {
+        if(option.classList.contains('settings')) {
+            return
+        }
+        option.fadeOut(300, true)
+    })
+    showingSettings = false
+}
+
+function showSettings() {
+    $('.settings-container').classList.add('visible')
+
+    setTimeout(() => {
+        $('.option').forEach(option => {
+            if(option.classList.contains('settings')) {
+                return
+            }
+            option.fadeIn(300, 'flex')
+        })
+    }, 600)
+    showingSettings = true
+}
+
 export function positionSettings() {
-    const settings = $('.settings')
+    const settings = $('.settings-container')
     const post = $('.post-container')
-    const postWidth = 620
     const rightOffset = 60
 
-    if(isDesktop()) {
-        if(showingSettings) {
-            settings.style.top = window.innerHeight * savedSettingsTop
-            settings.style.right = (window.innerWidth - postWidth) / 2 - rightOffset
-            settings.style.left = 'unset'
-        } else {
+    setTimeout(() => {
+        if(isDesktop()) {
             settings.style.top = post.offsetTop
             settings.style.right = post.offsetLeft - rightOffset
             settings.style.left = 'unset'
-            savedSettingsTop = post.offsetTop / window.innerHeight
+        } else {
+            settings.style.top = ''
+            settings.style.right = ''
+            settings.style.left = ''
         }
-        
-    } else {
-        settings.style.top = ''
-        settings.style.right = ''
-        settings.style.left = ''
-    }
+    }, 100)
+    
 }
 
 function showTweet(data) {

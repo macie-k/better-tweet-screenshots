@@ -125,7 +125,7 @@ html, body {
     border-radius: 50px;
     transition: all .35s ease-in-out;
     position: relative;
-    box-shadow: 0 4px 15px 0 rgba(23, 168, 108, 0.75);
+    // box-shadow: 0 4px 15px 0 rgba(23, 168, 108, 0.75);
     box-shadow: 0 4px 15px 0 rgba(138, 168, 243, 0.75);
     background-image: linear-gradient(to left bottom, #d16ba5, #cf6fb1, #cb73be, #c678cb, #be7ed7, #b388e2, #a692ec, #999bf4, #8ba9f8, #83b5f9, #82c0f6, #89c9f2);
 
@@ -234,32 +234,14 @@ html, body {
     .text-secondary {
         color: #7A7A7A;
     }
-
-    &>div:not(:last-child) {
-        margin-bottom: 20px;
-    }
 }
 
-.settings {
-    cursor: pointer;
-    opacity: 0;
-    transition: transform .3s ease-in-out .05s, box-shadow .4s ease-in-out .05s, opacity .3s ease-in 1s;
-    border-radius: 50%;
-    box-shadow: 0 5px 17px rgb(0 0 0 / 15%), 0 3px 6px rgb(0 0 0 / 5%);
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    right: 0px;
-    left: 0px;
-    margin-left: auto;
-    margin-right: auto;
-    bottom: 20px;
+.user {
+    margin-bottom: 20px;
+}
 
-    &:hover {
-        transform: scale(1.05);
-        transition: transform .4s ease-in-out .15s, box-shadow .4s ease-in-out .15s;
-        box-shadow: 0 5px 17px rgb(0 0 0 / 20%), 0 3px 6px rgb(0 0 0 / 10%);
-    }
+.datetime {
+    margin-top: 20px;
 }
 
 .theme {
@@ -277,40 +259,89 @@ html, body {
     display: flex;
     justify-content: center;
     height: 45px;
+    display: none;
 }
 
-.option-container {
-    max-width: 500px;
-    opacity: 0;
-    border-radius: 10px;
-    padding: 10px;
-    background-color: #FFF;
+.settings-container {
+    background-color: white;
     position: absolute;
-    right: 0; left: 0;
-    width: 0px;
-    height: fit-content;
-    // transform: scaleY(0);
-    margin: 0 auto;
-    transition: transform .3s ease-out .3s, width .2s ease-out .3s, opacity .2s ease-out .3s;
-    box-shadow: 0 5px 17px rgb(0 0 0 / 20%), 0 3px 6px rgb(0 0 0 / 10%);
+    top: 0;
+    right: -70px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-items: flex-start;
+    border-radius: 25px;
+    box-shadow: 0 5px 17px rgb(0 0 0 / 15%), 0 3px 6px rgb(0 0 0 / 5%);
+    transition: transform .3s ease-in-out .05s, box-shadow .4s ease-in-out .05s, opacity .3s ease-in 1s, height .3s ease-in-out .3s;
 
-    > .theme-container > .theme.active {
-        transition: border-width .2s ease-in-out .5s;
-        border-width: 0px;
+    &:hover {
+        transform: scale(1.05);
+        transition: transform .3s ease-in-out .05s, box-shadow .4s ease-in-out .05s, height .3s ease-in-out .3s;
+        box-shadow: 0 5px 17px rgb(0 0 0 / 20%), 0 3px 6px rgb(0 0 0 / 10%);
     }
 
+    $option-amount: 4;
     &.visible {
-        width: 90vw;
-        opacity: 1;
-        // transform: scaleY(1);
+        transform: none;
+        height: calc(#{$option-amount} * 50px + 20px);
+        transition: height .3s ease-in-out .3s;
 
-        transition: transform .1s ease-out .4s, width .2s ease-out .3s, opacity .2s ease-out .25s;
-    
-        > .theme-container > .theme.active {
-            transition: border-width .2s ease-in-out;
-            border-width: 5px;
+        .settings {
+            box-shadow: 0 5px 17px rgb(0 0 0 / 10%), 0 3px 6px rgb(0 0 0 / 5%);
+            transition: box-shadow .4s ease-in-out .5s;
         }
     }
+}
+
+.option {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    margin: 5px 0;
+    cursor: pointer;
+
+    &>img {
+        transition: transform .2s ease-in-out .25s, opacity .2s ease-in;
+        width: 40%;
+        height: auto;
+    }
+
+    &:hover>img {
+        transform: scale(1.1);
+        transition: transform .3s ease-in-out;
+    }
+    display: none;
+}
+
+.settings {
+    border-radius: 25px;
+
+    margin: 0;
+    display: flex;
+    transition: none;
+    transition: box-shadow .4s ease-in-out 2s;
+    &:hover>img{
+        transform: none;
+    }
+}
+
+.themes {
+    &>img {
+        width: 45%;
+    }
+}
+
+.time {
+    transition: opacity .3s ease-in-out;
+}
+
+.likes {
+    margin-bottom: 0;
+    border-radius: 25px;
 }
 
 $userHeight: 60px;
