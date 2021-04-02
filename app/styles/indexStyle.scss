@@ -216,6 +216,7 @@ html, body {
 }
 
 .post-container {
+    position: relative;
     margin-top: 25px;
     opacity: 0;
     background-color: #FFF;
@@ -240,8 +241,29 @@ html, body {
     margin-bottom: 20px;
 }
 
+.footer {
+    &>* {
+        margin-top: 20px;
+    }
+    display: flex;
+}
+
 .datetime {
-    margin-top: 20px;
+    width: fit-content;
+}
+
+.likes {
+    display: flex;
+    align-items: center;
+    justify-self: flex-end;
+    width: fit-content;
+    height: 21px;
+    margin-left: auto;
+
+    &>img {
+        height: 75%;
+        margin-right: 10px;
+    }
 }
 
 .theme {
@@ -266,7 +288,7 @@ html, body {
     background-color: white;
     position: absolute;
     top: 0;
-    right: -70px;
+    right: -60px;
     width: 50px;
     height: 50px;
     display: flex;
@@ -296,13 +318,13 @@ html, body {
 }
 
 .option {
-    display: flex;
     justify-content: center;
     align-items: center;
     width: 50px;
     height: 50px;
     margin: 5px 0;
     cursor: pointer;
+    display: none;
 
     &>img {
         transition: transform .2s ease-in-out .25s, opacity .2s ease-in;
@@ -313,8 +335,27 @@ html, body {
     &:hover>img {
         transform: scale(1.1);
         transition: transform .3s ease-in-out;
+    }  
+}
+
+.option-themes {
+    &>img {
+        width: 50%;
     }
-    display: none;
+}
+
+.option-datetime {
+    transition: opacity .3s ease-in-out;
+
+    &.disabled {
+        transition: opacity .3s ease-in-out;
+        opacity: 0.4 !important;
+    }
+}
+
+.option-likes {
+    margin-bottom: 0;
+    border-radius: 25px;
 }
 
 .settings {
@@ -329,20 +370,6 @@ html, body {
     }
 }
 
-.themes {
-    &>img {
-        width: 45%;
-    }
-}
-
-.time {
-    transition: opacity .3s ease-in-out;
-}
-
-.likes {
-    margin-bottom: 0;
-    border-radius: 25px;
-}
 
 $userHeight: 60px;
 

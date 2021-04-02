@@ -9,13 +9,12 @@ var showingPost = false
 var showingSettings = false
 var showingDate = true
 var activeTheme = 'WHITE'
-var savedSettingsTop
 
 const TWITTER_TOKEN = 'AAAAAAAAAAAAAAAAAAAAALCNNwEAAAAAO0fvQSwiER9X%2FAFxKChvRxgDGYI%3DoWtrE96FRLO8i9nwNxeypKwG9YgCrYWniLg2cVQLTfIqShqTkB'
 
 window.addEventListener('load', () => {
     $('.container').style.opacity = 1
-    
+    $('img').forEach(img => img.draggable = false)
     // todo: reading cookie for activeTheme
     loadThemes()
     updateActiveTheme(activeTheme)
@@ -62,19 +61,18 @@ $('body').addEventListener('click', () => {
 })
 
 $('.option').forEach(option => {
-    const type = option.classList.value.replace('option', '').trim()
+    const type = option.classList.value.replace('option option-', '').trim()
     option.addEventListener('click', function(e) {
         switch(type) {
             case 'themes':
                 break
-            case 'time':
-                const datetime = $('.datetime')
+            case 'datetime':
                 if(showingDate) {
-                    datetime.fadeOut(300, true)
-                    this.style.opacity = 0.4
+                    $('.datetime').fadeOut(300, true)
+                    this.classList.add('disabled')
                 } else {
-                    datetime.fadeIn(300, 'block')
-                    this.style.opacity = 1
+                    $('.datetime').fadeIn(300, 'block')
+                    this.classList.remove('disabled')
                 }
                 showingDate = !showingDate
                 break
@@ -83,16 +81,6 @@ $('.option').forEach(option => {
         
     })
 })
-
-new ResizeObserver(positionSettings).observe($('.post-container'))
-
-// $('.datetime').addEventListener('click', function() {
-//     if(this.classList.contains('disabled')) {
-//         this.classList.remove('disabled')
-//     } else {
-//         this.classList.add('disabled')
-//     }
-// })
 
 $('.settings').addEventListener('click', (e) => {
     if(showingSettings) {
@@ -130,25 +118,6 @@ function showSettings() {
     showingSettings = true
 }
 
-export function positionSettings() {
-    const settings = $('.settings-container')
-    const post = $('.post-container')
-    const rightOffset = 60
-
-    setTimeout(() => {
-        if(isDesktop()) {
-            settings.style.top = post.offsetTop
-            settings.style.right = post.offsetLeft - rightOffset
-            settings.style.left = 'unset'
-        } else {
-            settings.style.top = ''
-            settings.style.right = ''
-            settings.style.left = ''
-        }
-    }, 100)
-    
-}
-
 function showTweet(data) {
     activePost = new PostBuilder(data.tweet, data.user, data.media, Themes.WHITE)
     activePost.display()
@@ -175,6 +144,7 @@ function parseTweetInformation(data) {
     }
     const tweet = {
         id: tweet_data.id,
+        likes: tweet_data.public_metrics.like_count,
         date: tweetDate,
         text: tweet_data.text.split(' ').filter(el => !el.includes('t.co')).join(' ')
     }
@@ -192,7 +162,7 @@ async function getTweetInformation(id = '1343331784621256709') {
     const endpointURL = 'https://api.twitter.com/2/tweets/'
     const prefix = 'https://cors.bridged.cc/'
     const params = {
-        "tweet.fields": "created_at,author_id",
+        "tweet.fields": "created_at,author_id,public_metrics",
         "expansions": "author_id,attachments.media_keys",
         "user.fields": "created_at,profile_image_url,username,verified,name",
         "media.fields": "url,preview_image_url"
@@ -213,6 +183,7 @@ async function getTweetInformation(id = '1343331784621256709') {
         return response.json()
     })
 
+    console.log(res);
     return res
 }
 
@@ -256,7 +227,6 @@ export async function createScreenshot(sourceNode, targetNode, download=false) {
 window.addEventListener('resize', () => {
     if(showingPost) {
         $('.input-overlay').style.top = -window.innerHeight-200
-        positionSettings()
     }
 })
 

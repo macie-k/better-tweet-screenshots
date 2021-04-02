@@ -25,13 +25,16 @@ export class PostBuilder {
 
     display() {
         const date = this.tweet.date
+        const likes = this.tweet.likes
+
         $('.post-container').style.opacity = 1
         $('.avatar').src = this.user.profile_image_url.replace('_normal', '')
         $('.name').innerHTML = this.user.name
         $('.username').innerHTML = `@${this.user.username}`
         $('.text').innerHTML = this.tweet.text
         $('.datetime').innerHTML = `${date.hours}:${date.minutes} · ${date.day} ${date.month} ${date.year}`
-        
+        $('.likes-amount').innerHTML = likes >= 1000 ? `${parseFloat(likes/1000.0).toFixed(1)}k` : likes
+
         this.applyTheme(this.theme)
 
         $('.media').forEach(el => {
@@ -59,7 +62,6 @@ export class PostBuilder {
         }
 
         $('.settings-container').style.opacity = 1
-        positionSettings()
     }
 
     applyTheme(theme) {
