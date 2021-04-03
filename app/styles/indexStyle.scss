@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600&display=swap');
+$option-amount: 4;
 
 * {
     -ms-overflow-style: none;
@@ -188,12 +189,9 @@ html, body {
 .content {
     position: relative;
     width: 100vw;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
     height: 100vh;
+    display: flex;
+    justify-content: center;
 }
 
 .top-arrow {
@@ -216,8 +214,7 @@ html, body {
 }
 
 .post-container {
-    position: absolute;
-    top: 15vh;
+    margin-top: 15vh;
     opacity: 0;
     background-color: #FFF;
     width: 95vw;
@@ -287,28 +284,30 @@ html, body {
 .settings-container {
     background-color: white;
     position: absolute;
-    top: 0;
-    right: -60px;
+    bottom: 20;
+    right: 0;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
     width: 50px;
     height: 50px;
     display: flex;
-    flex-direction: column;
-    justify-items: flex-start;
+    flex-direction: row;
+    align-items: center;
     border-radius: 25px;
     box-shadow: 0 5px 17px rgb(0 0 0 / 15%), 0 3px 6px rgb(0 0 0 / 5%);
-    transition: transform .3s ease-in-out .05s, box-shadow .4s ease-in-out .05s, opacity .3s ease-in 1s, height .3s ease-in-out .3s;
+    transition: transform .3s ease-in-out .05s, box-shadow .4s ease-in-out .05s, opacity .3s ease-in 1s, width .3s ease-in-out .3s;
 
     &:hover {
         transform: scale(1.05);
-        transition: transform .3s ease-in-out .05s, box-shadow .4s ease-in-out .05s, height .3s ease-in-out .3s;
+        transition: transform .3s ease-in-out .05s, box-shadow .4s ease-in-out .05s, width .3s ease-in-out .3s;
         box-shadow: 0 5px 17px rgb(0 0 0 / 20%), 0 3px 6px rgb(0 0 0 / 10%);
     }
 
-    $option-amount: 4;
     &.visible {
         transform: none;
-        height: calc(#{$option-amount} * 50px + 20px);
-        transition: height .3s ease-in-out .3s;
+        width: calc(#{$option-amount} * 50px + 20px);
+        transition: width .3s ease-in-out .3s;
 
         .settings {
             box-shadow: 0 5px 17px rgb(0 0 0 / 10%), 0 3px 6px rgb(0 0 0 / 5%);
@@ -316,6 +315,7 @@ html, body {
         }
     }
 }
+
 
 .option {
     justify-content: center;
@@ -428,7 +428,29 @@ $userHeight: 60px;
     }    
 
     .post-container {
+        position: absolute;
+        margin-top: 0;
+        top: 15vh;
         width: 620px;
+    }
+
+    .settings-container {
+        top: 0;
+        left: unset;
+        right: -60px;
+        bottom: unset;
+        flex-direction: column;
+        transition: transform .3s ease-in-out .05s, box-shadow .4s ease-in-out .05s, opacity .3s ease-in 1s, height .3s ease-in-out .3s;
+
+        &:hover {
+            transition: transform .3s ease-in-out .05s, box-shadow .4s ease-in-out .05s, height .3s ease-in-out .3s;
+        }
+
+        &.visible {
+            width: 50px;
+            height: calc(#{$option-amount} * 50px + 20px);
+            transition: height .3s ease-in-out .3s;
+        }
     }
 }
 

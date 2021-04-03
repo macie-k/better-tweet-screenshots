@@ -17,7 +17,7 @@
     img.cropped {
         object-fit: cover;
         object-position: center;
-        height: 55vh;
+        max-height: 55vh;
     }
 }
 
