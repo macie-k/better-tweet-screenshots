@@ -216,8 +216,8 @@ html, body {
 }
 
 .post-container {
-    position: relative;
-    margin-top: 25px;
+    position: absolute;
+    top: 15vh;
     opacity: 0;
     background-color: #FFF;
     width: 95vw;
@@ -253,7 +253,7 @@ html, body {
 }
 
 .likes {
-    display: flex;
+    display: none;
     align-items: center;
     justify-self: flex-end;
     width: fit-content;
@@ -261,7 +261,7 @@ html, body {
     margin-left: auto;
 
     &>img {
-        height: 75%;
+        height: 73%;
         margin-right: 10px;
     }
 }
@@ -346,11 +346,12 @@ html, body {
 
 .option-datetime {
     transition: opacity .3s ease-in-out;
+}
 
-    &.disabled {
-        transition: opacity .3s ease-in-out;
-        opacity: 0.4 !important;
-    }
+.option-disabled {
+    filter: saturate(0) !important;
+    transition: opacity .3s ease-in-out !important;
+    opacity: 0.4 !important;
 }
 
 .option-likes {

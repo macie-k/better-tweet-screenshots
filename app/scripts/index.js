@@ -3,31 +3,38 @@ import dom2Img from 'dom-to-image'
 import { PostBuilder } from './obj/PostBuilder.js'
 import { Themes } from './obj/theme.js'
 import { saveAs } from 'file-saver'
+import optionIcons from '../img/icons/options/*.svg'
 
 var activePost
 var showingPost = false
 var showingSettings = false
 var showingDate = true
-var activeTheme = 'WHITE'
 
 const TWITTER_TOKEN = 'AAAAAAAAAAAAAAAAAAAAALCNNwEAAAAAO0fvQSwiER9X%2FAFxKChvRxgDGYI%3DoWtrE96FRLO8i9nwNxeypKwG9YgCrYWniLg2cVQLTfIqShqTkB'
+const themesTypes = Object.keys(Themes)
+const likesTypes = [
+    'disabled',
+    'outline',
+    'filled'
+]
+const dateTypes = [
+    'full',
+    'date',
+    'disabled'
+]
+themesTypes.active = 0
+likesTypes.active = 0
+dateTypes.active = 0
 
 window.addEventListener('load', () => {
     $('.container').style.opacity = 1
     $('img').forEach(img => img.draggable = false)
+
     // todo: reading cookie for activeTheme
-    loadThemes()
-    updateActiveTheme(activeTheme)
+
+    console.log('%c Made by: %c https://kazmierczyk.me/', 'background: linear-gradient(to left bottom, #d16ba5, #cf6fb1, #cb73be, #c678cb, #be7ed7, #b388e2, #a692ec, #999bf4, #8ba9f8, #83b5f9, #82c0f6, #89c9f2); color: #fff;', '')
 })
 
-function updateActiveTheme(name) {
-    $('.theme').forEach(theme => {
-        theme.classList.remove('active')
-        if(theme.classList.contains(name)) {
-            theme.classList.add('active')
-        }
-    })
-}
 
 $('.load').addEventListener('click', async () => {
     const input = $('.tweet-input').value
@@ -61,20 +68,55 @@ $('body').addEventListener('click', () => {
 })
 
 $('.option').forEach(option => {
-    const type = option.classList.value.replace('option option-', '').trim()
+    const type = option.id.replace('option-', '')
     option.addEventListener('click', function(e) {
         switch(type) {
             case 'themes':
+                themesTypes.active = themesTypes.active === themesTypes.length-1 ? 0 : themesTypes.active + 1
+                const newTheme = themesTypes[themesTypes.active]
+                activePost.applyTheme(Themes[newTheme])
+                $('.option-themes > img').src = optionIcons[`theme-${newTheme.toLowerCase()}`]
                 break
+
             case 'datetime':
-                if(showingDate) {
+                dateTypes.active = dateTypes.active === dateTypes.length-1 ? 0 : dateTypes.active + 1
+                const dateType = dateTypes[dateTypes.active]
+                if(dateType === 'disabled') {
                     $('.datetime').fadeOut(300, true)
-                    this.classList.add('disabled')
-                } else {
-                    $('.datetime').fadeIn(300, 'block')
-                    this.classList.remove('disabled')
+                    this.classList.add('option-disabled')
+                    break
                 }
-                showingDate = !showingDate
+                this.classList.remove('option-disabled')
+                if(dateType === 'full') {
+                    $('.datetime').querySelectorAll('span').forEach(el => {
+                        el.fadeIn(1, 'inline')
+                    })
+                    $('.datetime').fadeIn(300, 'block')
+                    break
+                }
+                if(dateType === 'date') {
+                    $('.datetime').querySelectorAll('span:not(.datetime-date)').forEach(el => {
+                        el.fadeOut(300, true)
+                    })
+                }
+                break
+
+            case 'likes':
+                likesTypes.active = likesTypes.active === likesTypes.length-1 ? 0 : likesTypes.active + 1
+                if(likesTypes[likesTypes.active] === 'disabled') {
+                    $('.option-likes > img').src = optionIcons[`heart-outline`]
+                    this.classList.add('option-disabled')
+                    $('.likes').fadeOut(300, true)
+                    break
+                }
+                if(this.classList.contains('option-disabled')) {
+                    this.classList.remove('option-disabled')
+                    $('.likes').fadeIn(300, 'flex')
+                }
+                const newHeart = likesTypes[likesTypes.active]
+                $('.likes > img').src = optionIcons[`heart-${newHeart}`]
+                $('.option-likes > img').src = optionIcons[`heart-${newHeart}`]
+
                 break
         }
         e.stopPropagation()
@@ -183,7 +225,6 @@ async function getTweetInformation(id = '1343331784621256709') {
         return response.json()
     })
 
-    console.log(res);
     return res
 }
 
