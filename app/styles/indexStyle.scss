@@ -281,14 +281,46 @@ html, body {
     display: none;
 }
 
-.settings-container {
-    background-color: white;
+.bubbles-container {
     position: absolute;
     bottom: 20;
     right: 0;
     left: 0;
     margin-left: auto;
     margin-right: auto;
+    width: fit-content;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.save {
+    box-shadow: 0 5px 17px rgb(0 0 0 / 15%), 0 3px 6px rgb(0 0 0 / 5%);
+    transition: transform .3s ease-in-out .05s, box-shadow .4s ease-in-out .05s, opacity .3s ease-in 1s, width .3s ease-in-out .3s;
+    background-color: white;
+    border-radius: 25px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 10px;
+
+    &>img {
+        width: 30%;
+    }
+
+    &:hover {
+        transform: scale(1.05);
+        transition: transform .3s ease-in-out .05s, box-shadow .4s ease-in-out .05s, width .3s ease-in-out .3s;
+        box-shadow: 0 5px 17px rgb(0 0 0 / 20%), 0 3px 6px rgb(0 0 0 / 10%);
+    }
+}
+
+.settings-container {
+    background-color: white;
     width: 50px;
     height: 50px;
     display: flex;
@@ -434,11 +466,26 @@ $userHeight: 60px;
         width: 620px;
     }
 
-    .settings-container {
+    .bubbles-container {
+        position: absolute;
         top: 0;
         left: unset;
         right: -60px;
         bottom: unset;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: fit-content;
+    }
+
+    .save {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .settings-container {
         flex-direction: column;
         transition: transform .3s ease-in-out .05s, box-shadow .4s ease-in-out .05s, opacity .3s ease-in 1s, height .3s ease-in-out .3s;
 

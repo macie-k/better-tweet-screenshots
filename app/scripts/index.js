@@ -244,24 +244,8 @@ async function getTweetInformation(id = '1343331784621256709') {
     return res
 }
 
-/* function for creating style divs // currently not used */
-// function loadThemes() {
-//     const themeContainer = $('.theme-container')
-//     for(let [name, theme] of Object.entries(Themes)) {
-//         const div = document.createElement('div')
-//             div.classList.add('theme')
-//             div.classList.add(name)
-//             div.dataset.color = theme.background
-//             div.style.backgroundColor = theme.background
-//             div.addEventListener('click', function() {
-//                 activePost.applyTheme(theme)
-//             })
-//         themeContainer.appendChild(div)
-//     }
-// }
-
 /* temporary option to actually save screenshot */
-$('.avatar').addEventListener('click', () => {
+$('.save').addEventListener('click', () => {
     activePost.createPhoto()
 })
 
