@@ -42,7 +42,6 @@ export class PostBuilder {
         const date = this.tweet.date
         const likes = this.tweet.likes
 
-        const multiMediaHeight = 0.4 * window.innerHeight       // media-2/3/4 photos height (40vh)
         const croppedMaxHeight = 0.55 * window.innerHeight      // media-1 cropped photo height limit (55vh)
         const postPadding = 20                                  // default post padding (20px)
 
@@ -63,11 +62,11 @@ export class PostBuilder {
             el.classList.add('hidden')
         })
 
+        var actualHeight = 0                                 // variable to store pre-calculated post height (before the photos are downloaded, based on api dimensions information)
         /* fill in & display correct media div */
         if(this.media !== undefined) {
             $('.text').classList.remove('nomedia')
 
-            var actualHeight                                    // variable to store pre-calculated post height (before the photos are downloaded, based on api dimensions information)
             const amount = this.media.length                    // count how many media files are in post
             const mediaContainer = $(`.media-${amount}`)        // select container based on media amount
                 mediaContainer.classList.remove('hidden')       // unhide it
@@ -82,26 +81,24 @@ export class PostBuilder {
                     actualHeight = croppedMaxHeight
                 }
 
+                actualHeight += $('.post-container').offsetHeight
                 mediaContainer.querySelector('img').src = ''    // reset photo url (needed when using top-arrow to re-enter post)
                 mediaContainer.querySelector('img').src = (this.media[0].type === 'photo') ? this.media[0].url : this.media[0].preview_image_url    // set either photo or video thumnail as post src
             } else {    // case for 2-4 media files
                 let counter = 0
-
                 /* load fetched images as background images */
                 mediaContainer.querySelectorAll('.media-content').forEach(el => {
-                    const image = this.media.type === 'photo' ? this.media[counter].url : this.media[counter].preview_image_url
-                    tmp.src = image
-                    el.style.backgroundImage = `url('')`
+                    const image = this.media[counter].type === 'photo' ? this.media[counter].url : this.media[counter].preview_image_url
                     el.style.backgroundImage = `url(${image})`
                     counter++
                 })
-                actualHeight = multiMediaHeight     // set media height to multiMedia CSS height value
+                actualHeight = $('.post-container').offsetHeight
             }
         } else {
+            actualHeight += $('.post-container').offsetHeight
             $('.text').classList.add('nomedia')
         }
-
-        actualHeight += $('.post-container').offsetHeight   // increment height by post height
+        
         this.top = (window.innerHeight - actualHeight) / 2     // calculate center for post
 
         $('.post-container').style[isDesktop() ? 'top' : 'marginTop'] = this.top   // set post position
