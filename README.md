@@ -10,6 +10,13 @@ Application for creating aesthetic tweet screenshots
 
 <br>
 
+## Themes
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/25122875/113517955-67d1f700-9583-11eb-840c-14aab39440c7.png">
+</p>
+
+<br>
+
 # Link
 - [Live version](http://bit.ly/better_tw_screenshots)
 
