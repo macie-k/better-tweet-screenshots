@@ -17,7 +17,7 @@ Application for creating aesthetic tweet screenshots
 
 <br>
 
-# Link
+## Link
 - [Live version](http://bit.ly/better_tw_screenshots)
 
 <br>
