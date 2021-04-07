@@ -3,6 +3,11 @@ Application for creating aesthetic tweet screenshots
 
 <br>
 
+## Link
+- [Live version](http://bit.ly/better_tw_screenshots)
+
+<br>
+
 ## Preview
 <p align="center">
   <img src="https://user-images.githubusercontent.com/25122875/113517156-a7e2ab00-957e-11eb-8bd5-fcfd0fd0a248.png">
@@ -17,10 +22,6 @@ Application for creating aesthetic tweet screenshots
 
 <br>
 
-## Link
-- [Live version](http://bit.ly/better_tw_screenshots)
-
-<br>
 
 ## Support
 - You can buy me a coffee here: 
