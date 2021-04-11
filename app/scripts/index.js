@@ -9,6 +9,7 @@ var activePost                  // storing activePost object from postBuilder
 var showingPost = false
 var showingSettings = false
 
+export const urlRegex = /(https?:\/\/)?[\w\-~]+(\.[\w\-~]+)+(\/[\w\-~@:%]*)*(#[\w\-]*)?(\?[^\s]*)?/gi;
 const TWITTER_TOKEN = 'AAAAAAAAAAAAAAAAAAAAALCNNwEAAAAAO0fvQSwiER9X%2FAFxKChvRxgDGYI%3DoWtrE96FRLO8i9nwNxeypKwG9YgCrYWniLg2cVQLTfIqShqTkB'
 const themesTypes = Object.keys(Themes)     // storing available theme names from theme.Themes
 const likesTypes = [                        // information about likes options  // outline & filled correspond to icons' filenames
@@ -48,6 +49,12 @@ $('.load').addEventListener('click', async () => {
     $('.load').classList.add('dots')                    // start loading animation
     const results = await getTweetInformation(id)       // fetch tweet information
     const tweetData = parseTweetInformation(results)    // parse tweet information
+
+    const reference = results.data.referenced_tweets
+    if(reference !== undefined) {
+        const refResults = await getTweetInformation(reference[0].id)
+        tweetData.tweet.referenced_tweet = parseTweetInformation(refResults)
+    }
 
     /* wait 0.5s and show post */
     setTimeout(() => {
@@ -184,7 +191,6 @@ function parseTweetInformation(data) {
         throw new Error('No post provided')
     }
     const tweet_data = data.data    // save tweet information
-
     const twDateArray = new Date(tweet_data.created_at).toString().split(" GMT")[0].split(' ')   // split ISO 8601 date to array
     const twTimeArray = twDateArray[twDateArray.length - 1].split(':')                           // separate time from date
     const tweetDate = {
@@ -197,11 +203,15 @@ function parseTweetInformation(data) {
         minutes: twTimeArray[1],
         seconds: twTimeArray[2]
     }
+
+    const textSplit = tweet_data.text.split(' ')
+        textSplit.pop()
+
     const tweet = {
         id: tweet_data.id,
         likes: tweet_data.public_metrics.like_count,
         date: tweetDate,
-        text: tweet_data.text.split(' ').filter(el => !el.includes('t.co')).join(' ')   // remove t.co/id link from tweet text
+        text: textSplit.join(' ')   // remove t.co/id link from tweet text
     }
     const user = data.includes.users[0]     // save user information
     const media = data.includes.media       // save media information
@@ -209,16 +219,12 @@ function parseTweetInformation(data) {
     return {tweet: tweet, user: user, media:media}
 }
 
-async function getTweetInformation(id = '1343331784621256709') {
-    /* if ID is empty // currently overriden */
-    if(id === undefined) {
-        return undefined
-    }
-
+// 1343331784621256709
+async function getTweetInformation(id='1380044683544567808') {
     const endpointURL = 'https://api.twitter.com/2/tweets/'     // api endpoint
     const prefix = 'https://cors.bridged.cc/'                   // CORS proxy server
     const params = {
-        "tweet.fields": "created_at,author_id,public_metrics",                  // tweet parameters
+        "tweet.fields": "created_at,author_id,public_metrics,referenced_tweets",                  // tweet parameters
         "expansions": "author_id,attachments.media_keys",                       // additional fields
         "user.fields": "created_at,profile_image_url,username,verified,name",   // user parameters
         "media.fields": "url,preview_image_url,height,width"                    // media parameters

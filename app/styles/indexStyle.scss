@@ -234,6 +234,12 @@ html, body {
     }
 }
 
+.verified {
+    margin-left: 5px;
+    display: none;
+    height: 95%;
+}
+
 .user {
     margin-bottom: 20px;
 }
@@ -350,6 +356,7 @@ html, body {
 
 
 .option {
+    border-radius: 25px;
     justify-content: center;
     align-items: center;
     width: 50px;
@@ -429,7 +436,10 @@ $userHeight: 60px;
     font-size: 17px;
 }
 
-.name {
+.name-container {
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
     line-height: 20px;
     font-weight: 700;
 }

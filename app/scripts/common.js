@@ -1,7 +1,12 @@
-export function $(selector) {
-    const nodes = document.querySelectorAll(selector);
+export function $(selector, parent=document, forceArray=false) {
+    const nodes = parent.querySelectorAll(selector);
     const nodesArray = Array.from(nodes);
-    return (nodesArray.length == 1) ? nodesArray[0] : nodesArray; 
+
+    if(forceArray) {
+        return nodesArray
+    } else {
+        return (nodesArray.length == 1) ? nodesArray[0] : nodesArray; 
+    }
 }
 
 export function isDesktop() {
