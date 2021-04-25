@@ -24,18 +24,18 @@ export class PostBuilder {
         /* hide all elements that should be ignored */ 
         post.querySelectorAll('*').forEach(el => {
             if(el.classList.contains('ignore')) {
-                el.style.display = 'none'
-            }
-        })
-    
-        await createScreenshot(post, $('.content'))     // save screenshot
+                el.fadeOut(200, true, undefined, async () => {
+                    await createScreenshot(post, $('.content')) // save screenshot
 
-        /* restore ignored elements */
-        post.querySelectorAll('*').forEach(el => {
-            if(el.classList.contains('ignore')) {
-                el.style.display = ''
+                    /* restore ignored elements */
+                    post.querySelectorAll('*').forEach(el => {
+                        if(el.classList.contains('ignore')) {
+                            el.fadeIn(300, true)
+                        }
+                    })
+                })
             }
-        })
+        })        
     }
 
     display() {
@@ -124,6 +124,7 @@ export class PostBuilder {
 
     /* colorize links, #s and @s with accent color */
     parseText(text) {
+        if(!text) return ''
 
         const newlineSplit = text.split('\n')
         let finalText = ''
@@ -150,6 +151,8 @@ export class PostBuilder {
                 finalText += word + ' '
             }            
         })
+        
+        finalText.trim()
         return finalText
     }
 

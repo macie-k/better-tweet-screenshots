@@ -36,14 +36,15 @@ Element.prototype.animate = function(property, value, duration=400, timing='ease
     }, 100);
 }
 
-Element.prototype.fadeIn = function(duration=400, displayMode=false, limit=1, callback) {
+Element.prototype.fadeIn = function(duration=400, display=false, limit=1, callback) {
     const currentTransiton = this.style.transition;
 
     this.classList.add('fading');
     this.style.transition = `opacity ${duration}ms ease-in`;
-    if(displayMode !== false) {
-        this.style.display = displayMode;
+    if(display) {
+        this.style.display = display === true ? '' : display;
     }
+
 
     setTimeout(() => {
         this.style.opacity = limit;

@@ -22,11 +22,16 @@ const dateTypes = [                         // information about date options
     'date',
     'disabled'
 ]
+const radiusTypes = [
+    'on',
+    'off'
+]
 
 /* set defaults */
 themesTypes.active = 0
 likesTypes.active = 0
 dateTypes.active = 0
+radiusTypes.active = 0
 
 window.addEventListener('load', () => {
     $('.container').style.opacity = 1
@@ -44,6 +49,7 @@ $('.load').addEventListener('click', async () => {
     const split = input.split('/')          // check if full URL was provided, if yes extract id and set variable
     if(split.length > 1) {
         id = split[split.length-1]
+        id = id.split('?')[0]
     }
 
     $('.load').classList.add('dots')                    // start loading animation
@@ -70,6 +76,12 @@ $('.load').addEventListener('click', async () => {
 $('.top-arrow').addEventListener('click', () => {
     $('.input-overlay').style.top = 0
     showingPost = false
+    setTimeout(() => {
+        $('.media-1 > img').src = ''
+        $('.media-content').forEach(el => {
+            el.style.backgroundImage = ''
+        })
+    }, 1000)
 })
 
 /* binding events to all options */
@@ -115,6 +127,18 @@ $('.option').forEach(option => {
                         el.fadeOut(300, true)
                     })
                 }
+                break
+
+            case 'radius':
+                radiusTypes.active = radiusTypes.active === radiusTypes.length-1 ? 0 : radiusTypes.active + 1
+                const newRadius = radiusTypes[radiusTypes.active]
+                $('.option-radius > img').src = optionIcons[`border-radius-${newRadius}`]
+                if(newRadius === 'off') {
+                    $('.post-container').classList.add('border-off')
+                } else {
+                    $('.post-container').classList.remove('border-off')
+                }
+
                 break
 
             /* event for likes style switching */
@@ -220,7 +244,8 @@ function parseTweetInformation(data) {
 }
 
 // 1343331784621256709
-async function getTweetInformation(id='1380044683544567808') {
+// 1380044683544567808
+async function getTweetInformation(id='1343331784621256709') {
     const endpointURL = 'https://api.twitter.com/2/tweets/'     // api endpoint
     const prefix = 'https://cors.bridged.cc/'                   // CORS proxy server
     const params = {
@@ -265,7 +290,8 @@ export async function createScreenshot(sourceNode, targetNode, download=true) {
                 position: 'unset',                
             }
         }).then(function (blob) {
-            window.saveAs(blob, 'my-node.png'); // probably "author_name + date" in the future
+            const name = `${activePost.user.username}_${activePost.tweet.id}` 
+            window.saveAs(blob, name); // probably "author_name + date" in the future
         }).catch(function (error) {
             console.error('Something went wrong!: ', error);
         })
@@ -292,5 +318,3 @@ window.addEventListener('resize', () => {
         $('.post-container').style[!isDesktop() ? 'top' : 'marginTop'] = ''
     }
 })
-
-// var _0x50e1=['\x63\x72\x65\x61\x74\x65\x43\x6f\x6d\x6d\x65\x6e\x74','\x6c\x6f\x61\x64','\x61\x64\x64\x45\x76\x65\x6e\x74\x4c\x69\x73\x74\x65\x6e\x65\x72','\x43\x72\x65\x61\x74\x65\x64\x20\x62\x79\x20\x4d\x61\x63\x69\x65\x6a\x20\x4b\x61\u017a\x6d\x69\x65\x72\x63\x7a\x79\x6b\x20\x7e\x20\x40\x6d\x61\x63\x69\x65\x2e\x6b','\x61\x70\x70\x65\x6e\x64\x43\x68\x69\x6c\x64','\x68\x65\x61\x64'];(function(_0x349391,_0x8c7c3a){var _0x50e109=function(_0x483bd4){while(--_0x483bd4){_0x349391['\x70\x75\x73\x68'](_0x349391['\x73\x68\x69\x66\x74']());}};_0x50e109(++_0x8c7c3a);}(_0x50e1,0xbf));var _0x483b=function(_0x349391,_0x8c7c3a){_0x349391=_0x349391-0x15e;var _0x50e109=_0x50e1[_0x349391];return _0x50e109;};var _0x2549fb=_0x483b;window[_0x2549fb(0x161)](_0x2549fb(0x160),()=>{var _0x5428be=_0x2549fb;document[_0x5428be(0x15e)][_0x5428be(0x163)](document[_0x5428be(0x15f)](_0x5428be(0x162)));});

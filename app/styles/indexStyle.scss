@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600&display=swap');
-$option-amount: 4;
+$option-amount: 5;
 
 * {
     -ms-overflow-style: none;
@@ -224,6 +224,10 @@ html, body {
     font-family: 'Segoe UI';
     transition: opacity .3s ease-in .7s;
     box-shadow: 0 5px 17px rgb(0 0 0 / 10%), 0 3px 6px rgb(0 0 0 / 5%);
+
+    &.border-off {
+        border-radius: 0;
+    }
 
     .text-primary {
         color: #0F1419;

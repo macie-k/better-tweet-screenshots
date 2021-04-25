@@ -27,7 +27,8 @@
 
     .media-content {
         width: calc(100% - 2px);
-        height: 40vh;
+        height: 0;
+        padding-bottom: 50%;
         background-position: 25% center;
         background-size: cover;
 
@@ -48,10 +49,11 @@
 .media-3 {
     display: flex;
     justify-content: center;
-    height: 40vh;
+    height: calc(60vw - 20px);
+    max-height: 40vh;
 
     .media-content {
-        background-position: bottom center;
+        background-position: center;
         background-size: cover;
     }
 
@@ -90,10 +92,11 @@
 .media-4 {
     display: flex;
     justify-content: center;
-    height: 40vh;
+    height: calc(60vw - 20px);
+    max-height: 40vh;
 
     .media-content {
-        background-position: bottom center;
+        background-position: center;
         background-size: cover;
     }
 
