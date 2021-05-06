@@ -229,7 +229,8 @@ function parseTweetInformation(data) {
     }
 
     const textSplit = tweet_data.text.split(' ')
-        textSplit.pop()
+        if(data.includes.media)     // remove t.co media link 
+            textSplit.pop()
 
     const tweet = {
         id: tweet_data.id,
@@ -249,10 +250,10 @@ async function getTweetInformation(id='1343331784621256709') {
     const endpointURL = 'https://api.twitter.com/2/tweets/'     // api endpoint
     const prefix = 'https://cors.bridged.cc/'                   // CORS proxy server
     const params = {
-        "tweet.fields": "created_at,author_id,public_metrics,referenced_tweets",                  // tweet parameters
-        "expansions": "author_id,attachments.media_keys",                       // additional fields
-        "user.fields": "created_at,profile_image_url,username,verified,name",   // user parameters
-        "media.fields": "url,preview_image_url,height,width"                    // media parameters
+        "tweet.fields": "created_at,author_id,public_metrics,referenced_tweets",    // tweet parameters
+        "expansions": "author_id,attachments.media_keys",                           // additional fields
+        "user.fields": "created_at,profile_image_url,username,verified,name",       // user parameters
+        "media.fields": "url,preview_image_url,height,width"                        // media parameters
     }
 
     /* build params string to URL-like format ...?param=val&param2=val2 */
