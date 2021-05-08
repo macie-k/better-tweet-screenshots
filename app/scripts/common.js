@@ -45,7 +45,6 @@ Element.prototype.fadeIn = function(duration=400, display=false, limit=1, callba
         this.style.display = display === true ? '' : display;
     }
 
-
     setTimeout(() => {
         this.style.opacity = limit;
     }, 100);

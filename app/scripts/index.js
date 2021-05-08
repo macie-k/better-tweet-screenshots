@@ -53,23 +53,37 @@ $('.load').addEventListener('click', async () => {
     }
 
     $('.load').classList.add('dots')                    // start loading animation
-    const results = await getTweetInformation(id)       // fetch tweet information
-    const tweetData = parseTweetInformation(results)    // parse tweet information
+    try {
+        const results = await getTweetInformation(id)       // fetch tweet information
+        const tweetData = parseTweetInformation(results)    // parse tweet information
+    
+        const reference = results.data.referenced_tweets
+        if(reference !== undefined) {
+            const refResults = await getTweetInformation(reference[0].id)
+            tweetData.tweet.referenced_tweet = parseTweetInformation(refResults)
+        }
+    
+        /* wait 0.5s and show post */
+        setTimeout(() => {
+            $('.load').classList.remove('dots')
+            $('.input-overlay').style.top = -window.innerHeight-200
+            $('.top-arrow').style.top = 10
+            $('.top-arrow').classList.add('pulse')
+        }, 500)    
+        showTweet(tweetData)
 
-    const reference = results.data.referenced_tweets
-    if(reference !== undefined) {
-        const refResults = await getTweetInformation(reference[0].id)
-        tweetData.tweet.referenced_tweet = parseTweetInformation(refResults)
+        if($('.input-overlay').classList.contains('error')) {
+            $('.input-overlay').classList.remove('error')
+            $('.load > span').innerHTML = 'LOAD'
+        }
+    } catch (error) {
+        setTimeout(() => {
+            $('.load').classList.remove('dots')
+            $('.input-overlay').classList.add('error')
+            $('.load > span').innerHTML = 'TRY AGAIN'
+        }, 300)
     }
-
-    /* wait 0.5s and show post */
-    setTimeout(() => {
-        $('.load').classList.remove('dots')
-        $('.input-overlay').style.top = -window.innerHeight-200
-        $('.top-arrow').style.top = 10
-        $('.top-arrow').classList.add('pulse')
-    }, 500)    
-    showTweet(tweetData)
+    
 })
 
 /* event for top arrow to restore post input */

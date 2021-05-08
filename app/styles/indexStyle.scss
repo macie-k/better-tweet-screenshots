@@ -47,6 +47,18 @@ html, body {
     z-index: 2;
     transition: top 1s ease-out .3s;
     height: 100vh;
+
+    &.error {
+        .load {
+            background-position: 100% 0;
+            transition: all .3s ease-in-out;
+        }
+
+        .tweet-input {
+            border-color: #ff5854;
+            transition: border-color .3s ease-in-out;
+        }
+    }
 }
 
 .header {
@@ -102,8 +114,10 @@ html, body {
     font-family: 'Barlow Condensed', sans-serif;
     outline: none;
     border: 1px solid #AC90E3;
+    border-color: #AC90E3;
     border-radius: 30px;
     margin-bottom: 50px;
+    transition: border-color .3s ease-in-out;
 
     &::placeholder {
         opacity: .4;
@@ -122,25 +136,17 @@ html, body {
     height: 55px;
     text-align:center;
     border: none;
-    background-size: 300% 100%;
+    background-size: 350% 100%;
     border-radius: 50px;
     transition: all .35s ease-in-out;
     position: relative;
     // box-shadow: 0 4px 15px 0 rgba(23, 168, 108, 0.75);
     box-shadow: 0 4px 15px 0 rgba(138, 168, 243, 0.75);
-    background-image: linear-gradient(to left bottom, #d16ba5, #cf6fb1, #cb73be, #c678cb, #be7ed7, #b388e2, #a692ec, #999bf4, #8ba9f8, #83b5f9, #82c0f6, #89c9f2);
-
-    // background-image: linear-gradient(
-    //     to right,
-    //     #0ba360,
-    //     #3cba92,
-    //     #30dd8a,
-    //     #2bb673
-    // );
+    background-image: linear-gradient(45deg, rgba(137,201,242,1) 0%, rgba(139,169,248,1) 10%, rgba(153,155,244,1) 20%, rgba(179,136,226,1) 30%, rgba(199,119,200,1) 45%, rgba(209,107,165,1) 60%, rgba(233,117,146,1) 73%, rgba(233,89,87,1) 86%, rgba(203,30,30,1) 100%);
 
     &:hover {
         box-shadow: 0 4px 15px 0 rgba(173, 142, 225, 0.75);
-        background-position: 100% 0;
+        background-position: 20% 0;
         transition: all .35s ease-in-out;
     }
 
@@ -154,6 +160,7 @@ html, body {
         top: 50%;
         transform: translate(-50%,-50%);
         transition: all .3s ease-in-out;
+        width: fit-content;
     }
 
     &.dots {
