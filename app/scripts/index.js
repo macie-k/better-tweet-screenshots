@@ -1,5 +1,5 @@
 import {$, isDesktop} from './common.js'
-import dom2Img from 'dom-to-image'
+import dom2Img from 'retina-dom-to-image'   // modified scale to 3
 import { PostBuilder } from './obj/PostBuilder.js'
 import { Themes } from './obj/theme.js'
 import { saveAs } from 'file-saver'
@@ -284,15 +284,14 @@ $('.save').addEventListener('click', () => {
 export async function createScreenshot(sourceNode, targetNode, download=true) {
     if(download) {
         await dom2Img.toBlob(sourceNode, {
-            /* temporary override style to avoid weird cropping */
             style: {
                 marginTop: 0,
                 top: 0,
-                position: 'unset',                
+                position: 'unset',              
             }
         }).then(function (blob) {
             const name = `${activePost.user.username}_${activePost.tweet.id}` 
-            window.saveAs(blob, name); // probably "author_name + date" in the future
+            saveAs(blob, name); // probably "author_name + date" in the future
         }).catch(function (error) {
             console.error('Something went wrong!: ', error);
         })
