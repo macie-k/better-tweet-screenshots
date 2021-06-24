@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600&display=swap');
+
 $option-amount: 5;
+$bg-color: #FCFCFC;
+$global-spacing: 20px;
 
 * {
     -ms-overflow-style: none;
@@ -27,14 +30,14 @@ html, body {
     padding: 0;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    background-color: #FAFAFA;
+    background-color: $bg-color;
 }
 
 .container {
     opacity: 0;
     width: 100vw;
     height: 100vh;
-    background-color: #FAFAFA;
+    background-color: $bg-color;
     transition: opacity .3s ease-in-out;
     // background-image: linear-gradient(to right top, #b7f6ff, #abfcf4, #afffdf, #c3ffc4, #e4ffa8);
     background-image: linear-gradient(to left bottom, #d16ba5, #cf6fb1, #cb73be, #c678cb, #be7ed7, #b388e2, #a692ec, #999bf4, #8ba9f8, #83b5f9, #82c0f6, #89c9f2);
@@ -64,12 +67,12 @@ html, body {
 .header {
     height: 100px;
     width: 100vw;
-    padding: 20px 0;
+    padding: $global-spacing 0;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-color: #FAFAFA;
+    background-color: $bg-color;
 
     &>h1 {
         font-size: #{"min(9vw, 40px)"};
@@ -90,7 +93,7 @@ html, body {
 }
 
 .input-container {
-    background-color: #FAFAFA;
+    background-color: $bg-color;
     z-index: 2;
     height: calc(100% - 100px);
     font-size: #{"min(7vw, 25px)"};
@@ -227,7 +230,7 @@ html, body {
     width: 95vw;
     height: fit-content;
     border-radius: 10px;
-    padding: 20px;
+    padding: $global-spacing;
     font-family: 'Segoe UI';
     transition: opacity .3s ease-in .7s;
     box-shadow: 0 5px 17px rgb(0 0 0 / 10%), 0 3px 6px rgb(0 0 0 / 5%);
@@ -252,12 +255,12 @@ html, body {
 }
 
 .user {
-    margin-bottom: 20px;
+    margin-bottom: $global-spacing;
 }
 
 .footer {
     &>* {
-        margin-top: 20px;
+        margin-top: $global-spacing;
     }
     display: flex;
 }
@@ -277,6 +280,7 @@ html, body {
     &>img {
         height: 73%;
         margin-right: 10px;
+        margin-top: 4px;
     }
 }
 
@@ -372,7 +376,7 @@ html, body {
     align-items: center;
     width: 50px;
     height: 50px;
-    margin: 5px 0;
+    margin: 0 5px;
     cursor: pointer;
     display: none;
 
@@ -405,14 +409,13 @@ html, body {
 }
 
 .option-likes {
-    margin-bottom: 0;
     border-radius: 25px;
 }
 
 .settings {
     border-radius: 25px;
 
-    margin: 0;
+    margin: 0 !important;
     display: flex;
     transition: none;
     transition: box-shadow .4s ease-in-out 2s;
@@ -439,7 +442,7 @@ $userHeight: 60px;
 .names {
     height: 100%;
     width: 100%;
-    margin: 0 20px;
+    margin: 0 $global-spacing;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -448,10 +451,10 @@ $userHeight: 60px;
 }
 
 .name-container {
-    height: 20px;
+    height: $global-spacing;
     display: inline-flex;
     align-items: center;
-    line-height: 20px;
+    line-height: $global-spacing;
     font-weight: 700;
 }
 
@@ -472,9 +475,14 @@ $userHeight: 60px;
     body {
         height: unset;
     }
+
+    .option {
+        margin: 5px 0;
+    }
+
     .settings {
         transition: transform .3s ease-in-out .05s, box-shadow .4s ease-in-out .05s, opacity .3s ease-in 2s;
-    }    
+    }
 
     .post-container {
         position: absolute;
@@ -512,7 +520,7 @@ $userHeight: 60px;
 
         &.visible {
             width: 50px;
-            height: calc(#{$option-amount} * 50px + 20px);
+            height: calc(#{$option-amount} * 50px + 5px * (#{$option-amount} - 1) * 2);
             transition: height .3s ease-in-out .3s;
         }
     }

@@ -1,19 +1,21 @@
 import {$, isDesktop} from '../common.js'
 import {createScreenshot, urlRegex} from '../index.js'
 import {placeholder} from '../../img/*.png'
+import { Themes } from './theme.js'
 
 /*
     class for creating, displaying and managing post
 */
 
-
 export class PostBuilder {
+
+    static activeTheme = Themes.WHITE;      // set the default theme to WHITE
 
     constructor(tweet, user, media, theme) {
         this.tweet = tweet
         this.user = user
         this.media = media
-        this.theme = theme
+        this.theme = theme || PostBuilder.activeTheme
         this.top    // storing later calculated post top/margin-top value
     }
 
@@ -166,6 +168,8 @@ export class PostBuilder {
     }
 
     applyTheme(theme) {
+        PostBuilder.activeTheme = theme
+
         $('.post-container').style.backgroundColor = theme.background
         $('.text-primary', document, true).forEach(el => el.style.color = theme.text.primary)
         $('.text-secondary', document, true).forEach(el => el.style.color = theme.text.secondary)
