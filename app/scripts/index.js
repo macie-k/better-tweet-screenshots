@@ -13,24 +13,53 @@ const TWITTER_TOKEN = 'AAAAAAAAAAAAAAAAAAAAALCNNwEAAAAAO0fvQSwiER9X%2FAFxKChvRxg
 
 window.addEventListener('load', () => {
     $('.container').style.opacity = 1
-    $('img').forEach(img => img.draggable = false)      // disable dragging for all images
 
-    // todo: reading cookie for activeTheme
+    // disable dragging and context menu for all images
+    $('img').forEach(img => {
+        img.draggable = false
+        img.addEventListener('contextmenu', (e) => e.preventDefault())
+    })
+
+    // todo: reading cookie for selected settins
     loadOptions()
     console.log('%c Made by: %c https://kazmierczyk.me/', 'background: linear-gradient(to left bottom, #d16ba5, #cf6fb1, #cb73be, #c678cb, #be7ed7, #b388e2, #a692ec, #999bf4, #8ba9f8, #83b5f9, #82c0f6, #89c9f2); color: #fff;', '')
+
+    // load post if url contains id
+    const id = location.href.split("=")[1]
+    if(id !== undefined) {
+        loadPost(id)
+    }
 })
 
-/* click event for "LOAD" button at the begininnig */
-$('.load').addEventListener('click', async () => {
+$('.reload-container').addEventListener('click', function() {
+    const img = $('img', this);
+    img.classList.add('rotate')
+
+    setTimeout(() => {
+        window.history.pushState({} , '', `?id=${getTweetID()}`);
+        window.location.reload();
+    }, 1200)
+    setTimeout(() => {
+        img.classList.remove('rotate')
+    }, 3000)
+})
+
+function getTweetID() {
     const input = $('.tweet-input').value   // input node's value
     const split = input.split('/')          // check if full URL was provided, if yes extract id and set variable
-    let id = input || undefined             // if input is empty set id to undefined otherwise to its value
 
+    let id = input || '1343331784621256709' // if input is empty set id to undefined otherwise to its value
     if(split.length > 1) {
         id = split[split.length-1]
         id = id.split('?')[0]
     }
 
+    return id
+}
+
+async function loadPost(id) {
+    id = id || getTweetID()
+    
     $('.load').classList.add('dots')                    // start loading animation
     try {
         const results = await getTweetInformation(id)       // fetch tweet information
@@ -48,7 +77,15 @@ $('.load').addEventListener('click', async () => {
             $('.input-overlay').style.top = -window.innerHeight-200
             $('.top-arrow').style.top = 10
             $('.top-arrow').classList.add('pulse')
-        }, 500)    
+
+            fetch(new Request(tweetData.user.profile_image_url)).catch(() => {
+                setTimeout(() => {
+                    $('.blocked-by-client-bg').fadeIn(300, 'flex')
+                    $('.post-container').style.marginTop = ''
+                }, 1000)
+            })
+            
+        }, 300)    
         showTweet(tweetData)
 
         if($('.input-overlay').classList.contains('error')) {
@@ -63,29 +100,7 @@ $('.load').addEventListener('click', async () => {
         }, 300)
         console.error(error)
     }
-})
-
-/* event for top arrow to restore post input */
-$('.top-arrow').addEventListener('click', () => {
-    $('.input-overlay').style.top = 0
-    showingPost = false
-    setTimeout(() => {
-        $('.media-1 > img').src = ''
-        $('.media-content').forEach(el => {
-            el.style.backgroundImage = ''
-        })
-    }, 1000)
-})
-
-
-/* show or hide settings on click */
-$('.settings').addEventListener('click', () => {
-    if(showingSettings) {
-        hideSettings()
-    } else {
-        showSettings()
-    }
-})
+}
 
 function hideSettings() {
     setTimeout(() => {
@@ -157,7 +172,7 @@ function parseTweetInformation(data) {
 
 // 1343331784621256709
 // 1380044683544567808
-async function getTweetInformation(id='1343331784621256709') {
+async function getTweetInformation(id) {
     const endpointURL = 'https://api.twitter.com/2/tweets/'     // api endpoint
     const prefix = 'https://cors.bridged.cc/'                   // CORS proxy server
     const params = {
@@ -182,15 +197,11 @@ async function getTweetInformation(id='1343331784621256709') {
         }
     }).then((response) => {
         return response.json()
-    })
+    }).catch((err) => console.error(err))
 
+    console.log(res.status)
     return res
 }
-
-/* temporary option to actually save screenshot */
-$('.save').addEventListener('click', () => {
-    activePost.createPhoto()
-})
 
 export async function createScreenshot(sourceNode, targetNode, download=true) {
     if(download) {
@@ -220,12 +231,39 @@ export async function createScreenshot(sourceNode, targetNode, download=true) {
     }
 }
 
+
+$('.save').addEventListener('click', () => {
+    activePost.createPhoto()
+})
+
+/* click event for "LOAD" button at the begininnig */
+$('.load').addEventListener('click', async () => {
+    loadPost()
+})
+
+/* event for top arrow to restore post input */
+$('.top-arrow').addEventListener('click', () => {
+    $('.input-overlay').style.top = 0
+    showingPost = false
+    setTimeout(() => {
+        $('.media-1 > img').src = ''
+        $('.media-content').forEach(el => {
+            el.style.backgroundImage = ''
+        })
+    }, 1000)
+})
+
+/* show or hide settings on click */
+$('.settings').addEventListener('click', () => {
+    if(showingSettings) {
+        hideSettings()
+    } else {
+        showSettings()
+    }
+})
+
 window.addEventListener('resize', () => {
     if(showingPost) {
         $('.input-overlay').style.top = -window.innerHeight-200     // in case of vertical resize keep overlay above
-        
-        /* position post container */
-        $('.post-container').style[isDesktop() ? 'top' : 'marginTop'] = activePost.getPostTop()
-        $('.post-container').style[!isDesktop() ? 'top' : 'marginTop'] = ''
     }
 })

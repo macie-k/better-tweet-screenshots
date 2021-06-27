@@ -3,6 +3,7 @@
 
 $option-amount: 5;
 $bg-color: #FCFCFC;
+$black: #222222;
 $global-spacing: 20px;
 
 * {
@@ -12,6 +13,11 @@ $global-spacing: 20px;
     -webkit-tap-highlight-color: transparent;
     margin: 0;
     padding: 0;
+
+    &::selection {
+        color: $bg-color;
+        background: $black;
+    }
 }
 
 a {
@@ -224,7 +230,6 @@ html, body {
 }
 
 .post-container {
-    margin-top: 15vh;
     opacity: 0;
     background-color: #FFF;
     width: 95vw;
@@ -234,6 +239,8 @@ html, body {
     font-family: 'Segoe UI';
     transition: opacity .3s ease-in .7s;
     box-shadow: 0 5px 17px rgb(0 0 0 / 10%), 0 3px 6px rgb(0 0 0 / 5%);
+    margin-top: auto;
+    margin-bottom: auto;
 
     &.border-off {
         border-radius: 0;
@@ -280,7 +287,6 @@ html, body {
     &>img {
         height: 73%;
         margin-right: 10px;
-        margin-top: 4px;
     }
 }
 
@@ -470,6 +476,99 @@ $userHeight: 60px;
     margin-bottom: 10px !important;
 }
 
+.blocked-by-client-bg {
+    opacity: 0;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba($color: #000000, $alpha: .7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    font-family: 'Roboto Mono';
+}
+
+.blocked-by-client {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 80vw;
+    height: fit-content;
+    max-width: 400px;
+    background-color: $bg-color;
+    border-radius: 20px;
+    padding: 30px;
+    position: relative;
+
+    * {
+        user-select: text;
+    }
+
+    &>.error-icon {
+        width: 50px;
+        margin-bottom: 20px;
+    }
+
+    &>p {
+        text-align: center;
+        letter-spacing: 1.5px;
+        font-size: 1.1em;
+
+        a {
+            text-decoration: underline;
+        }
+
+        span.thic {
+            color: red;
+        }
+
+        span:last-of-type {
+            text-align: center;
+        }
+    }
+}
+
+.reload-container {
+    cursor: pointer;
+    background-color: $bg-color;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -70px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform .2s ease-in-out;
+
+
+    &>img {
+        width: 40px;
+        transition: transform 1s cubic-bezier(0.895, 0.030, 0.685, 0.220);
+
+        &.rotate {
+            transform: rotate(720deg);
+            transition: transform 1s cubic-bezier(0.895, 0.030, 0.685, 0.220);
+        }
+    }
+
+    &:hover {
+        transform: scale(1.05);
+        transition: transform .2s ease-in-out;
+    }
+}
+
+.thic {
+    font-weight: 600;
+}
+
 /* -----------> DESKTOP <------------ */
 @media only screen and (min-width: 775px) {
     body {
@@ -486,8 +585,10 @@ $userHeight: 60px;
 
     .post-container {
         position: absolute;
-        margin-top: 0;
-        top: 15vh;
+        top: 0;
+        bottom: 0;
+        margin-top: auto;
+        margin-bottom: auto;
         width: 620px;
     }
 

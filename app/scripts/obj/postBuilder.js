@@ -16,7 +16,6 @@ export class PostBuilder {
         this.user = user
         this.media = media
         this.theme = theme || PostBuilder.activeTheme
-        this.top    // storing later calculated post top/margin-top value
     }
 
     /* create screenshot */
@@ -59,9 +58,6 @@ export class PostBuilder {
         const date = tweet.date
         const likes = tweet.likes
 
-        const croppedMaxHeight = 0.55 * window.innerHeight      // media-1 cropped photo height limit (55vh)
-        const postPadding = 20                                  // default post padding (20px)
-
         /* fill in all post's information */
         container.style.opacity = 1
         $('.avatar', container).src = user.profile_image_url.replace('_normal', '')
@@ -81,7 +77,6 @@ export class PostBuilder {
             el.classList.add('hidden')
         })
 
-        var actualHeight = 0                                 // variable to store pre-calculated post height (before the photos are downloaded, based on api dimensions information)
         $('.media-1 > img').src = placeholder                // reset photo url (needed when using top-arrow to re-enter post)
 
         /* fill in & display correct media div */
@@ -94,15 +89,6 @@ export class PostBuilder {
 
             /* if only one media post */
             if(amount === 1) {
-                const whRatio = media[0].width / media[0].height                  // calculate width to height ratio based on API information
-                const postInnerWidth = $('.post-container').offsetWidth - postPadding*2     // get post-container media space width
-
-                actualHeight = postInnerWidth / whRatio     // calculate predicted photo height from post width and w/h ratio
-                if($('.media-1 > img').classList.contains('cropped') && actualHeight > croppedMaxHeight) {      // if "cropped" option is selected re-calculate height if needed
-                    actualHeight = croppedMaxHeight
-                }
-
-                actualHeight += $('.post-container').offsetHeight
                 mediaContainer.querySelector('img').src = (media[0].type === 'photo') ? media[0].url : media[0].preview_image_url    // set either photo or video thumnail as post src
             } else {    // case for 2-4 media files
                 let counter = 0
@@ -112,16 +98,10 @@ export class PostBuilder {
                     el.style.backgroundImage = `url(${image})`
                     counter++
                 })
-                actualHeight = $('.post-container').offsetHeight
             }
         } else {
-            actualHeight += $('.post-container').offsetHeight
             $('.text').classList.add('nomedia')
         }
-        
-        this.top = (window.innerHeight - actualHeight) / 2     // calculate center for post
-
-        $('.post-container').style[isDesktop() ? 'top' : 'marginTop'] = this.top   // set post position
     }
 
     /* colorize links, #s and @s with accent color */
@@ -175,9 +155,5 @@ export class PostBuilder {
         $('.text-secondary', document, true).forEach(el => el.style.color = theme.text.secondary)
         $('.text-accent', document, true).forEach(el => el.style.color = theme.accent)
         $('.verified > path').style.fill = theme.text.primary
-    }
-
-    getPostTop() {
-        return this.top
     }
 }
