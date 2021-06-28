@@ -40,17 +40,19 @@ export class PostBuilder {
     }
 
     display() {
+        if($('.reference-inner-container')) {
+            $('.reference-inner-container').remove()
+        }
         this.build(false)
-        // if(this.tweet.referenced_tweet !== undefined) {
-        //     this.createReferencedTweet()
-        //     this.build(true)
-        // }
+        if(this.tweet.referenced_tweet !== undefined) {
+            this.createReferencedTweet()
+            this.build(true)
+        }
     }
 
     /* show post */
     build(reference=false) {
-        const prefix = reference ? 'ref-' : ''
-        const container = $(`.${prefix}post-container`)
+        const container = reference ? $('.reference-container') : $('.post-container') 
         const user = reference ? this.tweet.referenced_tweet.user : this.user 
         const tweet = reference ? this.tweet.referenced_tweet.tweet : this.tweet 
         const media = reference ? this.tweet.referenced_tweet.media : this.media
@@ -61,30 +63,38 @@ export class PostBuilder {
         /* fill in all post's information */
         container.style.opacity = 1
         $('.avatar', container).src = user.profile_image_url.replace('_normal', '')
-        $('.name').innerHTML = user.name
-        $('.username').innerText = `@${user.username}`
-        $('.text').innerHTML = this.parseText(tweet.text)
-        $('.datetime-time').innerHTML = `${date.hours}:${date.minutes}`
-        $('.datetime-date').innerHTML = `${date.day} ${date.month} ${date.year}`
-        $('.likes-amount').innerHTML = likes >= 1000 ? `${parseFloat(likes/1000.0).toFixed(1)}k` : likes    // format likes with 'k' suffix if more than 1000
+        $('.name', container).innerHTML = user.name
+        $('.username', container).innerText = `@${user.username}`
+        $('.text', container).innerHTML = this.parseText(tweet.text)
 
-        $('.verified').style.display = (user.verified) ? 'inline-block' : 'none'
+        var dateFormat = `${date.day} ${date.month} ${date.year}`
+        if(reference) {
+            dateFormat = (new Date().getFullYear() == date.year) ? `${date.day} ${date.month}` : `${date.day} ${date.month}, ${date.year}`
+        }
+        $('.datetime-date', container).innerHTML = dateFormat
+
+        if(!reference) {
+            $('.datetime-time', container).innerHTML = `${date.hours}:${date.minutes}`
+            $('.likes-amount', container).innerHTML = likes >= 1000 ? `${parseFloat(likes/1000.0).toFixed(1)}k` : likes    // format likes with 'k' suffix if more than 1000    
+        }
+
+        $('.verified', container).style.display = (user.verified) ? 'inline-block' : 'none'
 
         this.applyTheme(this.theme)
 
         /* hide all media divs */
-        $('.media').forEach(el => {
+        $('.media', container).forEach(el => {
             el.classList.add('hidden')
         })
 
-        $('.media-1 > img').src = placeholder                // reset photo url (needed when using top-arrow to re-enter post)
+        $('.media-1 > img', container).src = placeholder                // reset photo url (needed when using top-arrow to re-enter post)
 
         /* fill in & display correct media div */
         if(media !== undefined) {
-            $('.text').classList.remove('nomedia')
+            $('.text', container).classList.remove('nomedia')
 
             const amount = media.length                    // count how many media files are in post
-            const mediaContainer = $(`.media-${amount}`)        // select container based on media amount
+            const mediaContainer = $(`.media-${amount}`, container)        // select container based on media amount
                 mediaContainer.classList.remove('hidden')       // unhide it
 
             /* if only one media post */
@@ -100,7 +110,7 @@ export class PostBuilder {
                 })
             }
         } else {
-            $('.text').classList.add('nomedia')
+            $('.text', container).classList.add('nomedia')
         }
     }
 
@@ -141,19 +151,26 @@ export class PostBuilder {
     createReferencedTweet() {
         const baseContainer = $('.post-container')
         const refContainer = baseContainer.cloneNode(true);
-            refContainer.className = '.ref-post-container'
-            refContainer.querySelector('.bubbles-container').remove()
+            refContainer.className = 'reference-inner-container'
+            $('.bubbles-container', refContainer).remove()
+            $('.reference-container', refContainer).remove()
+            $('.footer', refContainer).remove()
+
+            const dateTimeCopy = $('.datetime', baseContainer).cloneNode(true)
+            $('.datetime-time', dateTimeCopy).innerHTML = '&ZeroWidthSpace;'
+            $('.names', refContainer).appendChild(dateTimeCopy)
             
-        baseContainer.appendChild(refContainer)
+        $('.reference-container').appendChild(refContainer)
+        $('.reference-container').style.display = 'block'
     }
 
     applyTheme(theme) {
         PostBuilder.activeTheme = theme
 
-        $('.post-container').style.backgroundColor = theme.background
+        $('.post-container').style.backgroundColor = $('.reference-container').style.backgroundColor = theme.background
         $('.text-primary', document, true).forEach(el => el.style.color = theme.text.primary)
         $('.text-secondary', document, true).forEach(el => el.style.color = theme.text.secondary)
         $('.text-accent', document, true).forEach(el => el.style.color = theme.accent)
-        $('.verified > path').style.fill = theme.text.primary
+        $('.verified > path', document, true).forEach(el => el.style.fill = theme.text.primary)
     }
 }

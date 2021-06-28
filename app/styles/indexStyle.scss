@@ -232,7 +232,7 @@ html, body {
 .post-container {
     opacity: 0;
     background-color: #FFF;
-    width: 95vw;
+    width: 97vw;
     height: fit-content;
     border-radius: 10px;
     padding: $global-spacing;
@@ -474,6 +474,66 @@ $userHeight: 60px;
     font-size: 23px;
     font-weight: 400;
     margin-bottom: 10px !important;
+}
+
+.reference-container {
+    display: none;
+    width: 100%;
+    border: 1px solid #b9b9b9;
+    border-radius: 10px;
+    padding: calc(#{$global-spacing} / 2);
+    overflow: hidden;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: calc(#{$global-spacing});
+
+    .user {
+        height: 25px;
+        margin-bottom: calc(#{$global-spacing} / 2);
+    }
+
+    .avatar {
+        width: 25px;
+        height: 25px;
+    }
+
+    .names {
+        &>* {
+            font-size: 15px !important;
+        }
+        margin-left: 10px;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        height: 25px;
+    }
+
+    .username {
+        margin-left: 5px;
+    }
+
+    .media-content {
+        border-radius: 0 !important;
+    }
+
+    .media {
+        width: calc(100% + #{$global-spacing});
+        margin-left: calc(#{$global-spacing} / -2);
+        margin-bottom: calc(#{$global-spacing} / -2);
+
+
+        &>img {
+            border-radius: 0;
+        }
+    }
+
+    .text {
+        font-size: 0.95em;
+    }
+
+    .datetime {
+        transform: scale(0.95);
+    }
 }
 
 .blocked-by-client-bg {

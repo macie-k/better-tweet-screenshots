@@ -2,7 +2,8 @@ export function $(selector, parent=document, forceArray=false) {
     const nodes = parent.querySelectorAll(selector);
     const nodesArray = Array.from(nodes);
 
-    return forceArray ? nodesArray : (nodesArray.length == 1) ? nodesArray[0] : nodesArray; 
+    return forceArray ? nodesArray
+            : (nodesArray.length == 1 || nodesArray.length == 0) ? nodesArray[0] : nodesArray; 
 }
 
 export function isDesktop() {

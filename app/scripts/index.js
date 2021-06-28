@@ -69,6 +69,7 @@ async function loadPost(id) {
         if(reference !== undefined) {
             const refResults = await getTweetInformation(reference[0].id)
             tweetData.tweet.referenced_tweet = parseTweetInformation(refResults)
+            tweetData.tweet.text = tweetData.tweet.text.split(' ').slice(0, -1).join(' ')       // remove t.co link to referenced post
         }
     
         /* wait 0.5s and show post */
@@ -170,6 +171,7 @@ function parseTweetInformation(data) {
     return {tweet: tweet, user: user, media:media}
 }
 
+// 1409462197147766784
 // 1343331784621256709
 // 1380044683544567808
 async function getTweetInformation(id) {
@@ -199,7 +201,6 @@ async function getTweetInformation(id) {
         return response.json()
     }).catch((err) => console.error(err))
 
-    console.log(res.status)
     return res
 }
 
