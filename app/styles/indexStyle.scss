@@ -247,6 +247,8 @@ html, body {
     }
 
     .text-primary {
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
         color: #0F1419;
     }
 

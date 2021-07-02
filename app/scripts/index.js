@@ -7,6 +7,7 @@ import { loadOptions } from './obj/option.js'
 export var activePost                  // storing activePost object from postBuilder
 var showingPost = false
 var showingSettings = false
+var options = []
 
 export const urlRegex = /(https?:\/\/)?[\w\-~]+(\.[\w\-~]+)+(\/[\w\-~@:%]*)*(#[\w\-]*)?(\?[^\s]*)?/gi;
 const TWITTER_TOKEN = 'AAAAAAAAAAAAAAAAAAAAALCNNwEAAAAAO0fvQSwiER9X%2FAFxKChvRxgDGYI%3DoWtrE96FRLO8i9nwNxeypKwG9YgCrYWniLg2cVQLTfIqShqTkB'
@@ -21,7 +22,9 @@ window.addEventListener('load', () => {
     })
 
     // todo: reading cookie for selected settins
-    loadOptions()
+    options = loadOptions()
+    // console.log(options)
+    // console.log(JSON.stringify(options))
     console.log('%c Made by: %c https://kazmierczyk.me/', 'background: linear-gradient(to left bottom, #d16ba5, #cf6fb1, #cb73be, #c678cb, #be7ed7, #b388e2, #a692ec, #999bf4, #8ba9f8, #83b5f9, #82c0f6, #89c9f2); color: #fff;', '')
 
     // load post if url contains id
@@ -155,6 +158,7 @@ function parseTweetInformation(data) {
         seconds: twTimeArray[2]
     }
 
+    // console.log(tweet_data)
     const textSplit = tweet_data.text.split(' ')
         if(data.includes.media)     // remove t.co media link 
             textSplit.pop()
@@ -181,7 +185,7 @@ async function getTweetInformation(id) {
         "tweet.fields": "created_at,author_id,public_metrics,referenced_tweets",    // tweet parameters
         "expansions": "author_id,attachments.media_keys",                           // additional fields
         "user.fields": "created_at,profile_image_url,username,verified,name",       // user parameters
-        "media.fields": "url,preview_image_url,height,width"                        // media parameters
+        "media.fields": "url,preview_image_url,height,width",                       // media parameters
     }
 
     /* build params string to URL-like format ...?param=val&param2=val2 */

@@ -30,60 +30,62 @@ export class Option {
 }
 
 export function loadOptions() {
-    new Option('theme', Object.keys(Themes), (next, setIcon) => {
+    return [
+        new Option('theme', Object.keys(Themes), (next, setIcon) => {
             activePost.applyTheme(Themes[next])
             setIcon(next.toLowerCase())
-        }
-    ),
+        }),
 
-    new Option('datetime', ['full', 'date', 'disabled'], (next, setIcon, element) => {
-        const tweetDate = $('.datetime')
-        element.classList.remove('option-disabled')   
+        new Option('datetime', ['full', 'date', 'disabled'], (next, setIcon, element) => {
+            const tweetDate = $('.datetime')
+            element.classList.remove('option-disabled')   
 
-        switch(next) {
-            case 'full':
-                tweetDate.querySelectorAll('span').forEach(el => {
-                    el.style.opacity = 1
-                    el.style.display = 'inline'
-                })
-                tweetDate.fadeIn(300, 'block')
-            break
+            switch(next) {
+                case 'full':
+                    tweetDate.querySelectorAll('span').forEach(el => {
+                        el.style.opacity = 1
+                        el.style.display = 'inline'
+                    })
+                    tweetDate.fadeIn(300, 'block')
+                break
 
-            case 'date':
-                tweetDate.querySelectorAll('span:not(.datetime-date)').forEach(el => {
-                    el.fadeOut(300, true)
-                })
-            break
+                case 'date':
+                    tweetDate.querySelectorAll('span:not(.datetime-date)').forEach(el => {
+                        el.fadeOut(300, true)
+                    })
+                break
 
-            case 'disabled':
-                tweetDate.fadeOut(300, true)
-                element.classList.add('option-disabled')   
-            break            
-        }
-    }),
-    
-    new Option('radius', [true, false], (next, setIcon) => {
-        setIcon()
+                case 'disabled':
+                    tweetDate.fadeOut(300, true)
+                    element.classList.add('option-disabled')   
+                break            
+            }
+        }),
         
-        const container = $('.post-container')
-        if(next){
-            container.classList.remove('border-off')
-        } else {
-            container.classList.add('border-off')
-        }
-    })
-
-    new Option('likes', ['disabled', 'outline', 'filled'], (next, setIcon, element) => {
-        const tweetLikes = $('.likes') 
-        if(next === 'disabled'){
-            setIcon('outline')
-            element.classList.add('option-disabled')
-            tweetLikes.fadeOut(300, true)                                  // fade out actual likes amount
-        } else {
+        new Option('radius', [true, false], (next, setIcon) => {
             setIcon()
-            element.classList.remove('option-disabled')
-            tweetLikes.fadeIn(300, 'flex')
-            $('img', tweetLikes).src = optionIcons[`likes-${next}`]
-        }    
-    }) 
+            
+            const container = $('.post-container')
+            if(next){
+                container.classList.remove('border-off')
+            } else {
+                container.classList.add('border-off')
+            }
+        }),
+
+        new Option('likes', ['disabled', 'outline', 'filled'], (next, setIcon, element) => {
+            const tweetLikes = $('.likes') 
+            if(next === 'disabled'){
+                setIcon('outline')
+                element.classList.add('option-disabled')
+                tweetLikes.fadeOut(300, true)                                  // fade out actual likes amount
+            } else {
+                setIcon()
+                element.classList.remove('option-disabled')
+                tweetLikes.fadeIn(300, 'flex')
+                $('img', tweetLikes).src = optionIcons[`likes-${next}`]
+            }    
+        })
+    ]
+
 }
