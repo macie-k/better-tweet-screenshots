@@ -47,6 +47,8 @@ $('.reload-container').addEventListener('click', function() {
     }, 3000)
 })
 
+
+// 1420828488647462913 -- color + newline check
 function getTweetID() {
     const input = $('.tweet-input').value   // input node's value
     const split = input.split('/')          // check if full URL was provided, if yes extract id and set variable

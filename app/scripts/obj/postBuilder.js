@@ -121,12 +121,19 @@ export class PostBuilder {
         const newlineSplit = text.split('\n')
         let finalText = ''
 
-        newlineSplit.forEach(line => {
-            finalText += line + ' <br> '
+        newlineSplit.forEach((line, i) => {
+            finalText += line
+
+            /* dont add <br> to the last line */
+            if(i !== newlineSplit.length-1) {
+                finalText += ' <br> '
+            }
         })
 
         const spaceSplit = finalText.split(' ')
         finalText = ''
+
+        console.log(spaceSplit);
 
         spaceSplit.forEach(word => {
             if((word.charAt(0) === '@') || (word.charAt(0) === '#') || (urlRegex.test(word))) {
@@ -140,11 +147,13 @@ export class PostBuilder {
                     finalText += `<span class="text-accent">${word.substring(word.indexOf('@') + 1)} </span>`
                     return
                 }
-                finalText += word + ' '
+
+                finalText += word + (word !== '<br>' ? ' ' : '')    // dont add spaces after <br> tag
             }            
         })
         
         finalText.trim()
+
         return finalText
     }
 
