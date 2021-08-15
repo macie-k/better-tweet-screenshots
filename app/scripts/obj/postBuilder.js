@@ -52,6 +52,8 @@ export class PostBuilder {
 
     /* show post */
     build(reference=false) {
+        console.log(this)
+
         const container = reference ? $('.reference-container') : $('.post-container') 
         const user = reference ? this.tweet.referenced_tweet.user : this.user 
         const tweet = reference ? this.tweet.referenced_tweet.tweet : this.tweet 
@@ -132,8 +134,6 @@ export class PostBuilder {
 
         const spaceSplit = finalText.split(' ')
         finalText = ''
-
-        console.log(spaceSplit);
 
         spaceSplit.forEach(word => {
             if((word.charAt(0) === '@') || (word.charAt(0) === '#') || (urlRegex.test(word))) {

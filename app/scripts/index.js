@@ -48,7 +48,6 @@ $('.reload-container').addEventListener('click', function() {
 })
 
 
-// 1420828488647462913 -- color + newline check
 function getTweetID() {
     const input = $('.tweet-input').value   // input node's value
     const split = input.split('/')          // check if full URL was provided, if yes extract id and set variable
@@ -69,12 +68,17 @@ async function loadPost(id) {
     try {
         const results = await getTweetInformation(id)       // fetch tweet information
         const tweetData = parseTweetInformation(results)    // parse tweet information
-    
+
         const reference = results.data.referenced_tweets
+
+        console.error(tweetData.tweet.text);
+
         if(reference !== undefined) {
             const refResults = await getTweetInformation(reference[0].id)
             tweetData.tweet.referenced_tweet = parseTweetInformation(refResults)
-            tweetData.tweet.text = tweetData.tweet.text.split(' ').slice(0, -1).join(' ')       // remove t.co link to referenced post
+            if(tweetData.tweet.text.includes('t.co')) {
+                tweetData.tweet.text = tweetData.tweet.text.split(' ').slice(0, -1).join(' ')       // remove t.co link to referenced post
+            }
         }
     
         /* wait 0.5s and show post */
@@ -162,7 +166,7 @@ function parseTweetInformation(data) {
 
     // console.log(tweet_data)
     const textSplit = tweet_data.text.split(' ')
-        if(data.includes.media)     // remove t.co media link 
+        if(data.includes.media)      // remove t.co media link 
             textSplit.pop()
 
     const tweet = {
@@ -171,6 +175,7 @@ function parseTweetInformation(data) {
         date: tweetDate,
         text: textSplit.join(' ')   // remove t.co/id link from tweet text
     }
+
     const user = data.includes.users[0]     // save user information
     const media = data.includes.media       // save media information
 
