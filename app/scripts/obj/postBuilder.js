@@ -52,7 +52,6 @@ export class PostBuilder {
 
     /* show post */
     build(reference=false) {
-        console.log(this)
 
         const container = reference ? $('.reference-container') : $('.post-container') 
         const user = reference ? this.tweet.referenced_tweet.user : this.user 

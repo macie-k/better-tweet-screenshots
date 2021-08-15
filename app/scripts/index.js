@@ -71,11 +71,15 @@ async function loadPost(id) {
 
         const reference = results.data.referenced_tweets
 
-        console.error(tweetData.tweet.text);
-
         if(reference !== undefined) {
             const refResults = await getTweetInformation(reference[0].id)
             tweetData.tweet.referenced_tweet = parseTweetInformation(refResults)
+
+            const spaceSplit = tweetData.tweet.text.split(' ')
+            if(spaceSplit[0].includes('@')) {
+                spaceSplit.splice(0, 1)
+                tweetData.tweet.text = spaceSplit.join(' ')
+            }
             if(tweetData.tweet.text.includes('t.co')) {
                 tweetData.tweet.text = tweetData.tweet.text.split(' ').slice(0, -1).join(' ')       // remove t.co link to referenced post
             }
