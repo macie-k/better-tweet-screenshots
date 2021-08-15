@@ -1,0 +1,18 @@
+{
+    "story": {
+        "scope": "typescriptreact",
+        "prefix": "story",
+        "body": [
+            "import React from 'react';",
+            "import { ComponentStory, ComponentMeta } from '@storybook/react';\n",
+            "import { $1 } from './$1';\n",
+
+            "export default {\n\ttitle: 'Tweet/$1',\n\tcomponent: $1,\n} as ComponentMeta<typeof $1>;\n",
+
+            "const Template: ComponentStory<typeof $1> = (args) => <$1 {...args} />;\n",
+
+            "export const Main = Template.bind({});",
+            "Main.args = {\n\tprop: 'value'\n};"
+        ]
+    }
+}

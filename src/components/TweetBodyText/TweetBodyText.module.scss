@@ -1,0 +1,23 @@
+@import '../../styles/styleguide';
+
+.container {
+    width: 100%;
+    height: auto;
+    font-size: 23px;
+    font-weight: 400;
+    margin-bottom: 10px !important;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+
+    @include theme('light') {
+        color: $light-primary;
+    }
+
+    @include theme('dim') {
+        color: $dim-primary;
+    }
+
+    @include theme('dark') {
+        color: $dark-primary;
+    }
+}

@@ -1,0 +1,108 @@
+@import '../../styles/styleguide';
+
+$height: 60px;
+$compact-height: 25px;
+
+.container {
+    width: 100%;
+    display: flex;
+    height: $height;
+    margin-bottom: $global-spacing;
+
+    &.compact {
+        height: 25px;
+        margin-bottom: calc(#{$global-spacing} / 2);
+    }
+}
+
+.avatar > img {
+    height: $height;
+    width: $height;
+    border-radius: 50%;
+
+    .compact & {
+        width: $compact-height;
+        height: $compact-height;
+    }
+}
+
+.names {
+    height: 100%;
+    width: 100%;
+    margin: 0 $global-spacing;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    font-size: 17px;
+
+    .compact & {
+        & > * {
+            font-size: 15px !important;
+        }
+        margin-left: 10px;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        height: 25px;
+    }
+}
+
+.nameContainer {
+    height: $global-spacing;
+    display: inline-flex;
+    align-items: center;
+    line-height: $global-spacing;
+    font-weight: 700;
+}
+
+.nameContainer > svg {
+    margin-left: 5px;
+    margin-top: 2px;
+    height: 85%;
+}
+
+.displayName,
+.username {
+    @include theme('light') {
+        color: $light-primary;
+    }
+
+    @include theme('dim') {
+        color: $dim-primary;
+    }
+
+    @include theme('dark') {
+        color: $dark-primary;
+    }
+}
+
+.username {
+    font-size: 13px;
+
+    .compact & {
+        margin-left: 5px;
+    }
+}
+
+.time {
+    transform: scale(0.95);
+    transform-origin: center center;
+
+    &::before {
+        content: '•';
+        margin: 0 5px;
+    }
+
+    @include theme('light') {
+        color: $light-secondary;
+    }
+
+    @include theme('dim') {
+        color: $dim-secondary;
+    }
+
+    @include theme('dark') {
+        color: $dark-secondary;
+    }
+}

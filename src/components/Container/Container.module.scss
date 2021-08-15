@@ -1,0 +1,20 @@
+@import '../../styles/styleguide';
+
+.container {
+    height: 100%;
+    width: 100%;
+    font-family: 'Segoe UI', sans-serif;
+    user-select: none;
+
+    &:global(.theme-light) {
+        background-color: $light-bg;
+    }
+
+    &:global(.theme-dim) {
+        background-color: $dim-bg;
+    }
+
+    &:global(.theme-dark) {
+        background-color: $dark-bg;
+    }
+}
