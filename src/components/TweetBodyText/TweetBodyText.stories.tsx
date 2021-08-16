@@ -2,10 +2,18 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { TweetBodyText } from './TweetBodyText';
+import { TweetContainer } from '../TweetContainer/TweetContainer';
 
 export default {
     title: 'Tweet/TweetBodyText',
     component: TweetBodyText,
+    decorators: [
+        (Story) => (
+            <TweetContainer>
+                <Story />
+            </TweetContainer>
+        ),
+    ],
 } as ComponentMeta<typeof TweetBodyText>;
 
 const Template: ComponentStory<typeof TweetBodyText> = (args) => <TweetBodyText {...args} />;

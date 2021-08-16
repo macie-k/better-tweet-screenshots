@@ -1,5 +1,4 @@
 import { ThemeProvider } from '../src/hooks/useTheme';
-import { Container } from '../src/components/Container/Container';
 import { SettingsProvider } from '../src/hooks/useSettings';
 
 export const parameters = {
@@ -16,9 +15,7 @@ export const decorators = [
     (Story, context) => (
         <SettingsProvider>
             <ThemeProvider themeOverride={context.globals.theme}>
-                <Container>
-                    <Story />
-                </Container>
+                <Story />
             </ThemeProvider>
         </SettingsProvider>
     ),

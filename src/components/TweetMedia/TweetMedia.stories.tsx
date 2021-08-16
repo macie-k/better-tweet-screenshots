@@ -2,10 +2,18 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { TweetMedia } from './TweetMedia';
+import { TweetContainer } from '../TweetContainer/TweetContainer';
 
 export default {
     title: 'Tweet/TweetMedia',
     component: TweetMedia,
+    decorators: [
+        (Story, context) => (
+            <TweetContainer>
+                <Story />
+            </TweetContainer>
+        ),
+    ],
 } as ComponentMeta<typeof TweetMedia>;
 
 const Template: ComponentStory<typeof TweetMedia> = (args) => <TweetMedia {...args} />;

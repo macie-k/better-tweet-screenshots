@@ -9,7 +9,7 @@ import { useLikes } from 'hooks/useSettings';
 
 export interface TweetHeaderProps {
     compact?: boolean;
-    imgUrl: string;
+    avatarUrl: string;
     displayName: string;
     username: string;
     timestamp: string;
@@ -31,7 +31,7 @@ export const TweetHeader = (props: TweetHeaderProps) => {
     return (
         <div className={cx(styles.container, { [styles.compact]: props.compact })}>
             <div className={styles.avatar}>
-                <img src={props.imgUrl} draggable="false" />
+                <img src={props.avatarUrl.replace('_normal', '')} draggable="false" />
             </div>
             <div className={styles.names}>
                 <div className={styles.nameContainer}>

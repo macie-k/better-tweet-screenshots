@@ -1,46 +1,43 @@
-# Getting Started with Create React App
+# Better tweet screenshots
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Application for creating aesthetic tweet screenshots
 
-## Available Scripts
+<br>
 
-In the project directory, you can run:
+## Link
 
-### `npm start`
+-   [Live version](http://bit.ly/better_tw_screenshots)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<br>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Support
 
-### `npm test`
+-   You can buy me a coffee here:
+<p align="center">
+  <a href="http://bit.ly/BuyMeACoffee-GitHub" target="_blank">
+    <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="60px">
+  </a>  
+</p>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<br>
 
-### `npm run build`
+## Preview
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/25122875/113517156-a7e2ab00-957e-11eb-8bd5-fcfd0fd0a248.png">
+</p>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<br>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Themes
 
-### `npm run eject`
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/25122875/113517955-67d1f700-9583-11eb-840c-14aab39440c7.png">
+</p>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<br>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Sidenotes
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+-   For better results use on desktop
+-   Single-media posts are currenly automatically cropped - remove `cropped` class to see full post

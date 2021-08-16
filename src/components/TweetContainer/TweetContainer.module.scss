@@ -1,0 +1,39 @@
+@import '../../styles/styleguide';
+
+.container {
+    background-color: #fff;
+    width: 97vw;
+    height: fit-content;
+    border-radius: 10px;
+    padding: $global-spacing;
+    font-family: 'Segoe UI';
+    transition: opacity 0.3s ease-in 0.7s;
+    box-shadow: 0 5px 17px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.05);
+    margin-top: auto;
+    margin-bottom: auto;
+    user-select: none;
+
+    &:global(.theme-light) {
+        background-color: $light-bg;
+    }
+
+    &:global(.theme-dim) {
+        background-color: $dim-bg;
+    }
+
+    &:global(.theme-dark) {
+        background-color: $dark-bg;
+    }
+}
+
+/* -----------> DESKTOP <------------ */
+@media only screen and (min-width: 775px) {
+    .container {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin-top: auto;
+        margin-bottom: auto;
+        width: 620px;
+    }
+}

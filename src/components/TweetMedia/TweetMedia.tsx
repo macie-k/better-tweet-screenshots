@@ -14,7 +14,7 @@ export const TweetMedia = ({ srcs }: TweetMediaProps) => {
         case 1:
             return (
                 <div className={cx(styles.media, styles.media1)}>
-                    <img className={styles.cropped} src={srcs[0]} />
+                    <img draggable="false" className={styles.cropped} src={srcs[0]} />
                 </div>
             );
         case 2:

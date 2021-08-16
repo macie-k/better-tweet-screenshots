@@ -1,0 +1,22 @@
+@import '../../styles/styleguide';
+
+.container {
+    display: flex;
+    border-radius: 25px;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+
+    & > svg {
+        transition: transform 0.2s ease-in-out 0.25s, opacity 0.2s ease-in;
+        width: 40%;
+        height: auto;
+    }
+
+    &:hover > svg {
+        transform: scale(1.05);
+        transition: transform 0.3s ease-in-out;
+    }
+}

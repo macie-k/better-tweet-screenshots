@@ -1,20 +1,22 @@
-@import '../../styles/styleguide';
-
 .container {
-    height: 100%;
-    width: 100%;
-    font-family: 'Segoe UI', sans-serif;
-    user-select: none;
-
-    &:global(.theme-light) {
-        background-color: $light-bg;
-    }
-
-    &:global(.theme-dim) {
-        background-color: $dim-bg;
-    }
-
-    &:global(.theme-dark) {
-        background-color: $dark-bg;
-    }
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(
+        to left bottom,
+        #d16ba5,
+        #cf6fb1,
+        #cb73be,
+        #c678cb,
+        #be7ed7,
+        #b388e2,
+        #a692ec,
+        #999bf4,
+        #8ba9f8,
+        #83b5f9,
+        #82c0f6,
+        #89c9f2
+    );
 }
