@@ -1,5 +1,6 @@
 import { ThemeProvider } from '../src/hooks/useTheme';
 import { SettingsProvider } from '../src/hooks/useSettings';
+import '!style-loader!css-loader!sass-loader!../src/styles/index.scss';
 
 export const parameters = {
     actions: { argTypesRegex: '^on[A-Z].*' },

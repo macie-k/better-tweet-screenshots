@@ -1,10 +1,10 @@
 import React from 'react';
 
-export interface CornersProps {
+export interface CornersIconProps {
     type: 'rounded' | 'squared';
 }
 
-export const Corners = ({ type }: CornersProps) => {
+export const CornersIcon = ({ type }: CornersIconProps) => {
     switch (type) {
         case 'rounded':
             return (

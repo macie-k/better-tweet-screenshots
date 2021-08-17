@@ -3,7 +3,7 @@ import { parseISO, format } from 'date-fns';
 
 import styles from './TweetFooter.module.scss';
 
-import { Likes } from '../Icons/Likes';
+import { LikesIcon } from '../Icons/LikesIcon';
 import { useLikes, useTimestamp } from 'hooks/useSettings';
 
 export interface TweetFooterProps {
@@ -33,7 +33,7 @@ export const TweetFooter = ({ timestamp, likes }: TweetFooterProps) => {
             <div className={styles.likesContainer}>
                 {likesStyle !== 'disabled' && (
                     <>
-                        <Likes type={likesStyle} />
+                        <LikesIcon type={likesStyle} />
                         <span className={styles.likesCount}>{likesCount}</span>
                     </>
                 )}

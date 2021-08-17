@@ -3,8 +3,8 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { Setting } from './Setting';
 
-import { Likes } from '../Icons/Likes';
-import { Corners } from '../Icons/Corners';
+import { LikesIcon } from '../Icons/LikesIcon';
+import { CornersIcon } from '../Icons/CornersIcon';
 
 export default {
     title: 'Global/Setting',
@@ -15,12 +15,12 @@ const Template: ComponentStory<typeof Setting> = (args) => <Setting {...args} />
 
 export const LikesSetting = Template.bind({});
 LikesSetting.args = {
-    icon: <Likes type="disabled"></Likes>,
+    icon: <LikesIcon type="disabled" />,
     onClick: () => {},
 };
 
 export const CornersSetting = Template.bind({});
 CornersSetting.args = {
-    icon: <Corners type="rounded" />,
+    icon: <CornersIcon type="rounded" />,
     onClick: () => {},
 };

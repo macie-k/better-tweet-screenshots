@@ -7,6 +7,9 @@
     }
 }
 
+$bg-color: #fcfcfc;
+$black: #222222;
+
 $global-spacing: 20px;
 
 $accent-blue: #1da1f2;
@@ -27,3 +30,19 @@ $dim-secondary: #8899a6;
 $dark-bg: #000;
 $dark-primary: #d9d9d9;
 $dark-secondary: #6e767d;
+
+$main-gradient: linear-gradient(
+    to left bottom,
+    #d16ba5,
+    #cf6fb1,
+    #cb73be,
+    #c678cb,
+    #be7ed7,
+    #b388e2,
+    #a692ec,
+    #999bf4,
+    #8ba9f8,
+    #83b5f9,
+    #82c0f6,
+    #89c9f2
+);

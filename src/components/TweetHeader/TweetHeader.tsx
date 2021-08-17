@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { parseISO, format, differenceInCalendarYears } from 'date-fns';
 
 import styles from './TweetHeader.module.scss';
-import { Verified } from 'components/Icons/Verified';
+import { VerifiedIcon } from 'components/Icons/VerifiedIcon';
 import { cx } from 'utils';
 
 import { useLikes } from 'hooks/useSettings';
@@ -36,7 +36,7 @@ export const TweetHeader = (props: TweetHeaderProps) => {
             <div className={styles.names}>
                 <div className={styles.nameContainer}>
                     <div className={styles.displayName}>{props.displayName}</div>
-                    {props.verified && <Verified />}
+                    {props.verified && <VerifiedIcon />}
                 </div>
                 <div className={styles.username}>@{props.username}</div>
                 {props.compact && <div className={styles.time}>{date}</div>}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Verified = () => {
+export const VerifiedIcon = () => {
     return (
         <svg viewBox="0 0 24 24">
             <path

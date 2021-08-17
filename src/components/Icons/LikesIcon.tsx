@@ -1,10 +1,10 @@
 import React from 'react';
 
-export interface LikesProps {
+export interface LikesIconProps {
     type: 'outline' | 'filled' | 'disabled';
 }
 
-export const Likes = ({ type }: LikesProps) => {
+export const LikesIcon = ({ type }: LikesIconProps) => {
     switch (type) {
         case 'disabled':
         case 'outline':
