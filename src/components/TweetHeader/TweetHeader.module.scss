@@ -60,6 +60,18 @@ $compact-height: 25px;
     margin-left: 5px;
     margin-top: 2px;
     height: 85%;
+
+    @include theme('light') {
+        fill: $light-primary;
+    }
+
+    @include theme('dim') {
+        fill: $dim-primary;
+    }
+
+    @include theme('dark') {
+        fill: $dark-primary;
+    }
 }
 
 .displayName {
