@@ -1,0 +1,19 @@
+.settingsBar {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    bottom: 20px;
+    right: 0;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media only screen and (min-width: 775px) {
+    .settingsBar {
+        top: 0;
+        left: unset;
+        right: -60px;
+        bottom: unset;
+    }
+}
