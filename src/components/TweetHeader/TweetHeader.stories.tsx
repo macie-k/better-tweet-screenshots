@@ -21,9 +21,9 @@ const Template: ComponentStory<typeof TweetHeader> = (args) => <TweetHeader {...
 export const Main = Template.bind({});
 Main.args = {
     compact: false,
-    verified: false,
-    avatarUrl: 'https://pbs.twimg.com/profile_images/1382522642310295554/lnjPz_zj_normal.jpg',
-    username: 'turkmmtz',
-    displayName: 'Turk',
+    verified: true,
+    avatarUrl: 'https://pbs.twimg.com/profile_images/893156473655578624/gXfD1I6u_400x400.jpg',
+    username: 'maciek_psd',
+    displayName: 'maciek',
     timestamp: '2020-09-26T16:03:08.000Z',
 };

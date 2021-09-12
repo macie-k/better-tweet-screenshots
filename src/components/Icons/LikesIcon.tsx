@@ -45,6 +45,6 @@ export const LikesIcon = ({ type }: LikesIconProps) => {
             );
 
         default:
-            throw 'Wrong likes type';
+            throw `Wrong likes type: "${type}"`;
     }
 };

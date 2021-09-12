@@ -5,6 +5,9 @@ export interface ThemeIconProps {
 }
 
 export const ThemeIcon = ({ type }: ThemeIconProps) => {
+    if (type.includes('theme-')) {
+        type = type.replace('theme-', '') as 'light' | 'dim' | 'dark';
+    }
     switch (type) {
         case 'light':
             return (
@@ -101,6 +104,6 @@ export const ThemeIcon = ({ type }: ThemeIconProps) => {
             );
 
         default:
-            throw 'Wrong likes type';
+            throw `Wrong theme type: "${type}"`;
     }
 };

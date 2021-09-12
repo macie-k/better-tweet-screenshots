@@ -8,7 +8,7 @@ export default {
     title: 'Tweet/TweetMedia',
     component: TweetMedia,
     decorators: [
-        (Story, context) => (
+        (Story) => (
             <TweetContainer>
                 <Story />
             </TweetContainer>
@@ -20,10 +20,10 @@ const Template: ComponentStory<typeof TweetMedia> = (args) => <TweetMedia {...ar
 
 export const Main = Template.bind({});
 Main.args = {
-    srcs: [
-        'https://pbs.twimg.com/media/E3nvD80UUAEqSaY.jpg',
-        'https://pbs.twimg.com/media/E3nvD80VEAE9P1S.jpg',
-        'https://pbs.twimg.com/media/E3nvD80VgAAhQRW.jpg',
-        'https://pbs.twimg.com/media/E3nvD80UUAM60Fb.jpg',
+    media: [
+        { url: 'https://pbs.twimg.com/media/E3nvD80UUAEqSaY.jpg' },
+        { url: 'https://pbs.twimg.com/media/E3nvD80VEAE9P1S.jpg' },
+        { url: 'https://pbs.twimg.com/media/E3nvD80VgAAhQRW.jpg' },
+        { url: 'https://pbs.twimg.com/media/E3nvD80UUAM60Fb.jpg' },
     ],
 };
