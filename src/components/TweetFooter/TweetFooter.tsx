@@ -30,7 +30,10 @@ export const TweetFooter = ({ timestamp, likes }: TweetFooterProps) => {
             {timestampStyle === 'datetime' && <div className={styles.time}>{time}</div>}
             {timestampStyle !== 'disabled' && <div className={styles.date}>{date}</div>}
 
-            <div className={styles.likesContainer}>
+            <div
+                className={styles.likesContainer}
+                style={{ display: likesStyle === 'disabled' ? 'none' : '' }} // hide element completely when likes are disabled to prevent empty margin
+            >
                 {likesStyle !== 'disabled' && (
                     <>
                         <LikesIcon type={likesStyle} />

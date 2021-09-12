@@ -19,6 +19,8 @@ import { LikesIcon } from '../components/Icons/LikesIcon';
 import { useLikes, useRoundedCorners, useTimestamp } from '../hooks/useSettings';
 import { useTheme } from 'hooks/useTheme';
 
+const THEMES = ['light', 'dim', 'dark'];
+
 type User = {
     created_at: string;
     verified: boolean;
@@ -46,6 +48,12 @@ export const TweetView = ({ user, post }: TweetViewProps) => {
     const [roundedCorners, toggleRoundedCorners] = useRoundedCorners();
     const [timestampStyle, toggleTimestampStyle] = useTimestamp();
 
+    const getNextTheme = () => {
+        const current = THEMES.indexOf(theme.replace('theme-', ''));
+        const next = THEMES[(current === THEMES.length - 1 ? 0 : current + 1) as number];
+        return next;
+    };
+
     return (
         <Container>
             {user && post ? (
@@ -64,7 +72,7 @@ export const TweetView = ({ user, post }: TweetViewProps) => {
                         <SettingsBar
                             children={[
                                 <Setting
-                                    onClick={() => setTheme()}
+                                    onClick={() => setTheme(getNextTheme())}
                                     icon={<ThemeIcon type={theme} />}
                                 />,
                                 <Setting

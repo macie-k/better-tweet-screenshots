@@ -20,11 +20,12 @@ export const App = () => {
         /* Don't request same ID twice */
         /* todo: add it to local storage */
 
-        const RESPONSE = usedIDs[ID] === undefined ? await fetchTweetData(ID) : usedIDs[ID];
-        setUsedIDs((usedIDs: any) => ({ ...usedIDs, [ID]: RESPONSE }));
+        const TWEET_DATA = usedIDs[ID] === undefined ? await fetchTweetData(ID) : usedIDs[ID];
+        setUsedIDs((usedIDs: any) => ({ ...usedIDs, [ID]: TWEET_DATA }));
+        console.log(usedIDs);
 
-        if (RESPONSE !== null) {
-            const DATA = parseTweetInformation(RESPONSE);
+        if (TWEET_DATA !== null) {
+            const DATA = parseTweetInformation(TWEET_DATA);
             setTweet(DATA);
 
             return true;

@@ -20,4 +20,8 @@
     @include theme('dark') {
         color: $dark-primary;
     }
+
+    & > .accentText {
+        color: $accent-blue;
+    }
 }
