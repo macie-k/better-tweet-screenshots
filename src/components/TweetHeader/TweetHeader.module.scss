@@ -62,8 +62,7 @@ $compact-height: 25px;
     height: 85%;
 }
 
-.displayName,
-.username {
+.displayName {
     @include theme('light') {
         color: $light-primary;
     }
@@ -79,6 +78,18 @@ $compact-height: 25px;
 
 .username {
     font-size: 13px;
+
+    @include theme('light') {
+        color: $light-secondary;
+    }
+
+    @include theme('dim') {
+        color: $dim-secondary;
+    }
+
+    @include theme('dark') {
+        color: $dark-secondary;
+    }
 
     .compact & {
         margin-left: 5px;

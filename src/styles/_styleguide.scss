@@ -1,5 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600&display=swap');
+@font-face {
+    font-family: 'Segoe UI';
+    src: url('../resources/fonts/Segoe-UI.woff') format('woff');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Segoe UI';
+    src: url('../resources/fonts/Segoe-UI_Bold.woff') format('woff');
+    font-weight: bold;
+}
 
 @mixin theme($type) {
     :global(.theme-#{$type}) & {

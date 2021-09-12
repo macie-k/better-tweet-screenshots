@@ -1,5 +1,3 @@
-import React from 'react';
-
 export interface LikesIconProps {
     type: 'outline' | 'filled' | 'disabled';
 }

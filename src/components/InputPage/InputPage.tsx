@@ -3,11 +3,17 @@ import styles from './InputPage.module.scss';
 
 export interface InputPageProps {
     defaultTweet?: string;
+    tweetUrl: string;
+    setTweetUrl: (val: string) => void;
+    handleSubmit: () => void;
 }
 
-export const InputPage = ({ defaultTweet }: InputPageProps) => {
-    const [tweetUrl, setTweetUrl] = useState('');
-
+export const InputPage = ({
+    defaultTweet,
+    tweetUrl,
+    setTweetUrl,
+    handleSubmit,
+}: InputPageProps) => {
     return (
         <div className={styles.container}>
             <div className={styles.header}>
@@ -22,7 +28,7 @@ export const InputPage = ({ defaultTweet }: InputPageProps) => {
                     placeholder={defaultTweet}
                     type="text"
                 />
-                <button className={styles.loadButton}>
+                <button onClick={handleSubmit} className={styles.loadButton}>
                     <span>LOAD</span>
                 </button>
             </div>
