@@ -3,6 +3,9 @@ $height: calc(60vw - 20px);
 .media {
     width: 100%;
     height: auto;
+    border-radius: 10px;
+    border: 1px solid rgb(207, 217, 222);
+    overflow: hidden;
 
     &.hidden {
         display: none;
@@ -14,7 +17,6 @@ $height: calc(60vw - 20px);
 
     img {
         width: 100%;
-        border-radius: 10px;
     }
 
     img.cropped {
@@ -36,14 +38,14 @@ $height: calc(60vw - 20px);
         background-size: cover;
 
         &.left {
-            border-radius: 10px 0 0 10px;
+            // border-radius: 10px 0 0 10px;
             background-image: url('../../resources/img/placeholder.png');
             margin-right: 1px;
         }
 
         &.right {
             margin-left: 1px;
-            border-radius: 0 10px 10px 0;
+            // border-radius: 0 10px 10px 0;
             background-image: url('../../resources/img/placeholder.png');
         }
     }
@@ -62,7 +64,7 @@ $height: calc(60vw - 20px);
 
     .left {
         width: calc(50% - 1px);
-        border-radius: 10px 0 0 10px;
+        // border-radius: 10px 0 0 10px;
         background-image: url('../../resources/img/placeholder.png');
         margin-right: 1px;
     }
@@ -150,4 +152,12 @@ $height: calc(60vw - 20px);
             background-image: url('../../resources/img/placeholder.png');
         }
     }
+}
+
+.reference {
+    width: calc(100% + 20px);
+    margin-left: -10px;
+    margin-bottom: -10px;
+    border-radius: 0 0 0 0 !important;
+    border: none;
 }

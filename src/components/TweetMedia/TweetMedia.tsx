@@ -5,21 +5,34 @@ import { cx } from '../../utils';
 
 export interface TweetMediaProps {
     media: Array<any>;
+    isReferenced?: boolean;
 }
 
-export const TweetMedia = ({ media }: TweetMediaProps) => {
+export const TweetMedia = ({ media, isReferenced }: TweetMediaProps) => {
     switch (media.length) {
         case 0:
             return null;
         case 1:
             return (
-                <div className={cx(styles.media, styles.media1)}>
+                <div
+                    className={cx(
+                        { [styles.reference]: isReferenced },
+                        styles.media,
+                        styles.media1
+                    )}
+                >
                     <img draggable="false" className={styles.cropped} src={media[0].url} />
                 </div>
             );
         case 2:
             return (
-                <div className={cx(styles.media, styles.media2)}>
+                <div
+                    className={cx(
+                        { [styles.reference]: isReferenced },
+                        styles.media,
+                        styles.media2
+                    )}
+                >
                     <div
                         style={{ backgroundImage: `url(${media[0].url})` }}
                         className={cx(styles.mediaContent, styles.left)}
@@ -32,7 +45,13 @@ export const TweetMedia = ({ media }: TweetMediaProps) => {
             );
         case 3:
             return (
-                <div className={cx(styles.media, styles.media3)}>
+                <div
+                    className={cx(
+                        { [styles.reference]: isReferenced },
+                        styles.media,
+                        styles.media3
+                    )}
+                >
                     <div
                         style={{ backgroundImage: `url(${media[0].url})` }}
                         className={cx(styles.mediaContent, styles.left)}
@@ -51,7 +70,13 @@ export const TweetMedia = ({ media }: TweetMediaProps) => {
             );
         case 4:
             return (
-                <div className={cx(styles.media, styles.media4)}>
+                <div
+                    className={cx(
+                        { [styles.reference]: isReferenced },
+                        styles.media,
+                        styles.media4
+                    )}
+                >
                     <div className={styles.left}>
                         <div
                             style={{ backgroundImage: `url(${media[0].url})` }}

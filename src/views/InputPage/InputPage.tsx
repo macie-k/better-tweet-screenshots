@@ -44,11 +44,11 @@ export const InputPage = ({
                 <button
                     onClick={async () => {
                         setDots(true);
-                        const submit = !(await handleSubmit()); // returns true if succeeded
+                        const submit = await handleSubmit(); // returns true if succeeded
                         setDots(false);
 
-                        setShowInput(submit);
-                        setError(submit);
+                        setShowInput(!submit);
+                        setError(!submit);
                     }}
                     className={cx(styles.loadButton, { [styles.dots]: dots })}
                 >

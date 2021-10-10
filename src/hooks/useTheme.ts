@@ -1,8 +1,8 @@
 import { useCallback, useState, useMemo } from 'react';
 import constate from 'constate';
 
-export const [ThemeProvider, useTheme] = constate<{ themeOverride?: string }, unknown, any>(
-    ({ themeOverride }) => {
+export const [ThemeProvider, useTheme] = constate(
+    ({ themeOverride }: { themeOverride?: string }) => {
         const [_theme, _setTheme] = useState<string>('light');
 
         const setTheme = useCallback(

@@ -1,16 +1,19 @@
 import React from 'react';
 import styles from './TweetBodyText.module.scss';
 
+import { cx } from '../../utils/cx';
+
 const urlRegex = /(https?:\/\/)?[\w\-~]+(\.[\w\-~]+)+(\/[\w\-~@:%]*)*(#[\w\-]*)?(\?[^\s]*)?/gi;
 
 export interface BodyTextProps {
+    compact?: boolean;
     content?: string;
 }
 
-export const TweetBodyText = ({ content }: BodyTextProps) => {
+export const TweetBodyText = ({ compact, content }: BodyTextProps) => {
     return (
         <div
-            className={styles.container}
+            className={cx(styles.container, { [styles.compact]: compact })}
             dangerouslySetInnerHTML={{ __html: parseText(content) }}
         ></div>
     );

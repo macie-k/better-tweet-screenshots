@@ -5,10 +5,11 @@ export function parseTweetInformation(data: any) {
     const tweet_data = data.data; // save tweet information
     const user = data.includes.users[0]; // save user information
     const media = data.includes.media; // save media information
+    const ref = tweet_data.referenced_tweets;
 
     // console.log(tweet_data)
     const textSplit = tweet_data.text.split(' ');
-    if (data.includes.media)
+    if (data.includes.media || ref)
         // remove t.co media link
         textSplit.pop();
 
@@ -18,6 +19,7 @@ export function parseTweetInformation(data: any) {
         likes: tweet_data.public_metrics.like_count,
         date: tweet_data.created_at,
         text: textSplit.join(' '), // remove t.co/id link from tweet text
+        reference: ref ? tweet_data.referenced_tweets[0] : null,
     };
 
     return { tweet: tweet, user: user };
@@ -52,6 +54,8 @@ export async function fetchTweetData(id: string) {
             return response.json();
         })
         .catch(() => null);
+
+    console.log(res);
 
     return res;
 }

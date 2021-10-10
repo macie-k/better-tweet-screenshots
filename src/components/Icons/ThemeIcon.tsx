@@ -1,13 +1,11 @@
 import React from 'react';
 
 export interface ThemeIconProps {
-    type: 'light' | 'dim' | 'dark';
+    type: string;
 }
 
 export const ThemeIcon = ({ type }: ThemeIconProps) => {
-    if (type.includes('theme-')) {
-        type = type.replace('theme-', '') as 'light' | 'dim' | 'dark';
-    }
+    if (type.includes('theme-')) type = type.replace('theme-', '');
     switch (type) {
         case 'light':
             return (
