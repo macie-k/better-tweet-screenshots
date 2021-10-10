@@ -22,6 +22,7 @@ import { LikesIcon } from 'components/Icons/LikesIcon';
 import { useLikes, useRoundedCorners, useTimestamp } from 'hooks/useSettings';
 import { useTheme } from 'hooks/useTheme';
 import { TweetQuote } from 'components/TweetQuote/TweetQuote';
+import { SaveButton } from 'components/SaveButton/SaveButton';
 
 const THEMES = ['light', 'dim', 'dark'];
 
@@ -75,6 +76,7 @@ export const TweetView = ({ tweet }: TweetViewProps) => {
                     {hasReference ? <TweetQuote tweet={tweet} /> : <></>}
                 </TweetFull>
                 <div className={styles.settingsBar}>
+                    <SaveButton />
                     <SettingsBar>
                         <Setting
                             onClick={() => setTheme(getNextTheme(theme))}
@@ -95,3 +97,5 @@ export const TweetView = ({ tweet }: TweetViewProps) => {
         </Container>
     );
 };
+
+function saveImage() {}

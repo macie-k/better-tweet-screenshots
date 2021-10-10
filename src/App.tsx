@@ -25,7 +25,6 @@ export const App = () => {
         const ID = getTweetID(inputVal || DEFAULT_TWEET);
 
         /* Don't request same ID twice */
-        /* todo: add it to local storage */
 
         const TWEET_DATA = usedIDs[ID] ?? (await fetchTweetData(ID));
         if (TWEET_DATA === null) return false;

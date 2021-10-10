@@ -7,6 +7,7 @@
     left: 0;
     margin-left: auto;
     margin-right: auto;
+    gap: 10px;
 }
 
 @media only screen and (min-width: 775px) {
@@ -15,6 +16,7 @@
         left: unset;
         right: -60px;
         bottom: unset;
+        flex-direction: column;
     }
 
     .innerContainer {
