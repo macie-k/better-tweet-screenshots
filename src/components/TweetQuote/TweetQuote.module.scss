@@ -8,4 +8,16 @@
     margin-right: auto;
     margin-left: auto;
     margin-top: 20px;
+
+    :global(.theme-light) & {
+        border-color: #b9b9b9;
+    }
+
+    :global(.theme-dim) & {
+        border-color: #38444d;
+    }
+
+    :global(.theme-dark) & {
+        border-color: #2f3336;
+    }
 }
