@@ -54,9 +54,6 @@ export async function fetchTweetData(id: string) {
             return response.json();
         })
         .catch(() => null);
-
-    console.log(res);
-
     return res;
 }
 
