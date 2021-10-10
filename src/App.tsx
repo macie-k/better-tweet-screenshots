@@ -21,16 +21,12 @@ export const App = () => {
         /* todo: add it to local storage */
 
         const TWEET_DATA = usedIDs[ID] ?? (await fetchTweetData(ID));
+        if (TWEET_DATA === null) return false;
 
-        if (TWEET_DATA !== null) {
-            setUsedIDs((usedIDs: any) => ({ ...usedIDs, [ID]: TWEET_DATA }));
-            const DATA = parseTweetInformation(TWEET_DATA);
-            setTweet(DATA);
-
-            return true;
-        } else {
-            return false;
-        }
+        setUsedIDs((usedIDs: any) => ({ ...usedIDs, [ID]: TWEET_DATA }));
+        const DATA = parseTweetInformation(TWEET_DATA);
+        setTweet(DATA);
+        return true;
     };
 
     return (

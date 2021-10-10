@@ -11,6 +11,7 @@
     &.hidden {
         top: -110vh;
         transition: top 1s ease-out 0.3s;
+        transition-delay: 1s;
     }
 
     &.error {

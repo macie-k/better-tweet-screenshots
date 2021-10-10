@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import styles from './TweetView.module.scss';
+
+import { ReactNode, useRef } from 'react';
 
 import { TweetFull } from 'components/TweetFull/TweetFull';
 import { Container } from 'components/Container/Container';
@@ -19,7 +21,6 @@ import { LikesIcon } from 'components/Icons/LikesIcon';
 
 import { useLikes, useRoundedCorners, useTimestamp } from 'hooks/useSettings';
 import { useTheme } from 'hooks/useTheme';
-import { ReactNode } from 'react';
 import { TweetQuote } from 'components/TweetQuote/TweetQuote';
 
 const THEMES = ['light', 'dim', 'dark'];
@@ -66,26 +67,30 @@ export const TweetView = ({ tweet }: TweetViewProps) => {
     const [roundedCorners, toggleRoundedCorners] = useRoundedCorners();
     const [timestampStyle, toggleTimestampStyle] = useTimestamp();
 
-    const hasRef = tweet && tweet.tweet.reference;
+    const hasReference = tweet && tweet.tweet.reference;
     return (
         <Container>
-            <TweetFull tweet={tweet}>{hasRef ? <TweetQuote tweet={tweet} /> : <></>}</TweetFull>
-            <div className={styles.settingsBar}>
-                <SettingsBar>
-                    <Setting
-                        onClick={() => setTheme(getNextTheme(theme))}
-                        icon={<ThemeIcon type={theme} />}
-                    />
-                    <Setting onClick={() => toggleTimestampStyle()} icon={<TimestampIcon />} />
-                    <Setting
-                        onClick={() => toggleRoundedCorners()}
-                        icon={<CornersIcon type={roundedCorners ? 'rounded' : 'squared'} />}
-                    />
-                    <Setting
-                        onClick={() => toggleLikesStyle()}
-                        icon={<LikesIcon type={likesStyle} />}
-                    />
-                </SettingsBar>
+            <div className={styles.innerContainer}>
+                <TweetFull tweet={tweet}>
+                    {hasReference ? <TweetQuote tweet={tweet} /> : <></>}
+                </TweetFull>
+                <div className={styles.settingsBar}>
+                    <SettingsBar>
+                        <Setting
+                            onClick={() => setTheme(getNextTheme(theme))}
+                            icon={<ThemeIcon type={theme} />}
+                        />
+                        <Setting onClick={() => toggleTimestampStyle()} icon={<TimestampIcon />} />
+                        <Setting
+                            onClick={() => toggleRoundedCorners()}
+                            icon={<CornersIcon type={roundedCorners ? 'rounded' : 'squared'} />}
+                        />
+                        <Setting
+                            onClick={() => toggleLikesStyle()}
+                            icon={<LikesIcon type={likesStyle} />}
+                        />
+                    </SettingsBar>
+                </div>
             </div>
         </Container>
     );

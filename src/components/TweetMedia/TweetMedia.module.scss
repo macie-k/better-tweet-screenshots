@@ -10,6 +10,14 @@ $height: calc(60vw - 20px);
     &.hidden {
         display: none;
     }
+
+    :global(.theme-dim) & {
+        border-color: #34444c;
+    }
+
+    :global(.theme-dark) & {
+        border-color: #585858;
+    }
 }
 
 .media1 {
@@ -19,9 +27,7 @@ $height: calc(60vw - 20px);
         width: 100%;
     }
 
-    img.cropped {
-        object-fit: cover;
-        object-position: center;
+    &.cropped {
         max-height: 55vh;
     }
 }
@@ -38,14 +44,12 @@ $height: calc(60vw - 20px);
         background-size: cover;
 
         &.left {
-            // border-radius: 10px 0 0 10px;
             background-image: url('../../resources/img/placeholder.png');
             margin-right: 1px;
         }
 
         &.right {
             margin-left: 1px;
-            // border-radius: 0 10px 10px 0;
             background-image: url('../../resources/img/placeholder.png');
         }
     }
@@ -64,7 +68,6 @@ $height: calc(60vw - 20px);
 
     .left {
         width: calc(50% - 1px);
-        // border-radius: 10px 0 0 10px;
         background-image: url('../../resources/img/placeholder.png');
         margin-right: 1px;
     }

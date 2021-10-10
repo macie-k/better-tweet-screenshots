@@ -16,4 +16,12 @@
         right: -60px;
         bottom: unset;
     }
+
+    .innerContainer {
+        position: relative;
+        top: 0;
+        bottom: 0;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
 }

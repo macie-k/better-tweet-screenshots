@@ -18,10 +18,11 @@ export const TweetMedia = ({ media, isReferenced }: TweetMediaProps) => {
                     className={cx(
                         { [styles.reference]: isReferenced },
                         styles.media,
-                        styles.media1
+                        styles.media1,
+                        styles.cropped
                     )}
                 >
-                    <img draggable="false" className={styles.cropped} src={media[0].url} />
+                    <img draggable="false" src={media[0].url} />
                 </div>
             );
         case 2:

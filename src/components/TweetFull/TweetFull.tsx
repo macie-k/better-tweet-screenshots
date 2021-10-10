@@ -11,7 +11,7 @@ import { TweetMedia } from 'components/TweetMedia/TweetMedia';
 import { useRoundedCorners } from 'hooks/useSettings';
 import { ReactNode } from 'react';
 
-import { User, Post, TweetViewProps } from 'views/TweetView/TweetView';
+import { TweetViewProps } from 'views/TweetView/TweetView';
 
 export const TweetFull = ({ tweet, children }: TweetViewProps) => {
     const [roundedCorners] = useRoundedCorners();
