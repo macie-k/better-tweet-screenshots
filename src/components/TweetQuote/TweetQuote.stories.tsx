@@ -14,6 +14,7 @@ export const Main = Template.bind({});
 Main.args = {
     tweet: {
         tweet: {
+            id: '1061672709099307008',
             media: [],
             likes: 1,
             date: '2021-09-16T12:32:41.000Z',

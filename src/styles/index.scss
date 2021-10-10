@@ -3,6 +3,7 @@
 
 * {
     box-sizing: border-box;
+    transition: opacity 0.3s ease-in-out;
 }
 
 html::-webkit-scrollbar {

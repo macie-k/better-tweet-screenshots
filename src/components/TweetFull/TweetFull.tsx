@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import styles from './TweetFull.module.scss';
 
@@ -9,7 +9,6 @@ import { TweetBodyText } from 'components/TweetBodyText/TweetBodyText';
 import { TweetMedia } from 'components/TweetMedia/TweetMedia';
 
 import { useRoundedCorners } from 'hooks/useSettings';
-import { ReactNode } from 'react';
 
 import { TweetViewProps } from 'views/TweetView/TweetView';
 

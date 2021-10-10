@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import styles from './TweetView.module.scss';
 
@@ -41,6 +41,7 @@ export type Reference = {
 };
 
 export type Post = {
+    id: string;
     media: Array<any>;
     date: string;
     likes: number;
@@ -68,27 +69,32 @@ export const TweetView = ({ tweet }: TweetViewProps) => {
     const [roundedCorners, toggleRoundedCorners] = useRoundedCorners();
     const [timestampStyle, toggleTimestampStyle] = useTimestamp();
 
-    const hasReference = tweet && tweet.tweet.reference;
+    const [post, setPost] = useState<any>();
+    const containerRef = useCallback((node) => {
+        setPost(node);
+    }, []);
+
+    const hasReference = tweet && tweet.tweet.reference; // todo: probably add different looks for 'quotes' and 'responses'
     return (
         <Container>
-            <div className={styles.innerContainer}>
+            <div ref={containerRef} className={styles.innerContainer}>
                 <TweetFull tweet={tweet}>
                     {hasReference ? <TweetQuote tweet={tweet} /> : <></>}
                 </TweetFull>
                 <div className={styles.settingsBar}>
-                    <SaveButton />
+                    <SaveButton tweet={tweet} post={post} />
                     <SettingsBar>
                         <Setting
                             onClick={() => setTheme(getNextTheme(theme))}
                             icon={<ThemeIcon type={theme} />}
                         />
-                        <Setting onClick={() => toggleTimestampStyle()} icon={<TimestampIcon />} />
+                        <Setting onClick={toggleTimestampStyle} icon={<TimestampIcon />} />
                         <Setting
-                            onClick={() => toggleRoundedCorners()}
+                            onClick={toggleRoundedCorners}
                             icon={<CornersIcon type={roundedCorners ? 'rounded' : 'squared'} />}
                         />
                         <Setting
-                            onClick={() => toggleLikesStyle()}
+                            onClick={toggleLikesStyle}
                             icon={<LikesIcon type={likesStyle} />}
                         />
                     </SettingsBar>
