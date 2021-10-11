@@ -7,10 +7,7 @@ import { InputPage } from './views/InputPage/InputPage';
 
 import { fetchTweetData, getTweetID, parseTweetInformation } from './utils/tweetUtils';
 
-const DEFAULT_TWEET = 'https://twitter.com/929ell/status/1343331784621256709';
 export const App = () => {
-    const [usedIDs, setUsedIDs] = useState<Record<string, any>>({});
-    const [inputVal, setInputVal] = useState('');
     const [tweet, setTweet] = useState<any>();
 
     useEffect(() => {
@@ -21,29 +18,10 @@ export const App = () => {
         );
     }, []);
 
-    const handleSubmit = async () => {
-        const ID = getTweetID(inputVal || DEFAULT_TWEET);
-
-        /* Don't request same ID twice */
-
-        const TWEET_DATA = usedIDs[ID] ?? (await fetchTweetData(ID));
-        if (TWEET_DATA === null) return false;
-
-        setUsedIDs((usedIDs: any) => ({ ...usedIDs, [ID]: TWEET_DATA }));
-        const DATA = parseTweetInformation(TWEET_DATA);
-        setTweet(DATA);
-        return true;
-    };
-
     return (
         <SettingsProvider>
             <ThemeProvider>
-                <InputPage
-                    defaultTweet={DEFAULT_TWEET}
-                    tweetUrl={inputVal}
-                    setTweetUrl={setInputVal}
-                    handleSubmit={handleSubmit}
-                />
+                <InputPage setTweet={setTweet} />
                 <TweetView tweet={tweet} />
             </ThemeProvider>
         </SettingsProvider>

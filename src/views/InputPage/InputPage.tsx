@@ -2,24 +2,35 @@ import React, { useState } from 'react';
 import styles from './InputPage.module.scss';
 import { cx } from '../../utils/cx';
 import { ArrowIcon } from 'components/Icons/ArrowIcon';
+import { fetchTweetData, getTweetID, parseTweetInformation } from 'utils/tweetUtils';
+
+const DEFAULT_TWEET = 'https://twitter.com/929ell/status/1343331784621256709';
 
 export interface InputPageProps {
-    defaultTweet?: string;
-    handleSubmit: () => Promise<boolean>;
-
-    tweetUrl: string;
-    setTweetUrl: (val: string) => void;
+    setTweet: (val: any) => void;
 }
 
-export const InputPage = ({
-    defaultTweet,
-    tweetUrl,
-    setTweetUrl,
-    handleSubmit,
-}: InputPageProps) => {
+export const InputPage = ({ setTweet }: InputPageProps) => {
     const [showInput, setShowInput] = useState(true);
     const [error, setError] = useState(false);
     const [dots, setDots] = useState(false);
+
+    const [inputVal, setInputVal] = useState('');
+    const [usedIDs, setUsedIDs] = useState<Record<string, any>>({});
+
+    const handleSubmit = async () => {
+        const ID = getTweetID(inputVal || DEFAULT_TWEET);
+
+        /* Don't request same ID twice */
+
+        const TWEET_DATA = usedIDs[ID] ?? (await fetchTweetData(ID));
+        if (TWEET_DATA === null) return false;
+
+        setUsedIDs((usedIDs: any) => ({ ...usedIDs, [ID]: TWEET_DATA }));
+        const DATA = parseTweetInformation(TWEET_DATA);
+        setTweet(DATA);
+        return true;
+    };
 
     return (
         <div
@@ -35,10 +46,10 @@ export const InputPage = ({
             <div className={styles.divider}></div>
             <div className={styles.bottomContainer}>
                 <input
-                    value={tweetUrl}
-                    onChange={(e) => setTweetUrl(e.target.value)}
+                    value={inputVal}
+                    onChange={(e) => setInputVal(e.target.value)}
                     className={styles.input}
-                    placeholder={defaultTweet}
+                    placeholder={DEFAULT_TWEET}
                     type="text"
                 />
                 <button
