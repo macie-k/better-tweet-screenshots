@@ -1,16 +1,11 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import styles from './TweetView.module.scss';
 
-import { ReactNode, useRef } from 'react';
+import { ReactNode } from 'react';
 
 import { TweetFull } from 'components/TweetFull/TweetFull';
 import { Container } from 'components/Container/Container';
-import { TweetContainer } from 'components/TweetContainer/TweetContainer';
-import { TweetHeader } from 'components/TweetHeader/TweetHeader';
-import { TweetFooter } from 'components/TweetFooter/TweetFooter';
-import { TweetBodyText } from 'components/TweetBodyText/TweetBodyText';
-import { TweetMedia } from 'components/TweetMedia/TweetMedia';
 import { SettingsBar } from 'components/SettingsBar/SettingsBar';
 import { Setting } from 'components/Setting/Setting';
 
@@ -67,7 +62,7 @@ export const TweetView = ({ tweet }: TweetViewProps) => {
     const { theme, setTheme } = useTheme();
     const [likesStyle, toggleLikesStyle] = useLikes();
     const [roundedCorners, toggleRoundedCorners] = useRoundedCorners();
-    const [timestampStyle, toggleTimestampStyle] = useTimestamp();
+    const [, toggleTimestampStyle] = useTimestamp();
 
     const [post, setPost] = useState<any>();
     const containerRef = useCallback((node) => {
@@ -103,5 +98,3 @@ export const TweetView = ({ tweet }: TweetViewProps) => {
         </Container>
     );
 };
-
-function saveImage() {}

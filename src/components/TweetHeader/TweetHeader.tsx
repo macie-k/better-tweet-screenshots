@@ -5,8 +5,6 @@ import styles from './TweetHeader.module.scss';
 import { VerifiedIcon } from 'components/Icons/VerifiedIcon';
 import { cx } from 'utils';
 
-import { useLikes } from 'hooks/useSettings';
-
 export interface TweetHeaderProps {
     compact?: boolean;
     avatarUrl: string;
@@ -17,8 +15,6 @@ export interface TweetHeaderProps {
 }
 
 export const TweetHeader = (props: TweetHeaderProps) => {
-    // const [, toggleLikesStyle] = useLikes();
-
     const date = useMemo(() => {
         const dateTime = parseISO(props.timestamp);
         const dateFormat =
@@ -31,7 +27,11 @@ export const TweetHeader = (props: TweetHeaderProps) => {
     return (
         <div className={cx(styles.container, { [styles.compact]: props.compact })}>
             <div className={styles.avatar}>
-                <img src={props.avatarUrl.replace('_normal', '')} draggable="false" />
+                <img
+                    src={props.avatarUrl.replace('_normal', '')}
+                    draggable="false"
+                    alt="User avatar"
+                />
             </div>
             <div className={styles.names}>
                 <div className={styles.nameContainer}>
@@ -41,7 +41,6 @@ export const TweetHeader = (props: TweetHeaderProps) => {
                 <div className={styles.username}>@{props.username}</div>
                 {props.compact && <div className={styles.time}>{date}</div>}
             </div>
-            {/* <button onClick={() => toggleLikesStyle()}>LAJKI STAJL</button> */}
         </div>
     );
 };

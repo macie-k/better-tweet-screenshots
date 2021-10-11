@@ -1,4 +1,4 @@
-import { useCallback, useState, useMemo } from 'react';
+import { useCallback, useState } from 'react';
 import constate from 'constate';
 
 type LikesStyle = 'outline' | 'filled' | 'disabled';

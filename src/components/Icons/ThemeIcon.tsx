@@ -102,6 +102,6 @@ export const ThemeIcon = ({ type }: ThemeIconProps) => {
             );
 
         default:
-            throw `Wrong theme type: "${type}"`;
+            throw new Error(`Wrong theme type: "${type}"`);
     }
 };

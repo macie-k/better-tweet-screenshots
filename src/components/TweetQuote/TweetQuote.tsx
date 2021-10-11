@@ -4,23 +4,20 @@ import styles from './TweetQuote.module.scss';
 
 import { TweetViewProps } from '../../views/TweetView/TweetView';
 import { fetchTweetData, parseTweetInformation } from '../../utils/tweetUtils';
-import { TweetFull } from 'components/TweetFull/TweetFull';
 
-import { TweetContainer } from 'components/TweetContainer/TweetContainer';
 import { TweetHeader } from 'components/TweetHeader/TweetHeader';
-import { TweetFooter } from 'components/TweetFooter/TweetFooter';
 import { TweetBodyText } from 'components/TweetBodyText/TweetBodyText';
 import { TweetMedia } from 'components/TweetMedia/TweetMedia';
 
 import { User, Post } from 'views/TweetView/TweetView';
 
-type TweetQuote = {
+type QuoteFormat = {
     user: User;
     tweet: Post;
 };
 
 export const TweetQuote = ({ tweet }: TweetViewProps) => {
-    const [refData, setRefData] = useState<TweetQuote>();
+    const [refData, setRefData] = useState<QuoteFormat>();
 
     useEffect(() => {
         (async () => {
@@ -28,14 +25,13 @@ export const TweetQuote = ({ tweet }: TweetViewProps) => {
             const PARSED = parseTweetInformation(DATA);
             setRefData(PARSED);
         })();
-    }, []);
+    }, [tweet.tweet.reference.id]);
 
     if (!refData) return null;
     const user = refData.user;
     const post = refData.tweet;
     return (
         <div className={styles.container}>
-            {/* <TweetFull isReferenced={true} tweet={parseTweetInformation(refData)} /> */}
             <TweetHeader
                 compact={true}
                 verified={user.verified}

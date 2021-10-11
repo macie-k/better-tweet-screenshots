@@ -22,7 +22,7 @@ export const TweetMedia = ({ media, isReferenced }: TweetMediaProps) => {
                         styles.cropped
                     )}
                 >
-                    <img draggable="false" src={media[0].url} />
+                    <img alt="Tweet media" draggable="false" src={media[0].url} />
                 </div>
             );
         case 2:
@@ -101,6 +101,6 @@ export const TweetMedia = ({ media, isReferenced }: TweetMediaProps) => {
                 </div>
             );
         default:
-            throw 'Incorrect media amount';
+            throw new Error('Incorrect media amount');
     }
 };

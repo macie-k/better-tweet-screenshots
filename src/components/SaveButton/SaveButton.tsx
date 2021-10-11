@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { saveAs } from 'file-saver';
+
 //@ts-ignore
 import dom2Img from '../../utils/dom-to-image-scaled'; // modified scale to 3
-import { saveAs } from 'file-saver';
 import styles from './SaveButton.module.scss';
 
 import { SaveIcon } from '../Icons/SaveIcon';
 import { Setting } from 'components/Setting/Setting';
-
 import { User, Post } from 'views/TweetView/TweetView';
 
 interface SaveButtonProps {

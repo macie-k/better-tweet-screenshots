@@ -1,6 +1,4 @@
-import React, { ReactNode } from 'react';
-
-import styles from './TweetFull.module.scss';
+import React from 'react';
 
 import { TweetContainer } from 'components/TweetContainer/TweetContainer';
 import { TweetHeader } from 'components/TweetHeader/TweetHeader';
