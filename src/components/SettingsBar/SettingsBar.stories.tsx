@@ -10,7 +10,7 @@ import { CornersIcon } from '../Icons/CornersIcon';
 import { LikesIcon } from '../Icons/LikesIcon';
 
 export default {
-    title: 'Global/SettingsBar',
+    title: 'General/SettingsBar',
     component: SettingsBar,
 } as ComponentMeta<typeof SettingsBar>;
 

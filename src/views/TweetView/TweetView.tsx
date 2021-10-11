@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import styles from './TweetView.module.scss';
 
@@ -18,6 +18,7 @@ import { useLikes, useRoundedCorners, useTimestamp } from 'hooks/useSettings';
 import { useTheme } from 'hooks/useTheme';
 import { TweetQuote } from 'components/TweetQuote/TweetQuote';
 import { SaveButton } from 'components/SaveButton/SaveButton';
+import { ErrorPopup } from 'components/ErrorPopup/ErrorPopup';
 
 const THEMES = ['light', 'dim', 'dark'];
 
@@ -69,9 +70,19 @@ export const TweetView = ({ tweet }: TweetViewProps) => {
         setPost(node);
     }, []);
 
+    const [failed, setFailed] = useState(false);
+    useEffect(() => {
+        if (tweet) {
+            fetch(new Request(tweet.user.profile_image_url)).catch(() => {
+                setFailed(true);
+            });
+        }
+    }, [tweet]);
+
     const hasReference = tweet && tweet.tweet.reference; // todo: probably add different looks for 'quotes' and 'responses'
     return (
         <Container>
+            {failed ? <ErrorPopup /> : <></>}
             <div ref={containerRef} className={styles.innerContainer}>
                 <TweetFull tweet={tweet}>
                     {hasReference ? <TweetQuote tweet={tweet} /> : <></>}

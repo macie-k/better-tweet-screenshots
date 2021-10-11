@@ -7,7 +7,7 @@ import { LikesIcon } from '../Icons/LikesIcon';
 import { CornersIcon } from '../Icons/CornersIcon';
 
 export default {
-    title: 'Global/Setting',
+    title: 'General/Setting',
     component: Setting,
 } as ComponentMeta<typeof Setting>;
 

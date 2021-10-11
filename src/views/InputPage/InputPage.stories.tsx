@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { InputPage } from './InputPage';
 
 export default {
-    title: 'Global/InputPage',
+    title: 'General/InputPage',
     component: InputPage,
 } as ComponentMeta<typeof InputPage>;
 

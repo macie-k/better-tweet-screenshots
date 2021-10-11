@@ -4,6 +4,16 @@
 * {
     box-sizing: border-box;
     transition: opacity 0.3s ease-in-out;
+
+    &::selection {
+        color: $bg-color;
+        background: $black;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
 html::-webkit-scrollbar {

@@ -1,0 +1,113 @@
+@import '../../styles/styleguide';
+
+p {
+    margin: 0;
+}
+
+.background {
+    opacity: 0;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba($color: #000000, $alpha: 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    font-family: 'Roboto Mono';
+    transition: opacity 0.3s ease-in-out;
+    transition-delay: 2s;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 80vw;
+    height: fit-content;
+    max-width: 400px;
+    background-color: $bg-color;
+    border-radius: 20px;
+    padding: 30px;
+    position: relative;
+
+    * {
+        user-select: text;
+    }
+
+    & > svg {
+        width: 50px;
+        height: auto;
+        height: fit-content;
+        margin-bottom: 20px;
+    }
+
+    & > p {
+        text-align: center;
+        letter-spacing: 1.5px;
+        font-size: 1.1em;
+
+        a {
+            text-decoration: underline;
+        }
+
+        span.bold {
+            color: red;
+        }
+
+        span:last-of-type {
+            text-align: center;
+        }
+    }
+}
+
+.reloadContainer {
+    cursor: pointer;
+    background-color: $bg-color;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -70px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s ease-in-out;
+
+    &:hover {
+        transform: scale(1.05);
+        transition: transform 0.2s ease-in-out;
+    }
+}
+
+.reloadIconContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & > svg {
+        width: 40px;
+        height: auto;
+        height: fit-content;
+        transition: transform 1s cubic-bezier(0.895, 0.03, 0.685, 0.22);
+    }
+
+    &.rotate {
+        transform: rotate(720deg);
+        transition: transform 1s cubic-bezier(0.895, 0.03, 0.685, 0.22);
+    }
+}
+
+.bottomParagraph {
+    margin-top: 50px;
+}
+
+.bold {
+    font-weight: 600;
+}
