@@ -1,0 +1,32 @@
+@import '../../styles/styleguide';
+
+.container {
+    width: 100%;
+    height: auto;
+    font-size: 23px;
+    font-weight: 400;
+    margin-bottom: 15px;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+
+    @include theme('light') {
+        color: $light-primary;
+    }
+
+    @include theme('dim') {
+        color: $dim-primary;
+    }
+
+    @include theme('dark') {
+        color: $dark-primary;
+    }
+
+    & > .accentText {
+        color: $accent-blue;
+    }
+}
+
+.compact {
+    font-size: 0.95em;
+    margin-bottom: 10px;
+}

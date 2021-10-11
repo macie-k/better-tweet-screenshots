@@ -1,0 +1,50 @@
+@import '../../styles/styleguide';
+
+$option-amount: 5;
+
+.container {
+    background-color: white;
+    width: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 25px;
+    box-shadow: 0 5px 17px rgba(59, 58, 58, 0.15), 0 3px 6px rgba(0, 0, 0, 0.05);
+    gap: 10px;
+}
+
+.setting {
+    pointer-events: unset;
+
+    &:nth-of-type(2) {
+        margin-left: -5px;
+    }
+
+    &:last-of-type {
+        margin-right: 5px;
+    }
+
+    &.hidden {
+        pointer-events: none;
+    }
+}
+
+/* -----------> DESKTOP <------------ */
+@media only screen and (min-width: 775px) {
+    .container {
+        height: 50px;
+        flex-direction: column;
+    }
+
+    .setting {
+        &:nth-of-type(2) {
+            margin: 0;
+            margin-top: -5px;
+        }
+
+        &:last-of-type {
+            margin: 0;
+            margin-bottom: 5px;
+        }
+    }
+}

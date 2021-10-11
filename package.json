@@ -1,29 +1,78 @@
 {
-  "name": "better-tweet-screenshots",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "cors": "node node_modules/cors-anywhere/server",
-    "start": "parcel app/index.html --host 192.168.0.5",
-    "build": "del /q dist && parcel build app/index.html --public-url ./"
-  },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@babel/core": "^7.14.6",
-    "@babel/plugin-proposal-class-properties": "^7.14.5",
-    "@babel/preset-env": "^7.14.7",
-    "cssnano": "^4.1.10",
-    "sass": "^1.32.8"
-  },
-  "dependencies": {
-    "cors-anywhere": "^0.4.4",
-    "file-saver": "^2.0.5",
-    "needle": "^2.6.0",
-    "retina-dom-to-image": "^2.5.6"
-  },
-  "browserslist": [
-    "last 1 Chrome version"
-  ]
+    "name": "better-tweet-screenshots",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "@testing-library/jest-dom": "^5.14.1",
+        "@testing-library/react": "^11.2.7",
+        "@testing-library/user-event": "^12.8.3",
+        "@types/jest": "^26.0.24",
+        "@types/node": "^12.20.19",
+        "@types/react": "^17.0.18",
+        "@types/react-dom": "^17.0.9",
+        "constate": "^3.3.0",
+        "date-fns": "^2.23.0",
+        "dom-to-image-more": "^2.9.1",
+        "file-saver": "^2.0.5",
+        "framer-motion": "^4.1.17",
+        "node-sass": "^6.0.1",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "react-responsive": "^9.0.0-beta.3",
+        "react-scripts": "4.0.3",
+        "typescript": "^4.3.5",
+        "web-vitals": "^1.1.2"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject",
+        "storybook": "start-storybook -p 6006 -s public",
+        "build-storybook": "build-storybook -s public"
+    },
+    "homepage": "./",
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ],
+        "overrides": [
+            {
+                "files": [
+                    "**/*.stories.*"
+                ],
+                "rules": {
+                    "import/no-anonymous-default-export": "off"
+                }
+            }
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "@storybook/addon-actions": "^6.3.7",
+        "@storybook/addon-essentials": "^6.3.7",
+        "@storybook/addon-links": "^6.3.7",
+        "@storybook/node-logger": "^6.3.7",
+        "@storybook/preset-create-react-app": "^3.2.0",
+        "@storybook/react": "^6.3.7",
+        "@types/file-saver": "^2.0.3"
+    },
+    "prettier": {
+        "semi": true,
+        "singleQuote": true,
+        "tabWidth": 4,
+        "printWidth": 100
+    }
 }

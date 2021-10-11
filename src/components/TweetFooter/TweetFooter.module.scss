@@ -1,0 +1,48 @@
+@import '../../styles/styleguide';
+
+.container {
+    height: auto;
+    display: flex;
+
+    & > * {
+        margin-top: $global-spacing;
+    }
+
+    @include theme('light') {
+        color: $light-secondary;
+    }
+
+    @include theme('dim') {
+        color: $dim-secondary;
+    }
+
+    @include theme('dark') {
+        color: $dark-secondary;
+    }
+}
+
+.time {
+    &::after {
+        content: '•';
+        margin: 0 5px;
+    }
+}
+
+.date {
+    height: auto;
+    flex-shrink: 0;
+}
+
+.likesContainer {
+    width: auto;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+
+    & > svg {
+        height: 13px;
+        width: auto;
+        margin-right: 10px;
+        margin-top: 2px;
+    }
+}
