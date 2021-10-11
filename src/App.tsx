@@ -5,8 +5,6 @@ import { SettingsProvider } from './hooks/useSettings';
 import { TweetView } from './views/TweetView/TweetView';
 import { InputPage } from './views/InputPage/InputPage';
 
-import { fetchTweetData, getTweetID, parseTweetInformation } from './utils/tweetUtils';
-
 export const App = () => {
     const [tweet, setTweet] = useState<any>();
 
