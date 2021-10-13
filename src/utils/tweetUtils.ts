@@ -46,6 +46,7 @@ export async function fetchTweetData(id: string) {
     const requestURL = `${prefix}${endpointURL}${id}${combinedParams}`;
     const res = await fetch(requestURL, {
         headers: {
+            'x-cors-grida-api-key': '3be47e82-dae5-4def-9b86-98990282d61d',
             Authorization: `Bearer ${TWITTER_TOKEN}`,
         },
     })

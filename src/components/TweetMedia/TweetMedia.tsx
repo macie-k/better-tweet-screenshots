@@ -22,7 +22,11 @@ export const TweetMedia = ({ media, isReferenced }: TweetMediaProps) => {
                         styles.cropped
                     )}
                 >
-                    <img alt="Tweet media" draggable="false" src={media[0].url} />
+                    <img
+                        alt="Tweet media"
+                        draggable="false"
+                        src={media[0].url || media[0].preview_image_url}
+                    />
                 </div>
             );
         case 2:

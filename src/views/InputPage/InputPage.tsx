@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './InputPage.module.scss';
 import { cx } from '../../utils/cx';
 import { ArrowIcon } from 'components/Icons/ArrowIcon';
@@ -8,9 +8,10 @@ const DEFAULT_TWEET = 'https://twitter.com/929ell/status/1343331784621256709';
 
 export interface InputPageProps {
     setTweet: (val: any) => void;
+    urlID?: string;
 }
 
-export const InputPage = ({ setTweet }: InputPageProps) => {
+export const InputPage = ({ setTweet, urlID }: InputPageProps) => {
     const [showInput, setShowInput] = useState(true);
     const [error, setError] = useState(false);
     const [dots, setDots] = useState(false);
@@ -18,18 +19,32 @@ export const InputPage = ({ setTweet }: InputPageProps) => {
     const [inputVal, setInputVal] = useState('');
     const [usedIDs, setUsedIDs] = useState<Record<string, any>>({});
 
+    useEffect(() => {
+        if (!inputVal && urlID) {
+            setInputVal(urlID);
+            handleSubmit();
+        }
+    }, [urlID, inputVal]);
+
     const handleSubmit = async () => {
-        const ID = getTweetID(inputVal || DEFAULT_TWEET);
+        let status = true;
+        setDots(true);
+
+        const ID = urlID || getTweetID(inputVal || DEFAULT_TWEET);
 
         /* Don't request same ID twice */
-
         const TWEET_DATA = usedIDs[ID] ?? (await fetchTweetData(ID));
-        if (TWEET_DATA === null) return false;
+        if (TWEET_DATA === null) {
+            status = false;
+        } else {
+            setUsedIDs((usedIDs: any) => ({ ...usedIDs, [ID]: TWEET_DATA }));
+            const DATA = parseTweetInformation(TWEET_DATA);
+            setTweet(DATA);
+        }
 
-        setUsedIDs((usedIDs: any) => ({ ...usedIDs, [ID]: TWEET_DATA }));
-        const DATA = parseTweetInformation(TWEET_DATA);
-        setTweet(DATA);
-        return true;
+        setDots(false);
+        setShowInput(!status);
+        setError(!status);
     };
 
     return (
@@ -53,14 +68,7 @@ export const InputPage = ({ setTweet }: InputPageProps) => {
                     type="text"
                 />
                 <button
-                    onClick={async () => {
-                        setDots(true);
-                        const submit = await handleSubmit(); // returns true if succeeded
-                        setDots(false);
-
-                        setShowInput(!submit);
-                        setError(!submit);
-                    }}
+                    onClick={handleSubmit}
                     className={cx(styles.loadButton, { [styles.dots]: dots })}
                 >
                     <span>{error ? 'TRY AGAIN' : 'LOAD'}</span>

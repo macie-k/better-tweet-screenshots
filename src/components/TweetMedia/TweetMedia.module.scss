@@ -21,9 +21,10 @@ $height: calc(60vw - 20px);
 }
 
 .media1 {
-    display: block;
+    display: flex;
 
     img {
+        object-fit: cover;
         width: 100%;
     }
 
