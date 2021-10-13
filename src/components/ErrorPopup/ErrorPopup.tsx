@@ -5,10 +5,13 @@ import styles from './ErrorPopup.module.scss';
 
 import { ErrorFaceIcon } from '../Icons/ErrorFaceIcon';
 import { ReloadIcon } from '../Icons/ReloadIcon';
+import { getTweetID } from 'utils/tweetUtils';
 
-export interface ErrorPopupProps {}
+export interface ErrorPopupProps {
+    id: string;
+}
 
-export const ErrorPopup = ({}: ErrorPopupProps) => {
+export const ErrorPopup = ({ id }: ErrorPopupProps) => {
     const [reload, setReload] = useState(false);
     const [opacity, setOpacity] = useState(0);
 
@@ -33,6 +36,7 @@ export const ErrorPopup = ({}: ErrorPopupProps) => {
                         setReload(true);
                         setTimeout(() => {
                             setReload(false);
+                            window.history.pushState({}, '', `?id=${getTweetID(id)}`);
                             window.location.reload();
                         }, 1200);
                     }}

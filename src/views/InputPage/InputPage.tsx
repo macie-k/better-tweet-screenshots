@@ -20,17 +20,17 @@ export const InputPage = ({ setTweet, urlID }: InputPageProps) => {
     const [usedIDs, setUsedIDs] = useState<Record<string, any>>({});
 
     useEffect(() => {
-        if (!inputVal && urlID) {
+        if (urlID) {
             setInputVal(urlID);
-            handleSubmit();
+            handleSubmit(urlID);
         }
-    }, [urlID, inputVal]);
+    }, [urlID]);
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (id?: string) => {
         let status = true;
         setDots(true);
 
-        const ID = urlID || getTweetID(inputVal || DEFAULT_TWEET);
+        const ID = id || getTweetID(inputVal || DEFAULT_TWEET);
 
         /* Don't request same ID twice */
         const TWEET_DATA = usedIDs[ID] ?? (await fetchTweetData(ID));
@@ -68,7 +68,9 @@ export const InputPage = ({ setTweet, urlID }: InputPageProps) => {
                     type="text"
                 />
                 <button
-                    onClick={handleSubmit}
+                    onClick={() => {
+                        handleSubmit();
+                    }}
                     className={cx(styles.loadButton, { [styles.dots]: dots })}
                 >
                     <span>{error ? 'TRY AGAIN' : 'LOAD'}</span>

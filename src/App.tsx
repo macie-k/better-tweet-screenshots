@@ -21,6 +21,10 @@ export const App = () => {
         if (id !== undefined) {
             setUrlID(id);
         }
+
+        window.onpopstate = () => {
+            window.location.reload();
+        };
     }, []);
 
     return (

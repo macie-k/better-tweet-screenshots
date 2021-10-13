@@ -1,21 +1,21 @@
 {
   "files": {
     "main.css": "./static/css/main.c4c2fb85.chunk.css",
-    "main.js": "./static/js/main.b30139a1.chunk.js",
-    "main.js.map": "./static/js/main.b30139a1.chunk.js.map",
+    "main.js": "./static/js/main.712e833e.chunk.js",
+    "main.js.map": "./static/js/main.712e833e.chunk.js.map",
     "runtime-main.js": "./static/js/runtime-main.e8d2bc96.js",
     "runtime-main.js.map": "./static/js/runtime-main.e8d2bc96.js.map",
-    "static/js/2.c2290bab.chunk.js": "./static/js/2.c2290bab.chunk.js",
-    "static/js/2.c2290bab.chunk.js.map": "./static/js/2.c2290bab.chunk.js.map",
+    "static/js/2.cd37616e.chunk.js": "./static/js/2.cd37616e.chunk.js",
+    "static/js/2.cd37616e.chunk.js.map": "./static/js/2.cd37616e.chunk.js.map",
     "index.html": "./index.html",
     "static/css/main.c4c2fb85.chunk.css.map": "./static/css/main.c4c2fb85.chunk.css.map",
-    "static/js/2.c2290bab.chunk.js.LICENSE.txt": "./static/js/2.c2290bab.chunk.js.LICENSE.txt",
+    "static/js/2.cd37616e.chunk.js.LICENSE.txt": "./static/js/2.cd37616e.chunk.js.LICENSE.txt",
     "static/media/index.scss": "./static/media/Segoe-UI_Bold.21ecd693.woff"
   },
   "entrypoints": [
     "static/js/runtime-main.e8d2bc96.js",
-    "static/js/2.c2290bab.chunk.js",
+    "static/js/2.cd37616e.chunk.js",
     "static/css/main.c4c2fb85.chunk.css",
-    "static/js/main.b30139a1.chunk.js"
+    "static/js/main.712e833e.chunk.js"
   ]
 }

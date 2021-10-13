@@ -81,8 +81,8 @@ export const TweetView = ({ tweet }: TweetViewProps) => {
 
     const hasReference = tweet && tweet.tweet.reference; // todo: probably add different looks for 'quotes' and 'responses'
     return (
-        <Container>
-            {failed ? <ErrorPopup /> : <></>}
+        <Container tweet={tweet}>
+            {failed ? <ErrorPopup id={tweet.tweet.id} /> : <></>}
             <div ref={containerRef} className={styles.innerContainer}>
                 <TweetFull tweet={tweet}>
                     {hasReference ? <TweetQuote tweet={tweet} /> : <></>}

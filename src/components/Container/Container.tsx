@@ -1,13 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
-
 import styles from './Container.module.scss';
 import gradients from '../../resources/gradients.json';
 
-export interface ContainerType {
-    children: React.ReactNode;
-}
+import { TweetViewProps } from 'views/TweetView/TweetView';
 
-export const Container = ({ children }: ContainerType) => {
+export const Container = ({ tweet, children }: TweetViewProps) => {
     const container = useRef<HTMLDivElement>(null);
     const [gradient, setGradient] = useState({
         name: 'default',
@@ -30,14 +27,13 @@ export const Container = ({ children }: ContainerType) => {
     useEffect(() => {
         const index = Math.floor(Math.random() * (gradients.length + 1));
         setGradient(gradients[index]);
-    }, []);
+    }, [tweet]);
 
     useEffect(() => {
         if (gradient.name !== 'default') {
-            document.body.appendChild(
-                document.createComment(
-                    ` Gradient: '${gradient.name}' --- https://uigradients.com/ `
-                )
+            console.log(
+                ` Gradient: '${gradient.name}' --- https://uigradients.com/  %c        `,
+                `background: linear-gradient(to left bottom, ${gradient.colors.join(',')})`
             );
         }
     }, [gradient]);
