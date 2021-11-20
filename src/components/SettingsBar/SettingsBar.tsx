@@ -32,7 +32,7 @@ export const SettingsBar = ({ children }: SettingsBarProps) => {
     const variants = {
         closed: {
             transition: {
-                delay: 0.2,
+                delay: 0.1,
                 when: 'afterChildren',
                 staggerChildren: 0.05,
             },
@@ -45,7 +45,7 @@ export const SettingsBar = ({ children }: SettingsBarProps) => {
             transition: {
                 delay: 0.1,
                 when: 'beforeChildren',
-                staggerChildren: 0.15,
+                staggerChildren: 0.05,
             },
             height: desktop ? size : '50px',
             width: desktop ? '50px' : size,

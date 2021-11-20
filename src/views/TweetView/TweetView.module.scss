@@ -10,6 +10,16 @@
     gap: 10px;
 }
 
+.paddingContainer {
+    position: relative;
+    padding-top: 70px;
+    padding-bottom: 90px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 @media only screen and (min-width: 775px) {
     .settingsBar {
         top: 0;
@@ -25,5 +35,10 @@
         bottom: 0;
         margin-top: auto;
         margin-bottom: auto;
+    }
+
+    .paddingContainer {
+        padding-top: 70px;
+        padding-bottom: 50px;
     }
 }

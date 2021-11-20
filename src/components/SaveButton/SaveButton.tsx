@@ -2,7 +2,7 @@ import React from 'react';
 import { saveAs } from 'file-saver';
 
 //@ts-ignore
-import dom2Img from '../../utils/dom-to-image-scaled'; // modified scale to 3
+import dom2Img from '../../utils/dom-to-image-scaled'; // modified scale to 2
 import styles from './SaveButton.module.scss';
 
 import { SaveIcon } from '../Icons/SaveIcon';
@@ -30,7 +30,11 @@ export const SaveButton = ({ post, tweet }: SaveButtonProps) => {
 
 async function createScreenshot(sourceNode: any, username: string, id: string) {
     await dom2Img
-        .toBlob(sourceNode, {})
+        .toBlob(sourceNode, {
+            style: {
+                boxShadow: 'none',
+            },
+        })
         .then(function (blob: any) {
             const name = `${username}_${id}`;
             saveAs(blob, name); // probably "author_name + date" in the future

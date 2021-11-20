@@ -82,28 +82,30 @@ export const TweetView = ({ tweet }: TweetViewProps) => {
     const hasReference = tweet && tweet.tweet.reference; // todo: probably add different looks for 'quotes' and 'responses'
     return (
         <Container tweet={tweet}>
-            {failed ? <ErrorPopup id={tweet.tweet.id} /> : <></>}
-            <div ref={containerRef} className={styles.innerContainer}>
-                <TweetFull tweet={tweet}>
-                    {hasReference ? <TweetQuote tweet={tweet} /> : <></>}
-                </TweetFull>
-                <div className={styles.settingsBar}>
-                    <SaveButton tweet={tweet} post={post} />
-                    <SettingsBar>
-                        <Setting
-                            onClick={() => setTheme(getNextTheme(theme))}
-                            icon={<ThemeIcon type={theme} />}
-                        />
-                        <Setting onClick={toggleTimestampStyle} icon={<TimestampIcon />} />
-                        <Setting
-                            onClick={toggleRoundedCorners}
-                            icon={<CornersIcon type={roundedCorners ? 'rounded' : 'squared'} />}
-                        />
-                        <Setting
-                            onClick={toggleLikesStyle}
-                            icon={<LikesIcon type={likesStyle} />}
-                        />
-                    </SettingsBar>
+            <div className={styles.paddingContainer}>
+                {failed ? <ErrorPopup id={tweet.tweet.id} /> : <></>}
+                <div ref={containerRef} className={styles.innerContainer}>
+                    <TweetFull tweet={tweet}>
+                        {hasReference ? <TweetQuote tweet={tweet} /> : <></>}
+                    </TweetFull>
+                    <div className={styles.settingsBar}>
+                        <SaveButton tweet={tweet} post={post} />
+                        <SettingsBar>
+                            <Setting
+                                onClick={() => setTheme(getNextTheme(theme))}
+                                icon={<ThemeIcon type={theme} />}
+                            />
+                            <Setting onClick={toggleTimestampStyle} icon={<TimestampIcon />} />
+                            <Setting
+                                onClick={toggleRoundedCorners}
+                                icon={<CornersIcon type={roundedCorners ? 'rounded' : 'squared'} />}
+                            />
+                            <Setting
+                                onClick={toggleLikesStyle}
+                                icon={<LikesIcon type={likesStyle} />}
+                            />
+                        </SettingsBar>
+                    </div>
                 </div>
             </div>
         </Container>

@@ -30,7 +30,7 @@
 .header {
     height: 100px;
     width: 100vw;
-    padding: $global-spacing 0;
+    padding: $global-spacing-pc 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -171,20 +171,25 @@
 }
 
 .topArrow {
-    position: fixed;
-    top: -30px;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    bottom: 0;
     left: 0;
     right: 0;
     margin-left: auto;
     margin-right: auto;
     width: 25px;
     cursor: pointer;
-    transition: top 0.1s ease-in-out 0.3s, transform 0.3s ease-in-out;
+    transition: bottom 0.3s ease-in-out 0.2s, transform 0.3s ease-in-out, opacity 0.3s ease-in 0.5s;
 
     &.visible {
+        opacity: 1;
         animation: pulse 1s ease-in 2s;
-        transition: top 0.5s ease-in-out 1.25s, transform 0.3s ease-in-out;
-        top: 10px;
+        transition: bottom 0.5s ease-in-out 1.25s, transform 0.3s ease-in-out,
+            opacity 0.3s ease-in 1.5s;
+        pointer-events: all;
+        bottom: -15vh;
     }
 }
 

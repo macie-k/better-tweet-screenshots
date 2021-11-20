@@ -3,7 +3,7 @@
 .container {
     width: 100%;
     height: auto;
-    font-size: 23px;
+    font-size: 20px;
     font-weight: 400;
     margin-bottom: 15px;
     white-space: pre-wrap;
@@ -29,4 +29,11 @@
 .compact {
     font-size: 0.95em;
     margin-bottom: 10px;
+}
+
+/* -----------> DESKTOP <------------ */
+@media only screen and (min-width: 775px) {
+    .container {
+        font-size: 23px;
+    }
 }

@@ -5,7 +5,7 @@
     width: 97vw;
     height: fit-content;
     border-radius: 10px;
-    padding: $global-spacing;
+    padding: $global-spacing-mobile;
     font-family: 'Segoe UI';
     transition: opacity 0.3s ease-in 0.7s;
     box-shadow: 0 5px 17px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.05);
@@ -34,6 +34,7 @@
         // bottom: 0;
         // margin-top: auto;
         // margin-bottom: auto;
+        padding: $global-spacing-pc;
         width: 620px;
     }
 }

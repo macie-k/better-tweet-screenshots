@@ -120,15 +120,15 @@
             .then(function (image) {
                 var canvas = newCanvas(domNode);
                 var ctx = canvas.getContext('2d');
-                ctx.scale(3, 3);
+                ctx.scale(2, 2);
                 ctx.drawImage(image, 0, 0);
                 return canvas;
             });
 
         function newCanvas(domNode) {
             var canvas = document.createElement('canvas');
-            canvas.width = options.width || domNode.clientWidth * 3;
-            canvas.height = options.height || domNode.clientHeight * 3;
+            canvas.width = options.width || domNode.clientWidth * 2;
+            canvas.height = options.height || domNode.clientHeight * 2;
 
             canvas.style.width = domNode.clientWidth;
             canvas.style.height = domNode.clientHeight;

@@ -5,7 +5,7 @@
     display: flex;
 
     & > * {
-        margin-top: $global-spacing;
+        margin-top: $global-spacing-mobile;
     }
 
     @include theme('light') {
@@ -44,5 +44,14 @@
         width: auto;
         margin-right: 10px;
         margin-top: 2px;
+    }
+}
+
+/* -----------> DESKTOP <------------ */
+@media only screen and (min-width: 775px) {
+    .container {
+        & > * {
+            margin-top: $global-spacing-pc;
+        }
     }
 }
