@@ -101,7 +101,7 @@ $header-height: 60px;
     font-size: 18px;
     border: none;
     outline: none;
-    padding-left: $global-spacing-pc;
+    padding-left: $global-spacing-mobile;
 
     &::placeholder {
         user-select: none;
@@ -140,5 +140,9 @@ $header-height: 60px;
 
     .text {
         font-size: 24px;
+    }
+
+    .inputBox {
+        padding-left: $global-spacing-pc;
     }
 }
