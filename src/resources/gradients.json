@@ -29,10 +29,6 @@
         "colors": ["#FD8112", "#0085CA"]
     },
     {
-        "name": "Purple Dream",
-        "colors": ["#bf5ae0", "#a811da"]
-    },
-    {
         "name": "Blu",
         "colors": ["#00416A", "#E4E5E6"]
     },
@@ -85,10 +81,6 @@
         "colors": ["#acb6e5", "#86fde8"]
     },
     {
-        "name": "Royal Blue",
-        "colors": ["#536976", "#292E49"]
-    },
-    {
         "name": "Royal Blue + Petrol",
         "colors": ["#BBD2C5", "#536976", "#292E49"]
     },
@@ -111,10 +103,6 @@
     {
         "name": "Sel",
         "colors": ["#00467F", "#A5CC82"]
-    },
-    {
-        "name": "Afternoon",
-        "colors": ["#000C40", "#607D8B"]
     },
     {
         "name": "Skyline",
@@ -157,10 +145,6 @@
         "colors": ["#16A085", "#F4D03F"]
     },
     {
-        "name": "Playing with Reds",
-        "colors": ["#D31027", "#EA384D"]
-    },
-    {
         "name": "Sunny Days",
         "colors": ["#EDE574", "#E1F5C4"]
     },
@@ -191,10 +175,6 @@
     {
         "name": "Rose Water",
         "colors": ["#E55D87", "#5FC3E4"]
-    },
-    {
-        "name": "Frozen",
-        "colors": ["#403B4A", "#E7E9BB"]
     },
     {
         "name": "Mango Pulp",
@@ -269,20 +249,12 @@
         "colors": ["#757F9A", "#D7DDE8"]
     },
     {
-        "name": "Midnight City",
-        "colors": ["#232526", "#414345"]
-    },
-    {
         "name": "Sea Blizz",
         "colors": ["#1CD8D2", "#93EDC7"]
     },
     {
         "name": "Opa",
         "colors": ["#3D7EAA", "#FFE47A"]
-    },
-    {
-        "name": "Titanium",
-        "colors": ["#283048", "#859398"]
     },
     {
         "name": "Mantle",
@@ -324,10 +296,7 @@
         "name": "Miaka",
         "colors": ["#FC354C", "#0ABFBC"]
     },
-    {
-        "name": "Pinot Noir",
-        "colors": ["#4b6cb7", "#182848"]
-    },
+
     {
         "name": "Day Tripper",
         "colors": ["#f857a6", "#ff5858"]
@@ -453,14 +422,6 @@
         "colors": ["#fe8c00", "#f83600"]
     },
     {
-        "name": "Behongo",
-        "colors": ["#52c234", "#061700"]
-    },
-    {
-        "name": "ServQuick",
-        "colors": ["#485563", "#29323c"]
-    },
-    {
         "name": "Friday",
         "colors": ["#83a4d4", "#b6fbff"]
     },
@@ -487,10 +448,6 @@
     {
         "name": "Talking To Mice Elf",
         "colors": ["#948E99", "#2E1437"]
-    },
-    {
-        "name": "Purple Bliss",
-        "colors": ["#360033", "#0b8793"]
     },
     {
         "name": "Predawn",
@@ -547,10 +504,6 @@
     {
         "name": "Curiosity blue",
         "colors": ["#525252", "#3d72b4"]
-    },
-    {
-        "name": "Dark Knight",
-        "colors": ["#BA8B02", "#181818"]
     },
     {
         "name": "Piglet",
@@ -637,10 +590,6 @@
         "colors": ["#1e3c72", "#2a5298"]
     },
     {
-        "name": "Christmas",
-        "colors": ["#2F7336", "#AA3A38"]
-    },
-    {
         "name": "Minnesota Vikings",
         "colors": ["#5614B0", "#DBD65C"]
     },
@@ -663,10 +612,6 @@
     {
         "name": "Dark Skies",
         "colors": ["#4B79A1", "#283E51"]
-    },
-    {
-        "name": "Deep Space",
-        "colors": ["#000000", "#434343"]
     },
     {
         "name": "Decent",
@@ -866,10 +811,6 @@
         "colors": ["#0575E6", "#021B79"]
     },
     {
-        "name": "Love and Liberty",
-        "colors": ["#200122", "#6f0000"]
-    },
-    {
         "name": "Orca",
         "colors": ["#44A08D", "#093637"]
     },
@@ -924,10 +865,6 @@
     {
         "name": "Chitty Chitty Bang Bang",
         "colors": ["#007991", "#78ffd6"]
-    },
-    {
-        "name": "Visions of Grandeur",
-        "colors": ["#000046", "#1CB5E0"]
     },
     {
         "name": "Crystal Clear",
@@ -1006,10 +943,6 @@
         "colors": ["#667db6", "#0082c8", "#0082c8", "#667db6"]
     },
     {
-        "name": "Lithium",
-        "colors": ["#6D6027", "#D3CBB8"]
-    },
-    {
         "name": "Digital Water",
         "colors": ["#74ebd5", "#ACB6E5"]
     },
@@ -1028,10 +961,6 @@
     {
         "name": "Sulphur",
         "colors": ["#CAC531", "#F3F9A7"]
-    },
-    {
-        "name": "Selenium",
-        "colors": ["#3C3B3F", "#605C3C"]
     },
     {
         "name": "Ohhappiness",
@@ -1134,10 +1063,6 @@
         "colors": ["#8A2387", "#E94057", "#F27121"]
     },
     {
-        "name": "Burning Orange",
-        "colors": ["#FF416C", "#FF4B2B"]
-    },
-    {
         "name": "Ultra Voilet",
         "colors": ["#654ea3", "#eaafc8"]
     },
@@ -1164,10 +1089,6 @@
     {
         "name": "Flare",
         "colors": ["#f12711", "#f5af19"]
-    },
-    {
-        "name": "Witching Hour",
-        "colors": ["#c31432", "#240b36"]
     },
     {
         "name": "Azur Lane",
@@ -1234,24 +1155,12 @@
         "colors": ["#2A2D3E", "#FECB6E"]
     },
     {
-        "name": "Electric Peacock",
-        "colors": ["#8a2be2", "#0000cd", "#228b22", "#ccff00"]
-    },
-    {
-        "name": "Under Blue Green",
-        "colors": ["#051937", "#004d7a", "#008793", "#00bf72", "#a8eb12"]
-    },
-    {
         "name": "Lensod",
         "colors": ["#6025F5", "#FF5555"]
     },
     {
         "name": "Newspaper",
         "colors": ["#8a2be2", "#ffa500", "#f8f8ff"]
-    },
-    {
-        "name": "Dark Blue Gradient",
-        "colors": ["#2774ae", "#002E5D", "#002E5D"]
     },
     {
         "name": "Dark Blu Two",
@@ -1325,10 +1234,6 @@
     {
         "name": "Hyper Blue",
         "colors": ["#59CDE9", "#0A2A88"]
-    },
-    {
-        "name": "Racker",
-        "colors": ["#EB0000", "#95008A", "#3300FC"]
     },
     {
         "name": "After the Rain",

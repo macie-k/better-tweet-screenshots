@@ -1,0 +1,144 @@
+@import '../../styles/styleguide';
+
+$header-height: 60px;
+
+.container {
+    border-radius: 10px;
+    background-color: $bg-color;
+    width: 95vw;
+    height: auto;
+    height: fit-content;
+    padding: $global-spacing-pc;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Segoe UI';
+    color: $black;
+    box-shadow: 0 5px 17px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.05);
+}
+
+.header {
+    display: flex;
+    margin-bottom: $global-spacing-pc;
+    height: $header-height;
+    align-items: center;
+}
+
+.avatar {
+    height: $header-height;
+    width: $header-height;
+    border-radius: calc(#{$header-height} / 2);
+    background-color: #aebac4;
+}
+
+.namesContainer {
+    gap: 5px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: $global-spacing-pc;
+}
+
+.name {
+    height: 15px;
+    border-radius: 7.5px;
+}
+
+.topName {
+    background-color: #a7bdcf;
+    width: 100px;
+}
+
+.bottomName {
+    background-color: #8597a6;
+    width: 60px;
+}
+
+.text {
+    font-size: 22px;
+    user-select: none;
+}
+
+.inputContainer {
+    margin: calc(#{$global-spacing-pc} + 20px) 0;
+    display: flex;
+    background-color: #eff3f4;
+    height: $header-height;
+    border-radius: 30px;
+    padding: 10px $global-spacing-pc;
+    align-items: center;
+    transition: background-color 0.3s ease-in-out;
+
+    & > * {
+        transition: stroke 0.3s ease-in-out, color 0.3s ease-in-out;
+    }
+
+    & > svg > * {
+        stroke: #536471;
+    }
+
+    &.error {
+        background-color: #fdd8d8;
+        & > * {
+            transition: stroke 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+
+        & > svg > * {
+            stroke: #885757;
+        }
+
+        .inputBox,
+        .inputBox::placeholder {
+            color: #885757;
+        }
+    }
+}
+
+.inputBox {
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    padding-left: $global-spacing-pc;
+
+    &::placeholder {
+        user-select: none;
+        opacity: 0.3;
+        color: #536471;
+    }
+}
+
+.footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    height: 20px;
+
+    & > svg {
+        fill: transparent;
+        height: 100%;
+        width: auto;
+        cursor: pointer;
+        transition: fill 0.15s ease-in-out;
+
+        &:first-of-type:hover {
+            fill: #2197e7;
+        }
+
+        &:last-of-type:hover {
+            fill: #ff564a;
+        }
+    }
+}
+
+@media only screen and (min-width: 775px) {
+    .container {
+        width: 620px;
+    }
+
+    .text {
+        font-size: 24px;
+    }
+}
