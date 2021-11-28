@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './TweetMedia.module.scss';
 
 import { cx } from '../../utils';
@@ -9,6 +9,8 @@ export interface TweetMediaProps {
 }
 
 export const TweetMedia = ({ media, isReferenced }: TweetMediaProps) => {
+    const [cropped, setCropped] = useState(true);
+
     switch (media.length) {
         case 0:
             return null;
@@ -19,8 +21,9 @@ export const TweetMedia = ({ media, isReferenced }: TweetMediaProps) => {
                         { [styles.reference]: isReferenced },
                         styles.media,
                         styles.media1,
-                        styles.cropped
+                        { [styles.cropped]: cropped }
                     )}
+                    onClick={() => setCropped(!cropped)}
                 >
                     <img
                         alt="Tweet media"

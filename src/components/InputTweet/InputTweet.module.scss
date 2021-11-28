@@ -55,8 +55,24 @@ $header-height: 60px;
 }
 
 .text {
+    width: fit-content;
     font-size: 22px;
     user-select: none;
+}
+
+@keyframes bounceOutIn {
+    0% {
+        transform: scale(1);
+    }
+    40% {
+        transform: scale(0);
+    }
+    60% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 .inputContainer {
@@ -67,7 +83,7 @@ $header-height: 60px;
     border-radius: 30px;
     padding: 10px $global-spacing-pc;
     align-items: center;
-    transition: background-color 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out, opacity 0.3s ease-in-out;
 
     & > * {
         transition: stroke 0.3s ease-in-out, color 0.3s ease-in-out;
@@ -75,6 +91,11 @@ $header-height: 60px;
 
     & > svg > * {
         stroke: #536471;
+    }
+
+    &.disabled {
+        transition: opacity 0.3s ease-in-out;
+        opacity: 0.5;
     }
 
     &.error {

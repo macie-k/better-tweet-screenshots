@@ -23,6 +23,7 @@ export const redirect = (url: string) => {
 export const InputPage = ({ setTweet, urlID }: InputPageProps) => {
     const [showInput, setShowInput] = useState(true);
     const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const [inputVal, setInputVal] = useState('');
     const [usedIDs, setUsedIDs] = useState<Record<string, any>>({});
@@ -35,6 +36,7 @@ export const InputPage = ({ setTweet, urlID }: InputPageProps) => {
     }, [urlID]);
 
     const handleSubmit = async (id?: string) => {
+        setLoading(true);
         let status = true;
         const ID = id || getTweetID(inputVal || DEFAULT_TWEET);
 
@@ -48,14 +50,18 @@ export const InputPage = ({ setTweet, urlID }: InputPageProps) => {
             setTweet(DATA);
         }
 
-        setShowInput(!status);
-        setError(!status);
+        setTimeout(() => {
+            setShowInput(!status);
+            setError(!status);
+            setLoading(false);
+        }, 500);
     };
 
     return (
         <div className={cx(styles.container, { [styles.hide]: !showInput })}>
             <div className={styles.innerContainer}>
                 <InputTweet
+                    loading={loading}
                     error={error}
                     defaultTweet={DEFAULT_TWEET}
                     inputVal={inputVal}
