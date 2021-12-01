@@ -32,6 +32,7 @@
      * @param {Number} options.width - width to be applied to node before rendering.
      * @param {Number} options.height - height to be applied to node before rendering.
      * @param {Object} options.style - an object whose properties to be copied to node's style before rendering.
+     * @param {Object} options.allTargetStyle - allows to modify style of specific children uses "data-render-[]" for selecting
      * @param {Number} options.quality - a Number between 0 and 1 indicating image quality (applicable to JPEG only),
                 defaults to 1.0.
      * @return {Promise} - A promise that is fulfilled with a SVG image data URL
@@ -59,10 +60,22 @@
             if (options.width) clone.style.width = options.width + 'px';
             if (options.height) clone.style.height = options.height + 'px';
 
-            if (options.style)
+            if (options.style) {
                 Object.keys(options.style).forEach(function (property) {
                     clone.style[property] = options.style[property];
                 });
+            }
+
+            /* weird workaround to disable tweetContainer box-shadow */
+            if (options.allTargetStyle) {
+                Object.keys(options.allTargetStyle).forEach(function (target) {
+                    clone.querySelectorAll(`[data-render-${target}]`).forEach(function (el) {
+                        Object.keys(options.allTargetStyle[target]).forEach(function (property) {
+                            el.style[property] = options.allTargetStyle[target][property];
+                        });
+                    });
+                });
+            }
 
             return clone;
         }

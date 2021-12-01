@@ -31,8 +31,10 @@ export const SaveButton = ({ post, tweet }: SaveButtonProps) => {
 async function createScreenshot(sourceNode: any, username: string, id: string) {
     await dom2Img
         .toBlob(sourceNode, {
-            style: {
-                boxShadow: 'none',
+            allTargetStyle: {
+                tweetcontainer: {
+                    boxShadow: 'none',
+                },
             },
         })
         .then(function (blob: any) {

@@ -15,7 +15,11 @@ export const TweetContainer = ({ style, isReferenced, children }: TweetContainer
     const { theme } = useTheme();
 
     return (
-        <div style={style} className={cx(styles.container, theme, { reference: isReferenced })}>
+        <div
+            data-render-tweetcontainer
+            style={style}
+            className={cx(styles.container, theme, { reference: isReferenced })}
+        >
             {children}
         </div>
     );

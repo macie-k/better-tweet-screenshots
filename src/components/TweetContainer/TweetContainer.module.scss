@@ -7,11 +7,11 @@
     border-radius: 10px;
     padding: $global-spacing-mobile;
     font-family: 'Segoe UI';
-    transition: opacity 0.3s ease-in 0.7s;
-    box-shadow: 0 5px 17px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.05);
     margin-top: auto;
     margin-bottom: auto;
     user-select: none;
+    box-shadow: 0 5px 17px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.05);
+    transition: opacity 0.3s ease-in 0.7s, box-shadow 0.3s ease-in-out;
 
     &:global(.theme-light) {
         background-color: $light-bg;
