@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import { TweetContainer } from 'components/TweetContainer/TweetContainer';
 import { TweetHeader } from 'components/TweetHeader/TweetHeader';
@@ -7,10 +7,17 @@ import { TweetBodyText } from 'components/TweetBodyText/TweetBodyText';
 import { TweetMedia } from 'components/TweetMedia/TweetMedia';
 
 import { useRoundedCorners } from 'hooks/useSettings';
+import { User, Post } from 'views/TweetView/TweetView';
 
-import { TweetViewProps } from 'views/TweetView/TweetView';
+export interface TweetFullProps {
+    tweet: {
+        user: User;
+        tweet: Post;
+    };
+    children?: ReactNode;
+}
 
-export const TweetFull = ({ tweet, children }: TweetViewProps) => {
+export const TweetFull = ({ tweet, children }: TweetFullProps) => {
     const [roundedCorners] = useRoundedCorners();
 
     if (!tweet) return null;

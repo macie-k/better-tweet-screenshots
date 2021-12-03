@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 import styles from './TweetQuote.module.scss';
 
-import { TweetViewProps } from '../../views/TweetView/TweetView';
 import { fetchTweetData, parseTweetInformation } from '../../utils/tweetUtils';
 
 import { TweetHeader } from 'components/TweetHeader/TweetHeader';
@@ -16,7 +15,14 @@ type QuoteFormat = {
     tweet: Post;
 };
 
-export const TweetQuote = ({ tweet }: TweetViewProps) => {
+export interface TweetQuoteProps {
+    tweet: {
+        user: User;
+        tweet: Post;
+    };
+}
+
+export const TweetQuote = ({ tweet }: TweetQuoteProps) => {
     const [refData, setRefData] = useState<QuoteFormat>();
 
     useEffect(() => {

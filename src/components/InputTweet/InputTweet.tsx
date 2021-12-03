@@ -30,8 +30,8 @@ export const InputTweet = ({
     const textRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        setText(loading ? 'Loading... ⌛' : 'Paste tweet link 👇');
-    }, [loading]);
+        setText(loading ? 'Loading... ⌛' : error ? "Something's wrong 😓" : 'Paste tweet link 👇');
+    }, [loading, error]);
 
     return (
         <div className={styles.container}>

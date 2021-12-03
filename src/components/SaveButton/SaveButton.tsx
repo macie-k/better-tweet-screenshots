@@ -19,12 +19,13 @@ interface SaveButtonProps {
 
 export const SaveButton = ({ post, tweet }: SaveButtonProps) => {
     return (
-        <div className={styles.container}>
-            <Setting
-                icon={<SaveIcon />}
-                onClick={async () => await createScreenshot(post, tweet.user.name, tweet.tweet.id)}
-            />
-        </div>
+        // <div className={styles.container}>
+        <Setting
+            filled
+            icon={<SaveIcon />}
+            onClick={async () => await createScreenshot(post, tweet.user.name, tweet.tweet.id)}
+        />
+        // </div>
     );
 };
 

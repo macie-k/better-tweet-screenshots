@@ -12,6 +12,8 @@ import { cx } from 'utils';
 const DEFAULT_TWEET = 'https://twitter.com/929ell/status/1343331784621256709';
 
 export interface InputPageProps {
+    showInput: boolean;
+    setShowInput: (val: boolean) => void;
     setTweet: (val: any) => void;
     urlID?: string;
 }
@@ -20,8 +22,7 @@ export const redirect = (url: string) => {
     window.open(url, '_blank');
 };
 
-export const InputPage = ({ setTweet, urlID }: InputPageProps) => {
-    const [showInput, setShowInput] = useState(true);
+export const InputPage = ({ setTweet, urlID, showInput, setShowInput }: InputPageProps) => {
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
 

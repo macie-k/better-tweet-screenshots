@@ -13,6 +13,7 @@ import { ThemeIcon } from 'components/Icons/ThemeIcon';
 import { TimestampIcon } from 'components/Icons/TimestampIcon';
 import { CornersIcon } from 'components/Icons/CornersIcon';
 import { LikesIcon } from 'components/Icons/LikesIcon';
+import { SearchIcon } from 'components/Icons/SearchIcon';
 
 import { useLikes, useRoundedCorners, useTimestamp } from 'hooks/useSettings';
 import { useTheme } from 'hooks/useTheme';
@@ -46,6 +47,7 @@ export type Post = {
 };
 
 export interface TweetViewProps {
+    setShowInput: (val: boolean) => void;
     tweet: {
         user: User;
         tweet: Post;
@@ -59,7 +61,7 @@ const getNextTheme = (theme: string) => {
     return next;
 };
 
-export const TweetView = ({ tweet }: TweetViewProps) => {
+export const TweetView = ({ tweet, setShowInput }: TweetViewProps) => {
     const { theme, setTheme } = useTheme();
     const [likesStyle, toggleLikesStyle] = useLikes();
     const [roundedCorners, toggleRoundedCorners] = useRoundedCorners();
@@ -89,6 +91,13 @@ export const TweetView = ({ tweet }: TweetViewProps) => {
                         {hasReference ? <TweetQuote tweet={tweet} /> : <></>}
                     </TweetFull>
                     <div className={styles.settingsBar}>
+                        <Setting
+                            filled
+                            icon={<SearchIcon />}
+                            onClick={() => {
+                                setShowInput(true);
+                            }}
+                        />
                         <SaveButton tweet={tweet} post={post} />
                         <SettingsBar>
                             <Setting

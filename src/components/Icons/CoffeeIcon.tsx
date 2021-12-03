@@ -1,6 +1,7 @@
 export const CoffeeIcon = () => {
     return (
         <svg
+            className="ignore"
             width="21"
             height="31"
             viewBox="0 0 21 31"

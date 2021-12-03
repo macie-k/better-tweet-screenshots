@@ -8,6 +8,7 @@ import { InputPage } from './views/InputPage/InputPage';
 export const App = () => {
     const [tweet, setTweet] = useState<any>();
     const [urlID, setUrlID] = useState<string>();
+    const [showInput, setShowInput] = useState(true);
 
     useEffect(() => {
         console.log(
@@ -30,8 +31,13 @@ export const App = () => {
     return (
         <SettingsProvider>
             <ThemeProvider>
-                <InputPage setTweet={setTweet} urlID={urlID} />
-                <TweetView tweet={tweet} />
+                <InputPage
+                    showInput={showInput}
+                    setShowInput={setShowInput}
+                    setTweet={setTweet}
+                    urlID={urlID}
+                />
+                <TweetView setShowInput={setShowInput} tweet={tweet} />
             </ThemeProvider>
         </SettingsProvider>
     );
