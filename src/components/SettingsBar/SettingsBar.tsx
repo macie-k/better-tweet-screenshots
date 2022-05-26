@@ -28,7 +28,7 @@ export const SettingsBar = ({ children }: SettingsBarProps) => {
     const childrenAmount = Children.toArray(children).length;
     const size = (childrenAmount + 1) * 50 + childrenAmount * 10 + 'px';
 
-    const desktop = useMediaQuery({ query: '(min-width: 775px)' });
+    const desktop = useMediaQuery({ query: '(min-width: 768px)' });
     const variants = {
         closed: {
             transition: {

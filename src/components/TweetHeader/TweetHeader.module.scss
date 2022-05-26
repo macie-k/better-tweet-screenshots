@@ -1,6 +1,6 @@
 @import '../../styles/styleguide';
 
-$height: 50px;
+$height: 48px;
 $compact-height: 25px;
 
 .container {
@@ -132,7 +132,7 @@ $compact-height: 25px;
 
 /* -----------> DESKTOP <------------ */
 @media only screen and (min-width: 775px) {
-    $height: 60px;
+    $height: 48px;
 
     .avatar > img {
         height: $height;
@@ -150,11 +150,11 @@ $compact-height: 25px;
 
     .names {
         margin: 0 $global-spacing-pc;
-        font-size: 17px;
+        font-size: 15px;
 
         .compact & {
             & > * {
-                font-size: 15px !important;
+                font-size: 13px !important;
             }
         }
     }

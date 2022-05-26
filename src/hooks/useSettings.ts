@@ -6,7 +6,7 @@ type TimestampStyle = 'datetime' | 'date' | 'disabled';
 
 export const [SettingsProvider, useLikes, useRoundedCorners, useTimestamp] = constate(
     () => {
-        const [likesStyle, setLikesStyle] = useState<LikesStyle>('outline');
+        const [likesStyle, setLikesStyle] = useState<LikesStyle>('disabled');
         const toggleLikesStyle = useCallback(() => {
             setLikesStyle((likesStyle) => {
                 switch (likesStyle) {
@@ -27,7 +27,7 @@ export const [SettingsProvider, useLikes, useRoundedCorners, useTimestamp] = con
             });
         }, [setCornersRounded]);
 
-        const [timestampStyle, setTimestampStyle] = useState<TimestampStyle>('datetime');
+        const [timestampStyle, setTimestampStyle] = useState<TimestampStyle>('disabled');
         const toggleTimestampStyle = useCallback(() => {
             setTimestampStyle((timestampStyle) => {
                 switch (timestampStyle) {

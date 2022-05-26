@@ -3,10 +3,11 @@
 .container {
     background-color: #fff;
     width: 97vw;
+    max-width: 580px;
     height: fit-content;
     border-radius: 10px;
     padding: $global-spacing-mobile;
-    font-family: 'Segoe UI';
+    font-family: 'Chirp';
     margin-top: auto;
     margin-bottom: auto;
     user-select: none;
@@ -35,6 +36,5 @@
         // margin-top: auto;
         // margin-bottom: auto;
         padding: $global-spacing-pc;
-        width: 620px;
     }
 }
