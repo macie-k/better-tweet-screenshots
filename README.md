@@ -40,4 +40,4 @@ Application for creating aesthetic tweet screenshots
 ## Sidenotes
 
 -   For better results use on desktop
--   Single-media posts are currenly automatically cropped - remove `cropped` class to see full post
+-   Single-media posts are currenly automatically cropped - clikc on the photo to expand it
