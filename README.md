@@ -1,6 +1,6 @@
 # Better tweet screenshots
 
-Application for creating aesthetic tweet screenshots
+Application for creating clean tweet screenshots
 
 <br>
 
@@ -40,4 +40,4 @@ Application for creating aesthetic tweet screenshots
 ## Sidenotes
 
 -   For better results use on desktop
--   Single-media posts are currenly automatically cropped - clikc on the photo to expand it
+-   Single-media posts are currenly automatically cropped - click on the photo to expand it
